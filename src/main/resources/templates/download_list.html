@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>西安邮电大学-学生健康管理系统</title>
+        <script src="js/jquery-3.2.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/public.js"></script>
+		<script src="js/vue.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript">
+			$(document).ready(function() {
+				init()
+			});
+		</script>
+	</head>
+
+	<body>
+		<!--页面top-->
+		<div class="top">
+			<div class="top_nav">
+				<ul>
+					<li><a href="#">设为首页</a></li>
+					<li><a href="#">加入收藏</a></li>
+					<li><a href="#">西邮主站</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--导航-->
+		<div class="header flex">
+			<div class="logo"> <img src="images/logo.png" alt="西安邮电大学" /></div>
+			<div class="menu">
+				<ul>
+					<li> <h3><span>信息&下载</span></h3>
+					   <ul>
+						   <li><a href="">通知公告</a></li>
+						   <li><a href="">相关下载</a></li> 
+					   </ul>
+					</li>
+					<li> <h3><a href=""><span>健康知识</span></a></h3></li>
+					<li> <h3><a href=""><span>项目&目标</span></a></h3>
+					   <ul>
+						   <li><a href="">项目介绍</a></li>
+					   </ul>
+					</li>
+				</ul>
+			</div>
+			<div class="top_member">
+				<ul>
+					<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
+					<li> <a href="">常见问题</a></li>
+					<li> <a href="member_tea.html" class="btn_exit">LogOut</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--页面位置导航-->
+		<div class="page_title flex">
+			<div class="navigation">
+				<a href="">首页</a><em>/</em>
+				<!-- <a href="">信息&下载</a><em>/</em> -->
+				<span>信息&下载</span>
+			</div>
+			<div class="time">当前时间：2021年10月09日 22:22:22  星期五</div>
+		</div>
+		
+		<!--页面内容部分-->
+       <div class="page flex">
+		   <div class="page_nav">
+			   <h3>信息&下载</h3>
+			   <dl>
+				   <dd><a href=""  class="this"><span class="iconfont icon-fabuxuqiu"></span>通知公告</a></dd>
+				   <dd><a href=""><span class="iconfont icon-fabuxuqiu"></span>相关下载</a></dd>
+			   </dl>
+		   </div>
+           <div class="page_right">
+		     <ul class="page_list" id="getAllContent">
+<!--				 <li><a href="news_cont.html"><h3>我校教师热议习近平总书记给全国高校黄大年式教师团队代表的回信</h3>-->
+<!--				 <span>2021-01-06 10:23</span></a></li>-->
+<!--				 <li><a href="news_cont.html"><h3>我校教师热议习近平总书记给全国高校黄大年式教师团队代表的回信</h3>-->
+<!--				 <span>2021-01-06 10:23</span></a></li>-->
+<!--				 <li><a href=""><h3>我校教师热议习近平总书记给全国高校黄大年式教师团队代表的回信</h3>-->
+<!--				 <span>2021-01-06 10:23</span></a></li>-->
+<!--				 <li><a href=""><h3>我校教师热议习近平总书记给全国高校黄大年式教师团队代表的回信</h3>-->
+<!--				 <span>2021-01-06 10:23</span></a></li>-->
+<!--				 <li><a href=""><h3>我校教师热议习近平总书记给全国高校黄大年式教师团队代表的回信</h3>-->
+<!--				 <span>2021-01-06 10:23</span></a></li>-->
+<!--				 <li><a href=""><h3>我校教师热议习近平总书记给全国高校黄大年式教师团队代表的回信</h3>-->
+<!--				 <span>2021-01-06 10:23</span></a></li>-->
+			 </ul>
+			 <div class="pager">
+				 <a href="">上一页</a><a href="">1</a><a href="">2</a><span>3</span><a href="">4</a>
+				 <a href="">下一页</a>
+			 </div>
+		   </div>	   
+       </div>
+
+
+
+		<!--底部代码-->
+		<div class="bottom w_long">
+			<div class="bottom_copy">
+				<p>
+					Copyright @ 2019-2022 西安邮电大学维护</br>
+					网站备案号：陕IPC243434****-01
+				</p>
+			</div>
+		</div>
+	</body>
+<script>
+	function init() {
+		$.ajax({
+			url:"/download/getAllList",
+			method:"get",
+			success:function (result) {
+				var len = result.obj.length
+				var getAllContent =''
+				for (var i = 0; i < len; i++) {
+					getAllContent = getAllContent+'<li><a href=\"download_cont.html?id=' + result.obj[i].downloadId + '"><h3>' + result.obj[i].downloadName + '</h3>'
+					getAllContent = getAllContent + '<span>' + result.obj[i].time + '</span></a></li>'
+				}
+				$("#getAllContent").html(getAllContent)
+			},
+			error:function () {
+				alert("服务器错误")
+			}
+				}
+		)
+	}
+</script>
+</html>

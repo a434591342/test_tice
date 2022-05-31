@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>西安邮电大学-学生健康管理系统</title>
+		<!-- <script src="js/jquery-3.2.0.min.js"></script> -->
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/public.js"></script>
+		<script src="js/vue.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript">
+			$(document).ready(function() {
+			});
+		</script>
+	</head>
+
+	<body>
+	<div id="app">
+		<!--页面top-->
+		<div class="top">
+			<div class="top_nav">
+				<ul>
+					<li><a href="#">设为首页</a></li>
+					<li><a href="#">加入收藏</a></li>
+					<li><a href="#">西邮主站</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--导航-->
+		<div class="header flex">
+			<div class="logo"> <a href="index.html"> <img src="images/logo.png" alt="西安邮电大学" /></a></div>
+			<div class="menu">
+				<ul>
+					<li>
+						<h3><span>信息&下载</span></h3>
+						<ul>
+							<li><a href="news_list.html">通知公告</a></li>
+							<li><a href="">相关下载</a></li>
+						</ul>
+					</li>
+					<li>
+						<h3><span>健康知识</span></h3>
+					</li>
+					<li>
+						<h3><a href="indicators.html"><span>项目&目标</span></a></h3>
+						<ul>
+							<li><a href="indicators.html">项目介绍</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="top_member">
+				<ul>
+					<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
+					<li> <a href="">常见问题</a></li>
+					<li> <a href="member_tea.html" class="btn_exit">LogOut</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!--页面内容部分-->
+		<div class="page_cont">
+			<div class="page_tab">
+				<ul class="nav nav-tabs" id="myTab">
+					<li class="active"><a href="#report" data-toggle="tab">体测报告</a></li>
+					<li><a href="#contact" data-toggle="tab">老师帮助</a></li>
+				</ul>
+				<div class="time">当前时间：{{myTime}}</div>
+			</div>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in  active" id="report">
+					<div class="d-flex justify-content-around">
+						<div class="card flex-fill ">
+							<div class="card_icon"><img src="images/u45.png" width="44" /></div>
+							<h3 id="signal1">{{testScore.hwScore}}分</h3>
+							<p>身高体重</p>
+							<span class="error" v-if="showError.hwScore"><i>合格成绩：60分</i></span>
+						</div>
+						<div class="card flex-fill">
+							<div class="card_icon"><img src="images/u35.png" width="44" /></div>
+							<h3 id="signal2">{{testScore.vitualCapacity}}ml</h3>
+							<p>肺活量</p>
+							<span class="error" v-if="showError.vitualCapacity"><i>合格成绩：{{showError.vitualCapacityValue}}</i></span>
+						</div>
+						<div class="card flex-fill">
+							<div class="card_icon"><img src="images/u38.png" width="44" /></div>
+							<h3 id="signal3">{{testScore.s50m}}s</h3>
+							<p>50m跑</p>
+							<span class="error" v-if="showError.s50m"><i>合格成绩：{{showError.s50mValue}}s</i></span>
+						</div>
+						<div class="card flex-fill">
+							<div class="card_icon"><img src="images/u43.png" width="44" /></div>
+							<h3 id="signal4">{{testScore.longJump}}cm</h3>
+							<p>跳远</p>
+							<span class="error" v-if="showError.longJump"><i>合格成绩：{{showError.longJumpValue}}</i></span>
+						</div>
+						<div class="card flex-fill">
+							<div class="card_icon"><img src="images/u46.png" width="44" /></div>
+							<h3 id="signal5">{{testScore.sitAndReach}}个</h3>
+							<p>坐位体前屈</p>
+							<span class="error" v-if="showError.sitAndReach"><i>合格成绩：{{showError.sitAndReachValue}}</i></span>
+						</div>
+						<div class="card flex-fill">
+							<div class="card_icon"><img src="images/u44.png" width="44" /></div>
+							<h3 id="signal6">{{testScore.longRun}}</h3>
+							<p>长跑</p>
+							<span class="error" v-if="showError.longRun"><i>合格成绩：{{showError.longRunValue}}</i></span>
+						</div>
+						<div class="card flex-fill">
+							<div class="card_icon"><img src="images/u44.png" width="44" /></div>
+							<h3 id="signal7">{{testScore.sitUpOrPullUp}}个</h3>
+							<p>引体向上\仰卧起坐</p>
+							<span class="error" v-if="showError.sitUpOrPullUp"><i>合格成绩：{{showError.sitUpOrPullUpValue}}个</i></span>
+						</div>
+					</div>
+
+					<!--成绩报告-->
+					<div class="d-flex">
+						<div class="results_left">
+							<dl>
+								<dd><span>历史最好成绩：</span><b>{{bestScoreAndRank.bestScore}}</b></dd>
+								<dd><span>当前所在班级平均成绩：</span><b>{{bestScoreAndRank.ClassAveGrade}}</b></dd>
+								<dd><span>目前班级位次：</span><b>{{bestScoreAndRank.rank}}</b></dd>
+								<dd><span>检测学期：</span><b>{{bestScoreAndRank.grade}}</b></dd>
+							</dl>
+						</div>
+						<div class="results_right">
+							<h4>更多项目成绩请查看体测报告</h4>
+							<h3>最新报告：{{bestScoreAndRank.grade}}下学期体测报告</h3>
+							<p>发布时间：{{testScore.date}}</p>
+							<ul class="flex">
+								<li><a id="member_stu_report">查看报告详情</a></li>
+								<li><a href="member_stu_indicators.html">查看标准说明</a></li>
+								<li><a id="member_stu_chart">个人图表分析</a></li>
+							</ul>
+						</div>
+					</div>
+					<!--历史报告列表-->
+					<div class="history_table">
+						<h3>历史体测报告查看和下载</h3>
+						<table class="table">
+							<thead>
+							<tr>
+								<th>序号</th>
+								<th>学年学期</th>
+								<th>报告名称</th>
+								<th>操作</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr v-for="(report1,item) of allReport" :key=item>
+								<td>{{report1.report_id}}</td>
+								<td>{{report1.year}}</td>
+								<td>{{report1.reportName}}</td>
+								<td><a :href="'member_stu_report.html?id='+report1.test_score_id">查看详情</a><a href="">报告下载</a></td>>
+							</tr>
+<!--							<tr>-->
+<!--								<td>2</td>-->
+<!--								<td>2020年第二学期</td>-->
+<!--								<td>2020年第二学期体测报告（张同学）</td>-->
+<!--								<td>建议增加上肢锻炼</td>-->
+<!--								<td><a href="">查看详情</a><a href="">报告下载</a></td>-->
+<!--							</tr>-->
+<!--							<tr>-->
+<!--								<td>3</td>-->
+<!--								<td>2020年第二学期</td>-->
+<!--								<td>2020年第二学期体测报告（张同学）</td>-->
+<!--								<td>建议增加上肢锻炼</td>-->
+<!--								<td><a href="">查看详情</a><a href="">报告下载</a></td>-->
+<!--							</tr>-->
+<!--							<tr>-->
+<!--								<td>4</td>-->
+<!--								<td>2020年第二学期</td>-->
+<!--								<td>2020年第二学期体测报告（张同学）</td>-->
+<!--								<td>建议增加上肢锻炼</td>-->
+<!--								<td><a href="">查看详情</a><a href="">报告下载</a></td>-->
+<!--							</tr>-->
+<!--							<tr>-->
+<!--								<td>5</td>-->
+<!--								<td>2020年第二学期</td>-->
+<!--								<td>2020年第二学期体测报告（张同学）</td>-->
+<!--								<td>建议增加上肢锻炼</td>-->
+<!--								<td><a href="">查看详情</a><a href="">报告下载</a></td>-->
+<!--							</tr>-->
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="contact">
+					<h3>联系信息</h3>
+					<div class="contact">
+						<dl>
+							<dt>张老师</dt>
+							<dd><p>联系电话：18192017160</p><p>e-mali：2314124@qq.com</p></dd>
+							<dt>张老师</dt>
+							<dd><p>联系电话：18192017160</p><p>e-mali：2314124@qq.com</p></dd>
+							<dt>张老师</dt>
+							<dd><p>联系电话：18192017160</p><p>e-mali：2314124@qq.com</p></dd>
+						</dl>
+						<dl>
+							<dt>校健康办公司</dt>
+							<dd><p>联系电话：18192017160</p><p>e-mali：2314124@qq.com</p><p>位置：教学大楼6层605室</p></dd>
+						</dl>
+						<dl>
+							<dt>体育场所预定</dt>
+							<dd><p>联系电话：18192017160</p><p>e-mali：2314124@qq.com</p><p>位置：教学大楼6层605室</p></dd>
+						</dl>
+						<dl>
+							<dt>校园网链接</dt>
+							<dd><p>联系电话：18192017160</p><p>e-mali：2314124@qq.com</p><p>位置：教学大楼6层605室</p></dd>
+						</dl>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+
+
+		<!--底部代码-->
+		<div class="bottom w_long">
+			<div class="bottom_copy">
+				<p>
+					Copyright @ 2019-2022 西安邮电大学维护</br>
+					网站备案号：陕IPC243434****-01
+				</p>
+			</div>
+		</div>
+	</div>
+
+	</body>
+<script>
+	// init vue instance
+	let vm = new Vue({
+		el:'#app',
+		data:()=>{
+			return {
+				testScore:{
+					testScoreId:0,
+					hwScore:0,
+					vitualCapacity:0,
+					s50m:0,
+					longJump:0,
+					sitAndReach:0,
+					longRun:'',
+					sitUpOrPullUp:0,
+					date:''
+				},
+				showError:{
+					hwScore:false,
+					vitualCapacity:false,
+					s50m:false,
+					longJump:false,
+					sitAndReach:false,
+					longRun:false,
+					sitUpOrPullUp:false,
+					vitualCapacityValue:0,
+					s50mValue:0,
+					longJumpValue:0,
+					sitAndReachValue:0,
+					longRunValue:"",
+					sitUpOrPullUpValue:0
+				},
+				myTime:'',
+				bestScoreAndRank:{
+					grade:'',
+					bestScore:0,
+					ClassAveGrade:0,
+					rank:0
+				},
+				allReport:[]
+			}
+		},
+		mounted(){
+			var d=new Date();
+			this.myTime = d.toLocaleString();
+			var i = window.localStorage.getItem("userId")//获取对应的userId
+			if(i==null){
+				window.location.href='index.html'
+			}
+			this.getTestScore(i);
+			this.getBestScoreAndRank(i)
+			this.getAllReport(i)
+		},
+		methods:{
+			getTestScore(id){
+				dataJson = {"id":id}
+				$.ajax({
+					url: "/test-score/getLastTestScore",
+					method: "get",
+					data:dataJson,
+					success: (result)=> {
+						// 赋值
+						var member_stu_report = "member_stu_report.html"+"?id="+result.obj.testScoreId
+						document.getElementById("member_stu_report").setAttribute("href",member_stu_report)
+						var member_stu_chart = "member_stu_chart.html"+"?id="+id
+						document.getElementById("member_stu_chart").setAttribute("href",member_stu_chart)
+						this.testScore.date = result.obj.date
+						this.testScore.hwScore = result.obj.hwScore
+						this.testScore.vitualCapacity = result.obj.vitualCapacity
+						this.testScore.s50m = result.obj.s50m
+						this.testScore.longJump = result.obj.longJump
+						this.testScore.sitAndReach = result.obj.sitAndReach
+						if(result.obj.hwScore<60){
+							this.showError.hwScore=true;
+							document.getElementById('signal1').setAttribute("class",'red')
+						}
+						if(result.obj.gender===1){
+							this.testScore.longRun = result.obj.s1000m
+							this.testScore.sitUpOrPullUp = result.obj.pullUp
+							// 判断是否及格
+							if(result.obj.vcScore<60){
+								this.showError.vitualCapacity=true;
+								this.showError.vitualCapacityValue = 3100;
+								document.getElementById('signal2').setAttribute("class",'red')
+							}
+							if (result.obj.s50mScore<60){
+								this.showError.s50m = true;
+								this.showError.s50mValue = 9.1;
+								document.getElementById('signal3').setAttribute("class",'red')
+							}
+							if(result.obj.ljScore<60){
+								this.showError.longJump=true;
+								this.showError.longJumpValue =208;
+								document.getElementById('signal4').setAttribute("class",'red')
+							}
+							if(result.obj.sarScore<60){
+								this.showError.sitAndReach =true;
+								this.showError.sitAndReachValue = 3.7;
+								document.getElementById('signal5').setAttribute("class",'red')
+							}
+							if(result.obj.s1000mScore<60){
+								this.showError.longRun  =true;
+								this.showError.longRunValue = "4'30";
+								document.getElementById('signal6').setAttribute("class",'red')
+							}
+							if(result.obj.puScore<60){
+								this.showError.sitUpOrPullUp = true;
+								this.showError.sitUpOrPullUpValue = 11;
+								document.getElementById('signal7').setAttribute("class",'red')
+							}
+						}else {
+							this.testScore.longRun = result.obj.s800m
+							this.testScore.sitUpOrPullUp = result.obj.sitUp
+							// 判断是否及格
+							if(result.obj.vcScore<60){
+								this.showError.vitualCapacity=true;
+								this.showError.vitualCapacityValue = 2000;
+								document.getElementById('signal2').setAttribute("class",'red')
+							}
+							if (result.obj.s50mScore<60){
+								this.showError.s50m = true;
+								this.showError.s50mValue = 10.3;
+								document.getElementById('signal3').setAttribute("class",'red')
+							}
+							if(result.obj.ljScore<60){
+								this.showError.longJump=true;
+								this.showError.longJumpValue =151;
+								document.getElementById('signal4').setAttribute("class",'red')
+							}
+							if(result.obj.sarScore<60){
+								this.showError.sitAndReach =true;
+								this.showError.sitAndReachValue = 6;
+								document.getElementById('signal5').setAttribute("class",'red')
+							}
+							if(result.obj.s800mScore<60){
+								this.showError.longRun  =true;
+								this.showError.longRunValue = "4'23";
+								document.getElementById('signal6').setAttribute("class",'red')
+							}
+							if(result.obj.suScore<60){
+								this.showError.sitUpOrPullUp = true;
+								this.showError.sitUpOrPullUpValue = 26;
+								document.getElementById('signal7').setAttribute("class",'red')
+							}
+						}
+
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+			getBestScoreAndRank(id){
+				dataJson = {"id":id}
+				$.ajax({
+					url: "/test-score/getBestAndEvr",
+					method: "get",
+					data:dataJson,
+					success: (result)=> {
+						this.bestScoreAndRank.rank = result.obj[3];
+						this.bestScoreAndRank.ClassAveGrade = result.obj[2];
+						this.bestScoreAndRank.bestScore = result.obj[1];
+						if(result.obj[0]===41){
+							this.bestScoreAndRank.grade = '大一';
+						}else if(result.obj[0]===42){
+							this.bestScoreAndRank.grade = '大二';
+						}else if(result.obj[0]===43){
+							this.bestScoreAndRank.grade = '大三';
+						}else this.bestScoreAndRank.grade = '大四';
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+			getAllReport(id){
+				dataJson = {"id":id}
+				$.ajax({
+					url: "/suggestion/getAllReport",
+					method: "get",
+					data:dataJson,
+					success: (result)=> {
+						this.allReport = result.obj
+						console.log(this.allReport)
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			}
+		}
+	})
+</script>
+</html>

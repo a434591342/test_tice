@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>西安邮电大学-学生健康管理系统</title>
+		<script src="js/jquery-3.2.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/public.js"></script>
+		<script src="js/vue.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/echarts.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+			});
+		</script>
+	</head>
+
+	<body>
+<div id="app">
+	<!--页面top-->
+	<div class="top">
+		<div class="top_nav">
+			<ul>
+				<li><a href="#">设为首页</a></li>
+				<li><a href="#">加入收藏</a></li>
+				<li><a href="#">西邮主站</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--导航-->
+	<div class="header flex">
+		<div class="logo"><a href="index.html">  <img src="images/logo.png" alt="西安邮电大学" /></a></div>
+		<div class="menu">
+			<ul>
+				<li>
+					<h3><span>信息&下载</span></h3>
+					<ul>
+						<li><a href="news_list.html">通知公告</a></li>
+						<li><a href="">相关下载</a></li>
+					</ul>
+				</li>
+				<li>
+					<h3><span>健康知识</span></h3>
+				</li>
+				<li>
+					<h3><a href="indicators.html"><span>项目&目标</span></a></h3>
+					<ul>
+						<li><a href="indicators.html">项目介绍</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="top_member">
+			<ul>
+				<li> <a href=""><i class="icon"></i> 张同学</a></li>
+				<li> <a href="">常见问题</a></li>
+				<li> <a href="" class="btn_exit">LogOut</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--页面位置导航-->
+	<div class="page_title flex">
+		<div class="navigation">
+			<a href="">首页</a><em>/</em>
+			<a href="">体侧报告</a><em>/</em>
+			<span>个人图表分析</span>
+		</div>
+		<div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
+	</div>
+
+	<!--页面内容部分-->
+	<div class="page_chart">
+		<h3>身体素质变化表</h3>
+		<div class="chart_box">
+			<div id="main" style="width: 600px;height:400px; margin: auto" class="form-inline"></div>
+		</div>
+		<h3>身体素质变化表</h3>
+		<div class="chart_box">
+			<div id="leida" style="width: 600px;height:400px;margin: auto"></div>
+		</div>
+	</div>
+
+
+
+	<!--底部代码-->
+	<div class="bottom w_long">
+		<div class="bottom_copy">
+			<p>
+				Copyright @ 2019-2022 西安邮电大学维护</br>
+				网站备案号：陕IPC243434****-01
+			</p>
+		</div>
+	</div>
+</div>
+	</body>
+<script>
+	// init vue instance
+	let vm = new Vue({
+		el:'#app',
+		data:()=>{
+			return {
+				charts1:null,
+				testScoreShow:{
+					vitualCapacityScore:0,
+					s50mScore:0,
+					longJumpScore:0,
+					sitAndReachScore:0,
+					longRunScore:0,
+					sitUpOrPullUpScore:0,
+				}
+			}
+		},
+		mounted(){
+			var i = window.localStorage.getItem("userId")//获取对应的userId
+			if(i==null){
+				window.location.href='index.html'
+			}
+
+			this.showEcharts(i);
+			// console.log(this.charts1.scores);
+			// this.getEcharts()
+		},
+		methods:{
+			getEcharts(){
+				var myChart = echarts.init(document.getElementById('main'));
+				// 指定图表的配置项和数据
+				option = {
+					title: {
+						text: '平均素质值年份变化'
+					},
+					tooltip: {
+						trigger: 'axis'
+					},
+					legend: {
+						data:['耐力','爆发力']
+					},
+					toolbox: {
+						show: false,
+						feature: {
+							dataZoom: {
+								yAxisIndex: 'none'
+							},
+							dataView: {readOnly: false},
+							magicType: {type: ['line', 'bar']},
+							restore: {},
+							saveAsImage: {}
+						}
+					},
+					xAxis:  {
+						type: 'category',
+						boundaryGap: false,
+						data:this.charts1.years
+					},
+					yAxis: {
+						type: 'value',
+						axisLabel: {
+							formatter: '{value} '
+						}
+					},
+					series: [
+						{
+							name:'平均素质值',
+							type:'line',
+							data:this.charts1.scores,
+							markPoint: {
+								data: [
+									{type: 'max', name: '最大值'},
+									{type: 'min', name: '最小值'}
+								]
+							},
+							markLine: {
+								data: [
+									{type: 'average', name: '平均值'}
+								]
+							}
+						},
+
+					]
+				};
+				myChart.setOption(option);
+				var myChart1 = echarts.init(document.getElementById('leida'));
+				var leidaOption={
+					title: {
+						text: '各项得分分布情况'
+					},
+					legend: {
+						data: ['及格', '实际得分']
+					},
+					radar: {
+						// shape: 'circle',
+						indicator: [
+							{ name: '肺活量', max: 100 },
+							{ name: '50米', max: 100 },
+							{ name: '立定跳远', max:100 },
+							{ name: '坐位体前屈', max: 100 },
+							{ name: '长跑', max: 100 },
+							{name:'仰卧起坐/引体向上',max:100}
+						]
+					},
+					series: [
+						{
+							name: 'Budget vs spending',
+							type: 'radar',
+							data: [
+								{
+									value: [60,60, 60, 60,60,60],
+									name: '及格'
+								},
+								{
+									value: [this.testScoreShow.vitualCapacityScore,this.testScoreShow.s50mScore,this.testScoreShow.longJumpScore,this.testScoreShow.sitAndReachScore,this.testScoreShow.longRunScore,this.testScoreShow.sitUpOrPullUpScore],
+									name: '实际得分'
+								}
+							]
+						}
+					]
+				};
+				myChart1.setOption(leidaOption);
+			},
+			showEcharts(id){
+				dataJson = {"id":id}
+				$.ajax({
+					url: "/test-score/getAllScoreChart",
+					method: "get",
+					data:dataJson,
+					success: (result)=> {
+						this.charts1 = {'years':result.obj[0],'scores':result.obj[1]};
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+				$.ajax({
+					url: "/test-score/getLastTestScore",
+					method: "get",
+					data:dataJson,
+					success: (result)=> {
+						console.log(result)
+						this.testScoreShow.vitualCapacityScore = result.obj.vcScore;
+						this.testScoreShow.longJumpScore = result.obj.ljScore;
+						this.testScoreShow.sitAndReachScore = result.obj.sarScore;
+						this.testScoreShow.s50mScore = result.obj.s50mScore;
+						if(result.obj.gender ===1){
+							this.testScoreShow.longRunScore = result.obj.s1000mScore;
+							this.testScoreShow.sitUpOrPullUpScore = result.obj.puScore;
+						}else{
+							this.testScoreShow.longRunScore =result.obj.s800mScore;
+							this.testScoreShow.sitUpOrPullUpScore = result.obj.suScore;
+						}
+						this.getEcharts();    // 由于异步通信问题，是动态刷新，可能新开了一个线程，所以必须强调一下先后顺序
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			}
+
+		}
+	})
+	// 对应着e charts
+
+</script>
+</html>

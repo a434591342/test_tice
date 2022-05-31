@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjy.mapper.AdsTestscoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hjy.pojo.AdsTestscore">
+        <id column="id" property="id" />
+        <result column="item" property="item" />
+        <result column="sex" property="sex" />
+        <result column="grade" property="grade" />
+        <result column="best_score" property="bestScore" />
+        <result column="amount" property="amount" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, item, sex, grade, best_score, amount
+    </sql>
+
+</mapper>

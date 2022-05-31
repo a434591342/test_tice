@@ -1,0 +1,235 @@
+/* CSS Document */
+html,body,iframe,div,table,tr,th,td,iframe,dl,ul,ol,li,dt,dd,p,h1,h2,h3,h4,h5,h6,a,img,span,form,input,select,textarea,pre {margin:0; padding:0; border:0;}
+ul,ul li{float:left;}
+ul,ol {list-style:none;}
+li {height:auto;}
+input,select,textarea {font-size:14px; color:#666666; font-family:tahoma,"microsoft yahei","\5FAE\8F6F\96C5\9ED1"!important;}
+h1,h2,h3,h4,h5,h6,b,i,em,cite {font-weight:normal; font-style:normal;}
+
+body {font:14px/1.5 "Microsoft YaHei","微软雅黑",tahoma,arial,Hiragino Sans GB,\5b8b\4f53}
+a {text-decoration:none; color:#333;}
+a:link,a:visited  {color:#333; text-decoration: none;}
+a:hover,a:active {color:#005e96;}
+
+button { border:none;}
+table {border-collapse:collapse;}
+ul { width: 100%;}
+.clear {clear:both;}
+.clear:after, .clear:before {    
+ visibility:hidden;    
+ display:block;    
+ font-size:0;    
+ content:" ";    
+ clear:both;    
+ height:0;    
+} 
+ul:after, ul li:after { clear:both;}   
+.clear{    
+ zoom:1;    
+}
+.iconfont {
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+-webkit-text-stroke-width: 0.1px;
+}
+
+/*分页*/
+ .pager {
+	 float: right;
+ }
+ .pager > li {
+	 padding: 0 10px;
+ }
+ .pager a {
+ 	padding: 6px 12px;
+ 	margin: 0 6px;
+ 	background-color: #005e96;
+ 	color: #fff;
+ } 
+  .pager a:hover {
+	  background-color: #1890ff;
+  }
+  .pager span {
+	  padding: 6px 12px;
+	  background-color: #efefef;
+  }
+/*通用*/
+.l { float:left;}
+.r { float:right;}
+.c { float:center;}
+.block { display:block;}
+.none { display:none;}
+
+.w_long{width:100%;}
+.w_1200 {width:1200px; margin:0 auto; }
+.bg_whiter { background-color: #fff;}
+.btn_bule { background-color: #005e96;}
+.btn_bule:hover { background-color: #0367a3;}
+.overhidden {
+	overflow:hidden;
+text-overflow:ellipsis; 
+white-space:nowrap; 
+}
+* {box-sizing: border-box;}
+/*弹性盒子*/
+.flex {
+	display: -webkit-flex;
+    display: flex;
+}
+html {
+	height: 100%;
+}
+body {
+	min-width: 1336px;
+	height: 100%;
+}
+
+/*顶部样式*/
+.top{
+	height:32px;
+	line-height: 32px;
+	background-color: #011020;
+}
+.top_nav {
+    display: block;
+	margin-right: 40px;
+	float: right;
+}
+.top_nav a {
+	margin: 0 10px;
+	color: #dadada;
+}
+.top_nav a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+/*通用头部*/
+.header {
+	padding: 0 20px;
+	min-width: 1200px;
+	height: 150px;
+	background-color: #005e96;
+	justify-content: space-around;
+}
+.header .logo {
+	height: 150px;
+}
+.header .logo img {
+	margin-top: 20px;
+	height: 90px;
+}
+.menu {
+	width: 600px;
+	margin-left: 60px;
+	margin-top: 20px;
+}
+.menu ul li {
+	position: relative;
+	padding: 0 1px;
+	text-align: center;
+}
+.menu ul li h3 {
+	height: 90px;
+	line-height: 90px;
+	font-size: 12px;
+	color: #d7e9f2;
+	cursor: pointer;
+	transform-origin: 0 0;
+	transform: skew(160deg);
+}
+.menu ul li span {
+	display: block;
+	width: 160px;
+	padding-right: 30px;
+	transform-origin: 0 0;
+	transform: skew(20deg);
+
+}
+.menu ul li:hover h3  {
+	background-color: #0174aa;
+}
+.menu ul li h3 a {
+	color:#d7e9f2 ;
+}
+.menu ul li ul {
+	display: none;
+	position: absolute;
+	top: 91px;
+	left: -32px;
+	width: 160px;
+	padding: 10px 0;
+	background-color: #0174aa;
+	z-index: 999;
+}
+.menu ul li ul li {
+	width: 100%;
+}
+.menu ul li ul li a {
+	display: block;
+	height: 36px;
+	line-height: 36px;
+	color: #d7e9f2;
+}
+.menu ul li ul li a:hover {
+	color: #6abdff;
+}
+/*登录后会员*/
+.top_member {
+	width: 300px;
+	margin-left: 60px;
+	margin-top: 50px;
+}
+.top_member ul li {
+	margin-right: 40px;
+	height: 30px;
+	line-height: 30px;
+	
+}
+.top_member a {
+	color: #fff;
+}
+a.btn_exit {
+	color: #4cbcff;
+}
+/*底部*/
+.bottom {
+	background-color: #005e96;
+}
+.body_bg .bottom {
+	position: absolute;
+	bottom: 0px;
+}
+.bottom_copy {
+	width: 100%;
+	text-align: center;
+	padding: 20px;
+	line-height: 30px;
+	color: #bcd1dd;
+}
+
+/*位置导航*/
+.page_title {
+	position: relative;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	margin-top: 20px;
+	padding: 0 40px;
+	width: 100%;
+	height: 40px;
+	border-bottom: 1px solid #eaeaea;
+}
+.page_title a {
+	color: #005e96 ;
+}
+.page_title span {
+	color: #7393a2;
+}
+.page_title em {
+	padding: 0 10px;
+}
+.time {
+	position: absolute;
+	bottom: 10px;
+	right: 40px;
+	color: #7393a2;
+}

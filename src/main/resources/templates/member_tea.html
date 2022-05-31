@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>西安邮电大学-学生健康管理系统</title>
+		<script src="js/jquery-3.2.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/public.js"></script>
+		<script src="js/vue.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+			});
+		</script>
+	</head>
+
+	<body>
+<div id="app">
+	<!--页面top-->
+	<div class="top">
+		<div class="top_nav">
+			<ul>
+				<li><a href="#">设为首页</a></li>
+				<li><a href="#">加入收藏</a></li>
+				<li><a href="#">西邮主站</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--导航-->
+	<div class="header flex">
+		<div class="logo"> <img src="images/logo.png" alt="西安邮电大学" /></div>
+		<div class="menu">
+			<ul>
+				<li>
+					<h3><span>信息&下载</span></h3>
+					<ul>
+						<li><a href="">通知公告</a></li>
+						<li><a href="">相关下载</a></li>
+					</ul>
+				</li>
+				<li>
+					<h3><a href=""><span>健康知识</span></a></h3>
+				</li>
+				<li>
+					<h3><a href=""><span>项目&目标</span></a></h3>
+					<ul>
+						<li><a href="">项目介绍</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="top_member">
+			<ul>
+				<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
+				<li> <a href="">常见问题</a></li>
+				<li> <a href="member_tea.html" class="btn_exit">LogOut</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--页面位置导航-->
+	<div class="page_title flex">
+		<div class="navigation">
+			<a href="">首页</a><em>/</em>
+			<!-- <a href="">信息&下载</a><em>/</em> -->
+			<span>学生数据</span>
+		</div>
+		<div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
+	</div>
+	<!--页面内容部分-->
+	<div class="page flex">
+		<div class="page_nav">
+			<h3>功能菜单</h3>
+			<dl>
+				<dd><a href="member_tea.html" class="this"><span class="iconfont icon-fabuxuqiu"></span>学生数据</a></dd>
+				<dd><h4><span class="iconfont icon-fabuxuqiu"></span>学生体测数据</h4>
+					<dl>
+						<dd><a href="member_tea_data.html"> 体测数据管理</a></dd>
+					</dl>
+				</dd>
+				<dd>
+					<h4><span class="iconfont icon-fabuxuqiu"></span>统计分析</h4>
+					<dl>
+						<dd><a href="member_tea_analysis01.html"> 全校综合情况</a></dd>
+						<dd><a href="member_tea_analysis02.html"> 单项目情况</a></dd>
+						<dd><a href="member_tea_analysis03.html"> 指标情况</a></dd>
+					</dl>
+				</dd>
+				<dd>
+					<h4><span class="iconfont icon-fabuxuqiu"></span>网站信息维护</h4>
+					<dl>
+						<dd><a href="editor_list.html"> 通知公告</a></dd>
+						<dd><a href="editor_list.html"> 相关下载</a></dd>
+						<dd><a href="editor_list.html"> 工作动态</a></dd>
+						<dd><a href="editor_list.html"> 常见问题</a></dd>
+						<dd><a href="editor_list.html"> 健康知识</a></dd>
+					</dl>
+				</dd>
+				<dd>
+					<h4><span class="iconfont icon-fabuxuqiu"></span>健康指导维护</h4>
+					<dl>
+						<dd><a href="editor_editor.html"> 健康意见编辑</a></dd>
+					</dl>
+				</dd>
+			</dl>
+		</div>
+		<div class="page_right">
+			<div class="search_top">
+
+				<form class="form-inline selected" role="form" id="form1">
+					<div class="form-group">
+						<label for="name">学院：</label>
+						<select class="form-control" name="academy" id="academy">
+							<option v-for="(name,item) of academy" :key="item">{{name}}</option>
+						</select>
+					</div>
+					<div class="form-group" >
+						<label for="name">系别：</label>
+						<select class="form-control" id="major" @click="getAllMajor()">
+							<option v-for="(name,item) of major" :key="item">{{name}}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="name">班级：</label>
+						<select class="form-control" @click="getAllClass()">
+							<option v-for="(name,item) of class_id" :key="item">{{name}}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="name">性别：</label>
+						<select class="form-control">
+							<option v-for="(name,item) of sex" :key="item">{{name}}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<button type="button" class="btn btn-default" @click="onclick1()">查询</button>
+					</div>
+				</form>
+				<form class="form-inline search" role="form">
+					<div class="form-group">
+						<label for="firstname">学号查询：</label>
+						<div class="form-control">
+							<input type="text" id="schoolNum" placeholder="请输入学号">
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="button" class="btn btn-default" @click="onclick2()">查询</button>
+					</div>
+				</form>
+			</div>
+			<div class="stu_list">
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th>学号</th>
+						<th>姓名</th>
+						<th>性别</th>
+						<th>班级名称</th>
+						<th>备注</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+                    <tr v-for="(info,item) of stuInfo" :key="item">
+                        <td>{{info.schoolNumber}}</td>
+                        <td><a href="member_tea_data_cont.html">{{info.name}}</a></td>
+                        <td>{{info.sex===1?'男':'女'}}</td>
+                        <td>{{info.className}}</td>
+                        <td>{{info.note}}</td>
+                        <td><a :href="'member_tea_data_cont.html?id='+info.schoolNumber">查看</a></td>
+                    </tr>
+<!--					<tr>-->
+<!--						<td>西邮1101</td>-->
+<!--						<td><a href="member_tea_data_cont.html">张同学</a></td>-->
+<!--						<td>男</td>-->
+<!--						<td>经济信息管理专业</td>-->
+<!--						<td>大一</td>-->
+<!--						<td>全部合格</td>-->
+<!--						<td>残疾</td>-->
+<!--						<td><a href="member_tea_data_cont.html">查看</a></td>-->
+<!--					</tr>-->
+<!--					<tr>-->
+<!--						<td>西邮1101</td>-->
+<!--						<td><a href="">张同学</a></td>-->
+<!--						<td>女</td>-->
+<!--						<td>经济信息管理专业</td>-->
+<!--						<td>大一</td>-->
+<!--						<td>50米不合格、立定跳远不合格</td>-->
+<!--						<td>重点关注</td>-->
+<!--						<td><a href="">查看</a></td>-->
+<!--					</tr>-->
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!--底部代码-->
+	<div class="bottom w_long">
+		<div class="bottom_copy">
+			<p>
+				Copyright @ 2019-2022 西安邮电大学维护</br>
+				网站备案号：陕IPC243434****-01
+			</p>
+		</div>
+	</div>
+</div>
+	</body>
+<script>
+<!--	vue内容-->
+
+	// init vue instance
+	let vm = new Vue({
+		el:'#app',
+		data:()=>{
+			return {
+				academy:[],
+				major:[],
+				class_id:[],
+				sex:["男","女"],
+				stuInfo:[
+				]
+			}
+		},
+		mounted(){
+			this.getAllSelectInfo()
+		},
+		methods:{
+			getAllSelectInfo(){
+				var self = this;   //直接赋值不可以  它是将数据绑定到了ajax中的对象，而没有被vue对象绑定，所以错误   =====》解决方式是将this在ajax外命名
+				$.ajax({
+					url: "major/getAllAcademy",
+					method: "get",
+					success: function (result) {
+						self.academy = result.obj.academy;
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+			getAllMajor(){
+				var academy = $("#academy")[0].value
+				var major =$("#major")[0].value
+				var self = this;   //直接赋值不可以  它是将数据绑定到了ajax中的对象，而没有被vue对象绑定，所以错误   =====》解决方式是将this在ajax外命名
+				classJson = {"academy":academy,"major":major};
+				$.ajax({
+					url: "major/getAllMajor",
+					method: "post",
+					data:JSON.stringify(classJson),
+					contentType: "application/json;charset=utf-8",
+					success: function (result) {
+						// console.log(result)
+						self.major = result.obj;
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+
+
+			getAllClass() {
+				var academy = $("#academy")[0].value
+				var major =$("#major")[0].value
+				classJson = {"academy":academy,"major":major};
+				var self = this;   //直接赋值不可以  它是将数据绑定到了ajax中的对象，而没有被vue对象绑定，所以错误   =====》解决方式是将this在ajax外命名
+				$.ajax({
+					url: "major/getAllClass",
+					method: "post",
+					contentType: "application/json;charset=utf-8",
+					data:JSON.stringify(classJson),
+					success: function (result) {
+                        self.class_id = result.obj
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+			onclick1(){
+				var form = $('#form1').find("option:selected");
+				var academy = form[0].value;
+				var major = form[1].value;
+				var class_id = form[2].value;
+				var sex = form[3].value;
+				var requestJson = {"academy":academy,"major":major,"class_id":class_id,"sex":sex}
+				var self = this;
+				$.ajax({
+					url: "/student-info/getStuInfo",
+					method: "post",
+					contentType: "application/json;charset=utf-8",
+					data:JSON.stringify(requestJson),
+					success: function (result) {
+						// console.log(result)
+                        self.stuInfo = result.obj
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+            onclick2(){
+                var school_num = $("#schoolNum")[0].value;
+                dataJson = {"school_num":school_num}
+                var self = this;
+                $.ajax({
+                    url: "/student-info/getStuInfoByNum",
+                    method: "get",
+                    data:dataJson,
+                    success: function (result) {
+                        console.log(result)
+                        self.stuInfo = result.obj
+                    },
+                    error: function () {
+                        alert("请求服务器失败!");
+                    }
+                })
+            }
+		}
+	})
+</script>
+</html>

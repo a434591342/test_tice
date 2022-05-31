@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjy.mapper.AcademyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hjy.pojo.Academy">
+        <id column="academy_id" property="academyId" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        academy_id, name
+    </sql>
+    <select id="selectNameById" resultType="java.lang.String">
+        select `name` from academy where academy_id = #{academyId}
+    </select>
+    <select id="selectNames" resultType="java.lang.String">
+        select `name` from academy;
+    </select>
+
+</mapper>

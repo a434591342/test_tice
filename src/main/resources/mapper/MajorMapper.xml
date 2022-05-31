@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjy.mapper.MajorMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hjy.pojo.Major">
+        <id column="major_id" property="majorId" />
+        <result column="major_name" property="majorName" />
+        <result column="academy_id" property="academyId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        major_id, major_name, academy_id
+    </sql>
+    <select id="selectAllName" resultType="java.lang.String">
+        select major_name from major
+</select>
+<select id="selectByAcademy" resultType="java.lang.String">
+        SELECT major.major_name
+FROM major
+LEFT JOIN academy
+on academy.academy_id = major.academy_id
+WHERE academy.`name` = #{academy}
+</select><select id="selectMajorInfo" resultMap="BaseResultMap">
+    select major.major_id, major.major_name, major.academy_id from major
+    left join academy
+    on academy.academy_id=major.academy_id
+    where major.major_name = #{major} and academy.name = #{academy}
+</select>
+
+</mapper>

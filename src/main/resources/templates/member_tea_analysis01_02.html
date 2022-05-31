@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>西安邮电大学-学生健康管理系统</title>
+		<script src="js/jquery-3.2.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/public.js"></script>
+		<script src="js/vue.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+		<!--时间选择器-->
+		<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="assets/theme/css/tempusdominus-bootstrap-4.css" rel="stylesheet">
+		<script src="assets/js/moment-with-locales.min.js"></script>
+		<script src="assets/js/tempusdominus-bootstrap-4.js"></script>
+		<!--时间选择器-->
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<!--页面top-->
+		<div class="top">
+			<div class="top_nav">
+				<ul>
+					<li><a href="#">设为首页</a></li>
+					<li><a href="#">加入收藏</a></li>
+					<li><a href="#">西邮主站</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--导航-->
+		<div class="header flex">
+			<div class="logo"> <img src="images/logo.png" alt="西安邮电大学" /></div>
+			<div class="menu">
+				<ul>
+					<li>
+						<h3><span>信息&下载</span></h3>
+						<ul>
+							<li><a href="">通知公告</a></li>
+							<li><a href="">相关下载</a></li>
+						</ul>
+					</li>
+					<li>
+						<h3><a href=""><span>健康知识</span></a></h3>
+					</li>
+					<li>
+						<h3><a href=""><span>项目&目标</span></a></h3>
+						<ul>
+							<li><a href="">项目介绍</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="top_member">
+				<ul>
+					<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
+					<li> <a href="">常见问题</a></li>
+					<li> <a href="member_tea.html" class="btn_exit">LogOut</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--页面位置导航-->
+		<div class="page_title flex">
+			<div class="navigation">
+				<a href="">首页</a><em>/</em>
+				<a href="member_tea_analysis01.html">全校综合情况</a><em>/</em>
+				<span>单项成绩分布情况</span>
+			</div>
+			<div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
+		</div>
+
+		<!--页面内容部分-->
+		<div class="page flex">
+			<div class="page_nav">
+				<h3>功能菜单</h3>
+				<dl>
+					<dd><a href="member_tea.html"><span class="iconfont icon-fabuxuqiu"></span>学生数据</a></dd>
+					<dd>
+						<h4><span class="iconfont icon-fabuxuqiu"></span>学生体测数据</h4>
+						<dl>
+							<dd><a href="member_tea_data.html"> 体测数据管理</a></dd>
+						</dl>
+					</dd>
+					<dd>
+						<h4 class="this"><span class="iconfont icon-fabuxuqiu"></span>统计分析</h4>
+						<dl>
+							<dd><a href="member_tea_analysis01.html" class="hover"> 全校综合情况</a></dd>
+							<dd><a href="member_tea_analysis02.html"> 单项目情况</a></dd>
+							<dd><a href="member_tea_analysis03.html"> 指标情况</a></dd>
+						</dl>
+					</dd>
+					<dd>
+						<h4><span class="iconfont icon-fabuxuqiu"></span>网站信息维护</h4>
+						<dl>
+							<dd><a href="editor_list.html"> 通知公告</a></dd>
+							<dd><a href="editor_list.html"> 相关下载</a></dd>
+							<dd><a href="editor_list.html"> 工作动态</a></dd>
+							<dd><a href="editor_list.html"> 常见问题</a></dd>
+							<dd><a href="editor_list.html"> 健康知识</a></dd>
+						</dl>
+					</dd>
+					<dd>
+						<h4><span class="iconfont icon-fabuxuqiu"></span>健康指导维护</h4>
+						<dl>
+							<dd><a href="editor_editor.html"> 健康意见编辑</a></dd>
+						</dl>
+					</dd>
+				</dl>
+			</div>
+			<div class="page_right">
+				<div class="analysis_top flex">
+					<h3>学生整体情况</h3>
+					<div class="date_screening">
+						<form>
+							<div class="row">
+								<div class="col-sm-4 ">
+									<a href="">全站群</a>
+								</div>
+								<div class="col-sm-2">
+									<h4>期间数据：</h4>
+								</div>
+								<div class="col-sm-3">
+									<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker"
+									 data-target="#datetimepicker5" />
+								</div>
+								<div class="col-sm-3">
+									<input type="text" class="form-control datetimepicker-input" id="datetimepicker6" data-toggle="datetimepicker"
+									 data-target="#datetimepicker6" />
+								</div>
+								<script type="text/javascript">
+									$(function() {
+										$('#datetimepicker5').datetimepicker();
+										$('#datetimepicker6').datetimepicker();
+									});
+								</script>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="data_nav">
+					<form>
+					</form>
+					<form>
+						<div class="btn-group btn-group-sm">
+							<button type="button" class="btn btn-blue">全部</button>
+							<button type="button" class="btn">男</button>
+							<button type="button" class="btn">女</button>
+						</div>
+						<div class="btn-group btn-group-sm">
+							<button type="button" class="btn btn-blue">全部</button>
+							<button type="button" class="btn">大一</button>
+							<button type="button" class="btn">大二</button>
+							<button type="button" class="btn">大三</button>
+							<button type="button" class="btn">大四</button>
+						</div>
+					</form>
+				</div>
+                <div class="data_box">
+					
+					<div class="data_eachert"><img src="images/qushi4.png" /></div>
+				</div>
+				<div class="stu_list">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>体侧报告</th>
+								<th>优秀</th>
+								<th>良好</th>
+								<th>合格</th>
+								<th>不合格</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2018年第二学期</td>
+								<td>768</td>
+								<td>15</td>
+								<td>689</td>
+								<td>1024</td>
+							</tr>
+							<tr>
+								<td>2018年第一学期</td>
+								<td>768</td>
+								<td>15</td>
+								<td>689</td>
+								<td>1024</td>
+							</tr>
+							<tr>
+								<td>2017年第二学期</td>
+								<td>768</td>
+								<td>15</td>
+								<td>689</td>
+								<td>1024</td>
+							</tr>
+							<tr>
+								<td>2017年第一学期</td>
+								<td>768</td>
+								<td>15</td>
+								<td>689</td>
+								<td>1024</td>
+							</tr>
+							<tr>
+								<td>总计（平均）</td>
+								<td>768</td>
+								<td>15</td>
+								<td>689</td>
+								<td>1024</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+		</div>
+
+		</div>
+
+
+		<!--底部代码-->
+		<div class="bottom w_long">
+			<div class="bottom_copy">
+				<p>
+					Copyright @ 2019-2022 西安邮电大学维护</br>
+					网站备案号：陕IPC243434****-01
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

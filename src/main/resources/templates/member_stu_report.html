@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>西安邮电大学-学生健康管理系统</title>
+		<script src="js/jquery-3.2.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/public.js"></script>
+		<script src="js/vue.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var i = window.localStorage.getItem("userId")//获取对应的userId
+				if(i==null){
+					window.location.href='index.html'
+				}
+			});
+		</script>
+	</head>
+
+	<body>
+<div id="app">
+	<!--页面top-->
+	<div class="top">
+		<div class="top_nav">
+			<ul>
+				<li><a href="#">设为首页</a></li>
+				<li><a href="#">加入收藏</a></li>
+				<li><a href="#">西邮主站</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--导航-->
+	<div class="header flex">
+		<div class="logo"><a href="index.html"> <img src="images/logo.png" alt="西安邮电大学" /></a></div>
+		<div class="menu">
+			<ul>
+				<li>
+					<h3><span>信息&下载</span></h3>
+					<ul>
+						<li><a href="">通知公告</a></li>
+						<li><a href="">相关下载</a></li>
+					</ul>
+				</li>
+				<li>
+					<h3><a href=""><span>健康知识</span></a></h3>
+				</li>
+				<li>
+					<h3><a href=""><span>项目&目标</span></a></h3>
+					<ul>
+						<li><a href="">项目介绍</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="top_member">
+			<ul>
+				<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
+				<li> <a href="">常见问题</a></li>
+				<li> <a href="" class="btn_exit">LogOut</a></li>
+			</ul>
+		</div>
+	</div>
+	<!--页面位置导航-->
+	<div class="page_title flex">
+		<div class="navigation">
+			<a href="">首页</a><em>/</em>
+			<a href="">个人中心</a><em>/</em>
+			<span>测试报告</span>
+		</div>
+		<div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
+	</div>
+
+	<!--页面内容部分-->
+	<div class="page flex">
+		<div class="page_nav">
+			<h3>测试报告</h3>
+			<dl>
+				<dd><a href="" class="this"><span class="iconfont icon-fabuxuqiu"></span>2020年第一学期</a></dd>
+			</dl>
+		</div>
+		<div class="page_right">
+			<div class="report_top">
+				<h3>姓名：{{report.name}}<span>（学号：{{report.school_num}}）</span></h3>
+				<div class="down_page"><a href="">下载本期报告</a></div>
+				<table class="table">
+					<tbody>
+					<tr>
+						<td width="30%"><span>学院：</span>{{report.academy_name}}</td>
+						<td width="30%"><span>系别：</span>{{report.major_name}}</td>
+						<td rowspan="2"><span>状态：</span>
+							<p>在读</p>
+						</td>
+					</tr>
+					<tr>
+						<td><span>体测时间：</span>{{report.reportDate}}</td>
+						<td><span>性别：</span>{{report.sex}}</td>
+					</tr>
+					<tr>
+						<td colspan="3"><span>备注：</span>{{report.note}}</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="report_cont">
+				<div class="report_tab">
+					<h4>详情</h4>
+				</div>
+
+				<div class="report_box">
+					<h3>项目成绩</h3>
+					<div class="report_box_01">
+						<ul>
+							<li><p><img src="images/u35.png"/><b>BMI<em>{{report.hwScore}}分</em></b></p><span>{{report.hwRank}}</span></li>
+							<li class="error"><p><img src="images/u35.png"/><b>肺活量<em>{{report.vitualCapacity}}ml</em></b></p><span>{{report.vcRank}}</span></li>
+							<li><p><img src="images/u35.png"/><b>50米跑<em>{{report.s50m}}s</em></b></p><span>{{report.s50mRank}}</span></li>
+							<li><p><img src="images/u35.png"/><b>跳远<em>{{report.longRun}}cm</em></b></p><span>{{report.longRunRank}}</span></li>
+							<li><p><img src="images/u35.png"/><b>坐位体前屈<em>{{report.sitAndReach}}个</em></b></p><span>{{report.sarRank}}</span></li>
+							<li><p><img src="images/u35.png"/><b>长跑<em>{{report.longRun}}</em></b></p><span>{{report.longRunRank}}</span></li>
+							<li><p><img src="images/u35.png"/><b>引体向上/仰卧起坐<em>{{report.sitUpOrPullUp}}个</em></b></p><span>{{report.sitUpOrPullUpRank}}</span></li>
+						</ul>
+						<div class="clear"></div>
+					</div>
+					<div class="report_box_02 flex">
+						<div class="report_box_02_l">
+							<h4>老师建议：</h4>
+							<dl>
+								<dd v-for="(suggestion,item) of report.suggestion" :key=item><a>{{suggestion}}</a>></dd>
+
+<!--								<dd>01. 多享受早晨8、9点的阳光。</dd>-->
+<!--								<dd>02. 慢跑快走。</dd>-->
+<!--								<dd>03. 热水泡脚可有效预防静脉曲张。 </dd>-->
+<!--								<dd>04. 精神极度疲倦时，不适宜以运动减压，休息更重要。 </dd>-->
+<!--								<dd>05. 10层以下，少乘坐电梯。 </dd>-->
+<!--								<dd>06. 可以尝试站着看会电视。 </dd>-->
+<!--								<dd>07. 每天运动半小时，而非周末运动3小时</dd>-->
+<!--								<dd>08. 少油腻，少食多餐，吃完饭要经常散步。 </dd>-->
+<!--								<dd>09. 睡半硬的床铺更有利于颈椎健康。</dd>-->
+<!--								<dd>10. 运动后休息半小时再入浴。 </dd>-->
+							</dl>
+						</div>
+						<div class="report_box_02_r">
+							<h4>体育课程建议：</h4>
+							<ul>
+								<li>{{report.class_suggestion}}</li>
+<!--								<li>篮球课</li>-->
+<!--								<li>网球课</li>-->
+<!--								<li>击剑</li>-->
+<!--								<li>游泳课</li>-->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--底部代码-->
+	<div class="bottom w_long">
+		<div class="bottom_copy">
+			<p>
+				Copyright @ 2019-2022 西安邮电大学维护</br>
+				网站备案号：陕IPC243434****-01
+			</p>
+		</div>
+	</div>
+</div>
+	</body>
+<script>
+	// init vue instance
+	let vm = new Vue({
+		el:'#app',
+		data:()=>{
+			return {
+				report:{
+					name: "",
+					school_num:0,
+					academy_name: "",
+					major_name: "",
+					reportDate: "",
+					sex: "",
+					note: null,
+					hwScore: 0,
+					hwRank: "",
+					vitualCapacity: 0,
+					vcRank: "",
+					s50m: 0,
+					s50mRank: "",
+					longJump: 0,
+					ljRank: "",
+					sitAndReach: 0,
+					sarRank: "",
+					longRun: "",
+					longRunRank: "",
+					sitUpOrPullUp: 0,
+					sitUpOrPullUpRank: "",
+					suggestion: [
+
+					],
+					class_suggestion: ""
+				}
+			}
+		},
+		mounted(){
+			this.getResult()
+		},
+		methods:{
+			getResult(){
+				var num = parseInt(location.search.substr(4,location.search.length))
+				dataJson = {"id":num}
+				$.ajax({
+					url: "/suggestion/getSugAndScore",
+					method: "get",
+					data:dataJson,
+					success: (result)=> {
+						this.report = result.obj;
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			}
+			}
+		}
+	)
+</script>
+</html>

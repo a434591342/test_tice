@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjy.mapper.TestScoreMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hjy.pojo.TestScore">
+        <id column="test_score_id" property="testScoreId" />
+        <result column="student_id" property="studentId" />
+        <result column="height" property="height" />
+        <result column="weight" property="weight" />
+        <result column="hw_score" property="hwScore" />
+        <result column="hw_rank" property="hwRank" />
+        <result column="vitual_capacity" property="vitualCapacity" />
+        <result column="vc_score" property="vcScore" />
+        <result column="vc_rank" property="vcRank" />
+        <result column="s_50m" property="s50m" />
+        <result column="s_50m_score" property="s50mScore" />
+        <result column="s_50m_rank" property="s50mRank" />
+        <result column="long_jump" property="longJump" />
+        <result column="lj_score" property="ljScore" />
+        <result column="lj_rank" property="ljRank" />
+        <result column="sit_and_reach" property="sitAndReach" />
+        <result column="sar_score" property="sarScore" />
+        <result column="sar_rank" property="sarRank" />
+        <result column="s_800m" property="s800m" />
+        <result column="s_800m_score" property="s800mScore" />
+        <result column="s_800m_rank" property="s800mRank" />
+        <result column="s_1000m" property="s1000m" />
+        <result column="s_1000m_score" property="s1000mScore" />
+        <result column="s_1000m_rank" property="s1000mRank" />
+        <result column="sit_up" property="sitUp" />
+        <result column="su_score" property="suScore" />
+        <result column="su_rank" property="suRank" />
+        <result column="pull_up" property="pullUp" />
+        <result column="pu_score" property="puScore" />
+        <result column="pu_rank" property="puRank" />
+        <result column="standard_score" property="standardScore" />
+        <result column="add_score" property="addScore" />
+        <result column="total_score" property="totalScore" />
+        <result column="total_rank" property="totalRank" />
+        <result column="grade" property="grade" />
+        <result column="date" property="date" />
+        <result column="gender" property="gender" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        test_score_id, student_id, height, weight, hw_score, hw_rank, vitual_capacity, vc_score, vc_rank, s_50m, s_50m_score, s_50m_rank, long_jump, lj_score, lj_rank, sit_and_reach, sar_score, sar_rank, s_800m, s_800m_score, s_800m_rank, s_1000m, s_1000m_score, s_1000m_rank, sit_up, su_score, su_rank, pull_up, pu_score, pu_rank, standard_score, add_score, total_score, total_rank, grade, date, gender
+    </sql>
+    <select id="selectByID" resultMap="BaseResultMap">
+        SELECT * from test_score WHERE student_id = #{id} ORDER BY date DESC;
+    </select>
+    <select id="selectByIDBestGrade" resultType="java.lang.Integer">
+        SELECT total_score
+        FROM test_score
+        WHERE student_id = #{id}
+        ORDER BY total_score DESC
+        LIMIT 1
+    </select>
+    <select id="selectAveRank" resultType="java.lang.Integer">
+        SELECT rank_
+        FROM
+        (
+        SELECT ts.student_id,ts.total_score,si.class_id,dense_rank() over(order by ts.total_score desc) as  rank_
+        from test_score ts
+        LEFT JOIN student_info si
+        ON ts.student_id = si.school_number
+        WHERE class_id in
+        (
+        SELECT class_id FROM student_info WHERE school_number =#{id}
+        )
+        AND ts.grade = #{grade}
+        ) temp
+        WHERE student_id =#{id}
+    </select>
+    <select id="selectAveScore" resultType="java.lang.Long">
+        SELECT AVG(total_score)
+        FROM
+        (
+        SELECT ts.student_id,ts.total_score,si.class_id,dense_rank() over(order by ts.total_score desc) as  rank_
+        from test_score ts
+        LEFT JOIN student_info si
+        ON ts.student_id = si.school_number
+        WHERE class_id in
+        (
+        SELECT class_id FROM student_info WHERE school_number = #{id}
+        )
+        AND ts.grade = #{grade}
+        ) temp
+    </select>
+    <select id="selectByTestScoreId" resultMap="BaseResultMap">
+        select * from test_score where test_score_id = #{testScore_id}
+    </select>
+    <select id="selectAllReportByID" resultType="com.hjy.pojo.AllReport">
+        SELECT suggestion.suggestion_id report_id,
+        CASE
+        WHEN ts.grade='41' THEN
+        "大一下半学期"
+        WHEN ts.grade='42' THEN
+        "大二下半学期"
+        WHEN ts.grade='43' THEN
+        "大三下半学期"
+        WHEN ts.grade='44' THEN
+        "大四下半学期"
+        ELSE "null"
+        END
+        as `year`,
+        CASE
+        WHEN ts.grade='41' THEN
+        "大一下半学期体测报告"
+        WHEN ts.grade='42' THEN
+        "大二下半学期体测报告"
+        WHEN ts.grade='43' THEN
+        "大三下半学期体测报告"
+        WHEN ts.grade='44' THEN
+        "大四下半学期体测报告"
+        ELSE "null"
+        END
+        as reportName,
+        ts.test_score_id
+        FROM test_score ts
+        LEFT JOIN
+        suggestion
+        on ts.test_score_id=suggestion.test_score_id
+        where ts.student_id=#{student_id}
+    </select>
+    <select id="getRecentDate" resultType="java.time.LocalDate">
+        select `date` from test_score order by date desc limit 1;
+    </select>
+    <select id="selectNumOfSchool" resultType="java.lang.Integer">
+        select count(*) from test_score where `date` = #{date}
+</select>
+<select id="selectBuJiGeOfSchool" resultType="java.lang.Integer">
+        select count(*) from test_score where `date` = #{date} and total_score &lt; 60;
+</select>
+<select id="getYouXiuNum" resultType="java.lang.Integer">
+        select count(*) from test_score where `date` = #{date} and total_score >=90;
+</select>
+<select id="getRankNum" resultType="com.hjy.pojo.rankNum">
+        select sum(if(total_rank='优秀',1,0)) youxiu,sum(if(total_rank='良好',1,0)) lianghao,sum(if(total_rank='及格',1,0)) jige,sum(if(total_rank='不及格',1,0)) bujige from test_score where date =#{recentDate} and gender = #{gender}
+</select>
+<select id="getMajorHegeRank" resultType="com.hjy.pojo.jigelv">
+        SELECT major_name major,num jigelv
+        FROM
+        (
+        SELECT sum(if(ts.total_score>=60,1,0))/count(*) num,major.major_name
+        FROM test_score ts
+        LEFT JOIN student_info si
+        ON si.school_number=ts.student_id
+        LEFT JOIN major
+        ON major.major_id = si.major_id
+        WHERE ts.date = #{recentDate}
+        GROUP BY major.major_name
+        ) temp
+        ORDER BY num desc;
+</select>
+<select id="getHege" resultType="com.hjy.pojo.passRateOrNotPassRateByItem">
+select item,convert(passRate,decimal(10,2))*100 passRateOrNotPassRate,bestScore,rank() over (order by passRate desc) rank_
+FROM
+(
+SELECT 'BMI' item,SUM(IF(hw_score&lt;60,1,0))/COUNT(*) passRate,MAX(hw_score) bestScore
+FROM test_score
+WHERE date = #{recentDate}
+UNION
+SELECT '肺活量' item,SUM(IF(vc_score>=60,1,0))/COUNT(*) passRate,MAX(vitual_capacity) bestScore
+FROM test_score
+WHERE date = #{recentDate}
+UNION
+SELECT '50米跑' item,SUM(IF(s_50m_score>=60,1,0))/COUNT(*) passRate,MIN(s_50m) bestScore
+FROM test_score
+WHERE date = #{recentDate}
+UNION
+SELECT '跳远' item,SUM(IF(lj_score>=60,1,0))/COUNT(*) passRate,max(long_jump) bestScore
+FROM test_score
+WHERE date = #{recentDate}
+UNION
+SELECT '坐位体前屈' item,SUM(IF(sar_score>=60,1,0))/COUNT(*) passRate,max(sit_and_reach) bestScore
+FROM test_score
+WHERE date = #{recentDate}
+UNION
+SELECT '800米' item,SUM(IF(s_800m_score>=60,1,0))/COUNT(*) passRate,concat_ws('′',floor(min(convert(substring(s_800m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_800m,3,3),unsigned integer))/100),
+           min(convert(substring(s_800m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_800m,3,3),unsigned integer))-100*floor(min(convert(substring(s_800m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_800m,3,3),unsigned integer))/100)
+           ) best_score
+FROM test_score
+WHERE date = #{recentDate} and gender=2
+UNION
+SELECT '1000米' item,SUM(IF(s_1000m_score>=60,1,0))/COUNT(*) passRate,concat_ws('′',floor(min(convert(substring(s_1000m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_1000m,3,3),unsigned integer))/100),
+           min(convert(substring(s_1000m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_1000m,3,3),unsigned integer))-100*floor(min(convert(substring(s_1000m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_1000m,3,3),unsigned integer))/100)
+           ) best_score
+FROM test_score
+WHERE date = #{recentDate} and gender=1
+UNION
+SELECT '仰卧起坐' item,SUM(IF(su_score>=60,1,0))/COUNT(*) passRate,max(sit_up) bestScore
+FROM test_score
+WHERE date = #{recentDate} and gender = 2
+UNION
+SELECT '引体向上' item,SUM(IF(pu_score>=60,1,0))/COUNT(*) passRate,max(pull_up) bestScore
+FROM test_score
+WHERE date = #{recentDate} and gender = 1
+) temp
+</select>
+<select id="getBuHege" resultType="com.hjy.pojo.passRateOrNotPassRateByItem">
+select item,convert(passRate,decimal(10,2))*100 passRateOrNotPassRate,bestScore,rank() over (order by passRate desc) rank_
+FROM
+(
+SELECT 'BMI' item,SUM(IF(hw_score &lt; 60,1,0))/COUNT(*) passRate,min(hw_score) bestScore
+FROM test_score
+WHERE date = #{recentDate}
+UNION
+SELECT '肺活量' item,SUM(IF(vc_score &lt; 60,1,0))/COUNT(*) passRate,min(vitual_capacity) bestScore
+FROM test_score
+WHERE date = #{recentDate}
+UNION
+SELECT '50米跑' item,SUM(IF(s_50m_score &lt; 60,1,0))/COUNT(*) passRate,max(s_50m) bestScore
+FROM test_score
+WHERE date = #{recentDate}
+UNION
+SELECT '跳远' item,SUM(IF(lj_score &lt; 60,1,0))/COUNT(*) passRate,min(long_jump) bestScore
+FROM test_score
+WHERE date = #{recentDate}
+UNION
+SELECT '坐位体前屈' item,SUM(IF(sar_score &lt; 60,1,0))/COUNT(*) passRate,min(sit_and_reach) bestScore
+FROM test_score
+WHERE date = #{recentDate}
+UNION
+SELECT '800米' item,SUM(IF(s_800m_score &lt; 60,1,0))/COUNT(*) passRate,concat_ws('′',floor(max(convert(substring(s_800m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_800m,3,3),unsigned integer))/100),
+           max(convert(substring(s_800m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_800m,3,3),unsigned integer))-100*floor(max(convert(substring(s_800m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_800m,3,3),unsigned integer))/100)
+           ) best_score
+FROM test_score
+WHERE date = #{recentDate} and gender=2
+UNION
+SELECT '1000米' item,SUM(IF(s_1000m_score &lt; 60,1,0))/COUNT(*) passRate,concat_ws('′',floor(max(convert(substring(s_1000m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_1000m,3,3),unsigned integer))/100),
+           max(convert(substring(s_1000m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_1000m,3,3),unsigned integer))-100*floor(max(convert(substring(s_1000m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_1000m,3,3),unsigned integer))/100)
+           ) best_score
+FROM test_score
+WHERE date = #{recentDate} and gender=1
+UNION
+SELECT '仰卧起坐' item,SUM(IF(su_score &lt; 60,1,0))/COUNT(*) passRate,min(sit_up) bestScore
+FROM test_score
+WHERE date = #{recentDate} and gender = 2
+UNION
+SELECT '引体向上' item,SUM(IF(pu_score &lt; 60,1,0))/COUNT(*) passRate,min(pull_up) bestScore
+FROM test_score
+WHERE date = #{recentDate} and gender = 1
+) temp
+</select>
+<select id="getAllDate" resultType="java.lang.String">
+select distinct `date` from test_score ORDER BY date
+</select>
+<select id="getHegeByVC" resultType="java.lang.Double">
+select sum(if(vc_score>=60,1,0))/count(*)
+from test_score
+GROUP BY date ORDER BY date;
+</select>
+<select id="getHegeBy50m" resultType="java.lang.Double">
+select sum(if(s_50m_score>=60,1,0))/count(*)
+from test_score
+GROUP BY date ORDER BY date;
+</select>
+<select id="getHegeBylj" resultType="java.lang.Double">
+select sum(if(lj_score>=60,1,0))/count(*)
+from test_score
+GROUP BY date ORDER BY date;
+</select>
+<select id="getHegeBysar" resultType="java.lang.Double">
+select sum(if(sar_score>=60,1,0))/count(*)
+from test_score
+GROUP BY date ORDER BY date;
+</select>
+<select id="gethegeBy800m" resultType="java.lang.Double">
+select sum(if(s_800m_score>=60,1,0))/count(*)
+from test_score
+WHERE gender = 2
+GROUP BY date ORDER BY date
+</select>
+<select id="gethegeBy1000m" resultType="java.lang.Double">
+select sum(if(s_1000m_score>=60,1,0))/count(*)
+from test_score
+WHERE gender = 1
+GROUP BY date ORDER BY date
+</select>
+<select id="gethegeBySitup" resultType="java.lang.Double">
+select sum(if(su_score>=60,1,0))/count(*)
+from test_score
+WHERE gender = 2
+GROUP BY date ORDER BY date;
+</select>
+<select id="gethegeByPullUp" resultType="java.lang.Double">
+select sum(if(pu_score>=60,1,0))/count(*)
+from test_score
+WHERE gender = 1
+GROUP BY date ORDER BY date;
+</select>
+<select id="getScoreByGrade" resultType="com.hjy.pojo.scoreByGrade">
+SELECT SUM(IF(total_rank='优秀',1,0)) youxiu,SUM(IF(total_rank='良好',1,0)) lianghao,SUM(IF(total_rank='及格',1,0)) jige,SUM(IF(total_rank='不及格',1,0)) bujige
+from test_score
+WHERE date = '2017-03-02'
+GROUP BY grade
+</select>
+<select id="getHegeByBMI" resultType="double">
+select sum(if(hw_score>=60,1,0))/count(*)
+from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getbujigeNumByBMI" resultType="java.lang.Integer">
+select sum(if(hw_score &lt; 60,1,0)) from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getPassRateByGradeByBMI" resultType="java.lang.Double">
+SELECT SUM(IF(hw_score>=60,1,0))/count(*)
+from test_score
+WHERE date = #{recentDate}
+GROUP BY grade
+ORDER BY grade
+</select>
+<select id="getScoreListByBMI" resultType="java.lang.Integer">
+SELECT SUM(IF(hw_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(hw_score &lt; 90 and hw_score>=80,1,0))
+from test_score
+WHERE date =  #{recentDate}
+UNION
+SELECT SUM(IF(hw_score &lt; 80 and hw_score>=60,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(hw_score &lt; 60,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<select id="getBestBmi" resultType="java.lang.String">
+select max(hw_score)
+from test_score
+where date = #{recentDate}
+</select>
+<select id="getYouXiuNumByBMI" resultType="java.lang.Integer">
+SELECT SUM(IF(hw_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<!--肺活量-->
+
+
+
+<select id="getHegeByVc" resultType="double">
+select sum(if(vc_score>=60,1,0))/count(*)
+from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getbujigeNumByVc" resultType="java.lang.Integer">
+select sum(if(vc_score &lt; 60,1,0)) from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getPassRateByGradeByVc" resultType="java.lang.Double">
+SELECT SUM(IF(vc_score>=60,1,0))/count(*)
+from test_score
+WHERE date = #{recentDate}
+GROUP BY grade
+ORDER BY grade
+</select>
+<select id="getScoreListByVc" resultType="java.lang.Integer">
+SELECT SUM(IF(vc_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(vc_score &lt; 90 and vc_score>=80,1,0))
+from test_score
+WHERE date =  #{recentDate}
+UNION
+SELECT SUM(IF(vc_score &lt; 80 and vc_score>=60,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(vc_score &lt; 60,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<select id="getBestByVc" resultType="java.lang.String">
+select max(vitual_capacity)
+from test_score
+where date = #{recentDate}
+</select>
+<select id="getYouXiuNumByVc" resultType="java.lang.Integer">
+SELECT SUM(IF(vc_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<!--50米-->
+
+
+<select id="getHegeBy50" resultType="double">
+select sum(if(s_50m_score>=60,1,0))/count(*)
+from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getbujigeNumBy50" resultType="java.lang.Integer">
+select sum(if(s_50m_score &lt; 60,1,0)) from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getPassRateByGradeBy50" resultType="java.lang.Double">
+SELECT SUM(IF(s_50m_score>=60,1,0))/count(*)
+from test_score
+WHERE date = #{recentDate}
+GROUP BY grade
+ORDER BY grade
+</select>
+<select id="getScoreListBy50" resultType="java.lang.Integer">
+SELECT SUM(IF(s_50m_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(s_50m_score &lt; 90 and s_50m_score>=80,1,0))
+from test_score
+WHERE date =  #{recentDate}
+UNION
+SELECT SUM(IF(s_50m_score &lt; 80 and s_50m_score>=60,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(s_50m_score &lt; 60,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<select id="getBestBy50" resultType="java.lang.String">
+select min(s_50m)
+from test_score
+where date = #{recentDate}
+</select>
+<select id="getYouXiuNumBy50" resultType="java.lang.Integer">
+SELECT SUM(IF(s_50m_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+
+
+
+<!--50米-->
+
+
+<select id="getHegeBylongjump" resultType="double">
+select sum(if(lj_score>=60,1,0))/count(*)
+from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getbujigeNumBylongjump" resultType="java.lang.Integer">
+select sum(if(lj_score &lt; 60,1,0)) from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getPassRateByGradeBylongjump" resultType="java.lang.Double">
+SELECT SUM(IF(lj_score>=60,1,0))/count(*)
+from test_score
+WHERE date = #{recentDate}
+GROUP BY grade
+ORDER BY grade
+</select>
+<select id="getScoreListBylongjump" resultType="java.lang.Integer">
+SELECT SUM(IF(lj_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(lj_score &lt; 90 and lj_score>=80,1,0))
+from test_score
+WHERE date =  #{recentDate}
+UNION
+SELECT SUM(IF(lj_score &lt; 80 and lj_score>=60,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(lj_score &lt; 60,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<select id="getBestBylongjump" resultType="java.lang.String">
+select max(long_jump)
+from test_score
+where date = #{recentDate}
+</select>
+<select id="getYouXiuNumBylongjump" resultType="java.lang.Integer">
+SELECT SUM(IF(lj_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+
+
+<!--坐位体前屈-->
+
+
+<select id="getHegeBySAR" resultType="double">
+select sum(if(sar_score>=60,1,0))/count(*)
+from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getbujigeNumBySAR" resultType="java.lang.Integer">
+select sum(if(sar_score &lt; 60,1,0)) from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getPassRateByGradeBySAR" resultType="java.lang.Double">
+SELECT SUM(IF(sar_score>=60,1,0))/count(*)
+from test_score
+WHERE date = #{recentDate}
+GROUP BY grade
+ORDER BY grade
+</select>
+<select id="getScoreListBySAR" resultType="java.lang.Integer">
+SELECT SUM(IF(sar_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(sar_score &lt; 90 and sar_score>=80,1,0))
+from test_score
+WHERE date =  #{recentDate}
+UNION
+SELECT SUM(IF(sar_score &lt; 80 and sar_score>=60,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(sar_score &lt; 60,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<select id="getBestBySAR" resultType="java.lang.String">
+select max(sit_and_reach)
+from test_score
+where date = #{recentDate}
+</select>
+<select id="getYouXiuNumBySAR" resultType="java.lang.Integer">
+SELECT SUM(IF(sar_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+
+<!--800m-->
+
+
+<select id="getHegeBy800" resultType="double">
+select sum(if(s_800m_score>=60,1,0))/count(*)
+from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getbujigeNumBy800" resultType="java.lang.Integer">
+select sum(if(s_800m_score &lt; 60,1,0)) from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getPassRateByGradeBy800" resultType="java.lang.Double">
+SELECT SUM(IF(s_800m_score>=60,1,0))/count(*)
+from test_score
+WHERE date = #{recentDate}
+GROUP BY grade
+ORDER BY grade
+</select>
+<select id="getScoreListBy800" resultType="java.lang.Integer">
+SELECT SUM(IF(s_800m_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(s_800m_score &lt; 90 and s_800m_score>=80,1,0))
+from test_score
+WHERE date =  #{recentDate}
+UNION
+SELECT SUM(IF(s_800m_score &lt; 80 and s_800m_score>=60,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(s_800m_score &lt; 60,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<select id="getBestBy800" resultType="java.lang.String">
+select concat_ws('′',floor(min(convert(substring(s_800m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_800m,3,3),unsigned integer))/100),
+           min(convert(substring(s_800m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_800m,3,3),unsigned integer))-100*floor(min(convert(substring(s_800m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_800m,3,3),unsigned integer))/100)
+           ) best_score
+from test_score
+where date = #{recentDate} and gender=2
+</select>
+<select id="getYouXiuNumBy800" resultType="java.lang.Integer">
+SELECT SUM(IF(s_800m_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+
+
+<!--1000m-->
+
+
+<select id="getHegeBy1000" resultType="double">
+select sum(if(s_1000m_score>=60,1,0))/count(*)
+from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getbujigeNumBy1000" resultType="java.lang.Integer">
+select sum(if(s_1000m_score &lt; 60,1,0)) from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getPassRateByGradeBy1000" resultType="java.lang.Double">
+SELECT SUM(IF(s_1000m_score>=60,1,0))/count(*)
+from test_score
+WHERE date = #{recentDate}
+GROUP BY grade
+ORDER BY grade
+</select>
+<select id="getScoreListBy1000" resultType="java.lang.Integer">
+SELECT SUM(IF(s_1000m_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(s_1000m_score &lt; 90 and s_1000m_score>=80,1,0))
+from test_score
+WHERE date =  #{recentDate}
+UNION
+SELECT SUM(IF(s_1000m_score &lt; 80 and s_1000m_score>=60,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(s_1000m_score &lt; 60,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<select id="getBestBy1000" resultType="java.lang.String">
+select concat_ws('′',floor(min(convert(substring(s_1000m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_1000m,3,3),unsigned integer))/100),
+           min(convert(substring(s_1000m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_1000m,3,3),unsigned integer))-100*floor(min(convert(substring(s_1000m,1,1),UNSIGNED INTEGER)*100+convert(substring(s_1000m,3,3),unsigned integer))/100)
+           ) best_score
+from test_score
+where date = #{recentDate} and gender=1
+</select>
+<select id="getYouXiuNumBy1000" resultType="java.lang.Integer">
+SELECT SUM(IF(s_1000m_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+
+
+<!--仰卧起坐-->
+
+
+<select id="getHegeBySU" resultType="double">
+select sum(if(su_score>=60,1,0))/count(*)
+from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getbujigeNumBySU" resultType="java.lang.Integer">
+select sum(if(su_score &lt; 60,1,0)) from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getPassRateByGradeBySU" resultType="java.lang.Double">
+SELECT SUM(IF(su_score>=60,1,0))/count(*)
+from test_score
+WHERE date = #{recentDate}
+GROUP BY grade
+ORDER BY grade
+</select>
+<select id="getScoreListBySU" resultType="java.lang.Integer">
+SELECT SUM(IF(su_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(su_score &lt; 90 and su_score>=80,1,0))
+from test_score
+WHERE date =  #{recentDate}
+UNION
+SELECT SUM(IF(su_score &lt; 80 and su_score>=60,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(su_score &lt; 60,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<select id="getBestBySU" resultType="java.lang.String">
+select max(sit_up)
+from test_score
+where date = #{recentDate}
+</select>
+<select id="getYouXiuNumBySU" resultType="java.lang.Integer">
+SELECT SUM(IF(su_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+
+
+<!--引体向上-->
+
+
+<select id="getHegeByPU" resultType="double">
+select sum(if(pu_score>=60,1,0))/count(*)
+from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getbujigeNumByPU" resultType="java.lang.Integer">
+select sum(if(pu_score &lt; 60,1,0)) from test_score
+where `date` = #{recentDate}
+</select>
+<select id="getPassRateByGradeByPU" resultType="java.lang.Double">
+SELECT SUM(IF(pu_score>=60,1,0))/count(*)
+from test_score
+WHERE date = #{recentDate}
+GROUP BY grade
+ORDER BY grade
+</select>
+<select id="getScoreListByPU" resultType="java.lang.Integer">
+SELECT SUM(IF(pu_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(pu_score &lt; 90 and pu_score>=80,1,0))
+from test_score
+WHERE date =  #{recentDate}
+UNION
+SELECT SUM(IF(pu_score &lt; 80 and pu_score>=60,1,0))
+from test_score
+WHERE date = #{recentDate}
+UNION
+SELECT SUM(IF(pu_score &lt; 60,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<select id="getBestByPU" resultType="java.lang.String">
+select max(pull_up)
+from test_score
+where date = #{recentDate}
+</select>
+<select id="getYouXiuNumByPU" resultType="java.lang.Integer">
+SELECT SUM(IF(pu_score>=90,1,0))
+from test_score
+WHERE date = #{recentDate}
+</select>
+<select id="getHegeByAcademy" resultType="com.hjy.pojo.RateByAcademy">
+select academy.name name_,SUM(IF(ts.total_score>=60,1,0))/count(*) passRate
+from test_score ts
+LEFT JOIN student_info si
+ON si.school_number=ts.student_id
+LEFT JOIN major
+on major.major_id = si.major_id
+left JOIN academy
+ON academy.academy_id = major.academy_id
+WHERE ts.date = #{recentDate}
+GROUP BY academy.academy_id
+;
+</select>
+<select id="getYouxiuByAcademy" resultType="com.hjy.pojo.RateByAcademy">
+select academy.name name_,SUM(IF(ts.total_score>=90,1,0))/count(*) passRate
+from test_score ts
+LEFT JOIN student_info si
+ON si.school_number=ts.student_id
+LEFT JOIN major
+on major.major_id = si.major_id
+left JOIN academy
+ON academy.academy_id = major.academy_id
+WHERE ts.date = #{recentDate}
+GROUP BY academy.academy_id
+;
+</select>
+<select id="getBuHegeByAcademy" resultType="com.hjy.pojo.RateByAcademy">
+select academy.name name_,SUM(IF(ts.total_score &lt; 60,1,0))/count(*) passRate
+from test_score ts
+LEFT JOIN student_info si
+ON si.school_number=ts.student_id
+LEFT JOIN major
+on major.major_id = si.major_id
+left JOIN academy
+ON academy.academy_id = major.academy_id
+WHERE ts.date = #{recentDate}
+GROUP BY academy.academy_id
+;
+</select>
+<select id="getHegeChangeByAcademy" resultType="java.lang.Double">
+select passRate
+FROM
+(
+select ts.date,academy.name name_,SUM(IF(ts.total_score>=60,1,0))/count(*) passRate
+from test_score ts
+LEFT JOIN student_info si
+ON si.school_number=ts.student_id
+LEFT JOIN major
+on major.major_id = si.major_id
+left JOIN academy
+ON academy.academy_id = major.academy_id
+WHERE academy.`name`=#{academy}
+GROUP BY ts.date
+) temp
+ORDER BY date
+;
+</select>
+<select id="getYouxiuChangeByAcademy" resultType="java.lang.Double">
+select passRate
+FROM
+(
+select ts.date,academy.name name_,SUM(IF(ts.total_score>=90,1,0))/count(*) passRate
+from test_score ts
+LEFT JOIN student_info si
+ON si.school_number=ts.student_id
+LEFT JOIN major
+on major.major_id = si.major_id
+left JOIN academy
+ON academy.academy_id = major.academy_id
+WHERE academy.`name`=#{academy}
+GROUP BY ts.date
+) temp
+ORDER BY date
+;
+</select>
+<select id="getBuhegeChangeByAcademy" resultType="java.lang.Double">
+select passRate
+FROM
+(
+select ts.date,academy.name name_,SUM(IF(ts.total_score&lt;60,1,0))/count(*) passRate
+from test_score ts
+LEFT JOIN student_info si
+ON si.school_number=ts.student_id
+LEFT JOIN major
+on major.major_id = si.major_id
+left JOIN academy
+ON academy.academy_id = major.academy_id
+WHERE academy.`name`=#{academy}
+GROUP BY ts.date
+) temp
+ORDER BY date
+;
+</select>
+</mapper>

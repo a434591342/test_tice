@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjy.mapper.OdsDataMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hjy.pojo.OdsData">
+        <id column="id" property="id" />
+        <result column="grade" property="grade" />
+        <result column="class_num" property="classNum" />
+        <result column="class_name" property="className" />
+        <result column="student_num" property="studentNum" />
+        <result column="nation_id" property="nationId" />
+        <result column="name" property="name" />
+        <result column="sex" property="sex" />
+        <result column="birthday" property="birthday" />
+        <result column="address" property="address" />
+        <result column="height" property="height" />
+        <result column="weight" property="weight" />
+        <result column="hw_score" property="hwScore" />
+        <result column="hw_rank" property="hwRank" />
+        <result column="vitual_capacity" property="vitualCapacity" />
+        <result column="vc_score" property="vcScore" />
+        <result column="vc_rank" property="vcRank" />
+        <result column="s_50m" property="s50m" />
+        <result column="s_50m_score" property="s50mScore" />
+        <result column="s_50m_rank" property="s50mRank" />
+        <result column="long_jump" property="longJump" />
+        <result column="lj_score" property="ljScore" />
+        <result column="lj_rank" property="ljRank" />
+        <result column="sit_and_reach" property="sitAndReach" />
+        <result column="sar_score" property="sarScore" />
+        <result column="sar_rank" property="sarRank" />
+        <result column="s_800m" property="s800m" />
+        <result column="s_800m_score" property="s800mScore" />
+        <result column="s_800m_rank" property="s800mRank" />
+        <result column="s_1000m" property="s1000m" />
+        <result column="s_1000m_score" property="s1000mScore" />
+        <result column="s_1000m_rank" property="s1000mRank" />
+        <result column="sit_up" property="sitUp" />
+        <result column="su_score" property="suScore" />
+        <result column="su_rank" property="suRank" />
+        <result column="pull_up" property="pullUp" />
+        <result column="pu_score" property="puScore" />
+        <result column="pu_rank" property="puRank" />
+        <result column="standard_score" property="standardScore" />
+        <result column="add_score" property="addScore" />
+        <result column="total_score" property="totalScore" />
+        <result column="total_rank" property="totalRank" />
+        <result column="date" property="date" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, grade, class_num, class_name, student_num, nation_id, name, sex, birthday, address, height, weight, hw_score, hw_rank, vitual_capacity, vc_score, vc_rank, s_50m, s_50m_score, s_50m_rank, long_jump, lj_score, lj_rank, sit_and_reach, sar_score, sar_rank, s_800m, s_800m_score, s_800m_rank, s_1000m, s_1000m_score, s_1000m_rank, sit_up, su_score, su_rank, pull_up, pu_score, pu_rank, standard_score, add_score, total_score, total_rank, date
+    </sql>
+
+</mapper>

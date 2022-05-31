@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>西安邮电大学-学生健康管理系统</title>
+		<script src="js/jquery-3.2.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/public.js"></script>
+		<script src="js/vue.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/public.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<!--页面top-->
+		<div class="top">
+			<div class="top_nav">
+				<ul>
+					<li><a href="#">设为首页</a></li>
+					<li><a href="#">加入收藏</a></li>
+					<li><a href="#">西邮主站</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--导航-->
+		<div class="header flex">
+			<div class="logo"><a href="index.html">  <img src="images/logo.png" alt="西安邮电大学" /></a></div>
+			<div class="menu">
+				<ul>
+					<li>
+						<h3><span>信息&下载</span></h3>
+						<ul>
+							<li><a href="">通知公告</a></li>
+							<li><a href="">相关下载</a></li>
+						</ul>
+					</li>
+					<li>
+						<h3><a href=""><span>健康知识</span></a></h3>
+					</li>
+					<li>
+						<h3><a href=""><span>项目&目标</span></a></h3>
+						<ul>
+							<li><a href="">项目介绍</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="top_member">
+				<ul>
+					<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
+					<li> <a href="">常见问题</a></li>
+					<li> <a href="member_tea.html" class="btn_exit">LogOut</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--页面位置导航-->
+		<div class="page_title flex">
+			<div class="navigation">
+				<a href="">首页</a><em>/</em>
+				<a href="">学生数据</a><em>/</em>
+				<span>学生体侧数据查看</span>
+			</div>
+			<div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
+		</div>
+
+		<!--页面内容部分-->
+		<div class="page flex">
+			<div class="page_nav">
+				<h3>功能菜单</h3>
+				<dl>
+					<dd><a href="member_tea.html" class="this"><span class="iconfont icon-fabuxuqiu"></span>学生数据</a></dd>
+					<dd><h4><span class="iconfont icon-fabuxuqiu"></span>学生体测数据</h4>
+						<dl>
+							<dd><a href="member_tea_data.html"> 体测数据管理</a></dd>
+						</dl>
+					</dd>
+					<dd>
+						<h4><span class="iconfont icon-fabuxuqiu"></span>统计分析</h4>
+						<dl>
+							<dd><a href="member_tea_analysis01.html"> 全校综合情况</a></dd>
+							<dd><a href="member_tea_analysis02.html"> 单项目情况</a></dd>
+							<dd><a href="member_tea_analysis03.html"> 指标情况</a></dd>
+						</dl>
+					</dd>
+					<dd>
+						<h4><span class="iconfont icon-fabuxuqiu"></span>网站信息维护</h4>
+						<dl>
+							<dd><a href="editor_list.html"> 通知公告</a></dd>
+							<dd><a href="editor_list.html"> 相关下载</a></dd>
+							<dd><a href="editor_list.html"> 工作动态</a></dd>
+							<dd><a href="editor_list.html"> 常见问题</a></dd>
+							<dd><a href="editor_list.html"> 健康知识</a></dd>
+						</dl>
+					</dd>
+					<dd>
+						<h4><span class="iconfont icon-fabuxuqiu"></span>健康指导维护</h4>
+						<dl>
+							<dd><a href="editor_editor.html"> 健康意见编辑</a></dd>
+						</dl>
+					</dd>
+				</dl>
+			</div>
+			<div class="page_right">
+				<div class="report_top">
+					<h3>姓名：张某某（学号：经管9803）<span>重点关注</span><span>残疾学生</span></h3>
+					<div class="down_page"><a href="">下载本期报告</a></div>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td><span>学院：</span>管理学院</td>
+								<td><span>系别：</span>经济信息管理系</td>
+								<td rowspan="2"><span>状态：</span>
+									<p>在读</p>
+								</td>
+							</tr>
+							<tr>
+								<td><span>入学时间：</span>2021-05-01</td>
+								<td><span>性别：</span>男</td>
+							</tr>
+							<tr>
+								<td colspan="3"><span>备注：</span>请于两个工作日前确认</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			     <div class="page_tab">
+				<ul class="nav nav-tabs" id="myTab">
+					<li class="active"><a href="#results" data-toggle="tab">体测成绩</a></li>
+					<li><a href="#report" data-toggle="tab">体测报告</a></li>
+				</ul>
+			</div>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade in  active" id="results">
+					<!--体测成绩列表-->
+				    <div class=" history_table">
+					  <table class="table">
+					  	<thead>
+					  		<tr>
+					  			<th>项目</th>
+					  			<th>大一</th>
+								<th>大二</th>
+								<th>大三</th>
+								<th>大四</th>
+					  		</tr>
+					  	</thead>
+					  	<tbody>
+					  		<tr>
+					  			<td>50米跑</td>
+					  			<td><font color="#009DD9">1分22秒</font></td>
+					  			<td><font color="#33d900">1分22秒（优秀）</font></td>
+					  			<td><font color="#d92400">1分22秒（不合格）</font></td>
+					  			<td><font color="#818181">未进行</font></td>
+					  		</tr>
+							<tr>
+								<td>50米跑</td>
+								<td><font color="#009DD9">1分22秒</font></td>
+								<td><font color="#33d900">1分22秒（优秀）</font></td>
+								<td><font color="#d92400">1分22秒（不合格）</font></td>
+								<td><font color="#818181">未进行</font></td>
+							</tr>
+						</tbody>	
+						</table>
+					</div>	
+				</div>
+				<div class="tab-pane fade" id="report">
+					<div class=" history_table">
+					  <table class="table">
+					  	<thead>
+					  		<tr>
+					  			<th>序号</th>
+					  			<th>学年学期</th>
+								<th>报告名称</th>
+								<th>结果说明</th>
+								<th>操作</th>
+					  		</tr>
+					  	</thead>
+					  	<tbody>
+					  		<tr>
+					  			<td>2</td>
+					  			<td>2020年第二学期</td>
+					  			<td>2020年第二学期体测报告（张同学）</td>
+					  			<td>建议增加上肢锻炼</td>
+					  			<td><a href="">查看详情</a><a href="">报告下载</a></td>
+					  		</tr>
+							<tr>
+								<td>3</td>
+								<td>2020年第二学期</td>
+								<td>2020年第二学期体测报告（张同学）</td>
+								<td>建议增加上肢锻炼</td>
+								<td><a href="">查看详情</a><a href="">报告下载</a></td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>2020年第二学期</td>
+								<td>2020年第二学期体测报告（张同学）</td>
+								<td>建议增加上肢锻炼</td>
+								<td><a href="">查看详情</a><a href="">报告下载</a></td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>2020年第二学期</td>
+								<td>2020年第二学期体测报告（张同学）</td>
+								<td>建议增加上肢锻炼</td>
+								<td><a href="">查看详情</a><a href="">报告下载</a></td>
+							</tr>
+						</tbody>	
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			
+			</div>
+			
+		</div>
+		
+		
+		<!--底部代码-->
+		<div class="bottom w_long">
+			<div class="bottom_copy">
+				<p>
+					Copyright @ 2019-2022 西安邮电大学维护</br>
+					网站备案号：陕IPC243434****-01
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
