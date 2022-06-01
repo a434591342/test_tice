@@ -7,16 +7,17 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/public.js"></script>
 		<script src="js/vue.min.js"></script>
+		<script src="js/echarts.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="css/public.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 
-		<!--时间选择器-->
-		<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<link href="assets/theme/css/tempusdominus-bootstrap-4.css" rel="stylesheet">
-		<script src="assets/js/moment-with-locales.min.js"></script>
-		<script src="assets/js/tempusdominus-bootstrap-4.js"></script>
+<!--		&lt;!&ndash;时间选择器&ndash;&gt;-->
+<!--		<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+<!--		<link href="assets/theme/css/tempusdominus-bootstrap-4.css" rel="stylesheet">-->
+<!--		<script src="assets/js/moment-with-locales.min.js"></script>-->
+<!--		<script src="assets/js/tempusdominus-bootstrap-4.js"></script>-->
 		<!--时间选择器-->
 
 		<script type="text/javascript">
@@ -137,10 +138,10 @@
 									 data-target="#datetimepicker6" />
 								</div>
 								<script type="text/javascript">
-									$(function() {
-										$('#datetimepicker5').datetimepicker();
-										$('#datetimepicker6').datetimepicker();
-									});
+									// $(function() {
+									// 	$('#datetimepicker5').datetimepicker();
+									// 	$('#datetimepicker6').datetimepicker();
+									// });
 								</script>
 							</div>
 						</form>
@@ -197,8 +198,8 @@
 								</li>
 							</ul>
 						</div>		
-						<div class="data_eachert">
-							<img src="images/u3400.png" />
+						<div id="bingtu" style="width: 600px;height: 400px" class="data_eachert">
+<!--							<img src="images/u3400.png" />-->
 						</div>
 					</div>
 					<div class="data_box right">
@@ -216,24 +217,25 @@
 						<div class="data_list">
 							<ul class="flex">
 								<li>
-									<img src="images/pic2.png" style="width: 160px" />
+									<div id="one_grade" style="height:150px;width: 150px;"></div>
+<!--									<img src="images/pic2.png" style="width: 160px" />-->
 								</li>
 								<li>
-									<img src="images/pic2.png" style="width: 160px" />
+									<div id="two_grade" style="height:150px;width: 150px;"></div>
 								</li>
 								<li>
-									<img src="images/pic2.png" style="width: 160px" />
+									<div id="three_grade" style="height:150px;width: 150px;"></div>
 								</li>
 								<li>
-									<img src="images/pic2.png" style="width: 160px" />
+									<div id="four_grade" style="height:150px;width: 150px;"></div>
 								</li>
 							</ul>
 						</div>		
 					</div>
 					<div class="data_box right">
 						<h3>不合格人数</h3>
-						<div class="data_eachert">
-							<img src="images/u3398.png" style="width: 200px" />
+						<div id="tongji" style="width: 400px;height: 250px;" class="data_eachert">
+<!--							<img src="images/u3398.png" style="width: 200px" />-->
 						</div>
 					</div>
 					
@@ -258,4 +260,472 @@
 			</div>
 		</div>
 	</body>
+<script>
+	//基本情况饼状图
+	var chartDom = document.getElementById('bingtu');
+	var myChart = echarts.init(chartDom);
+	var option;
+
+	option = {
+		grid:{
+			left:'0%',
+			top:'0%',
+			bottom:'0%'
+		},
+		tooltip: {
+			trigger: 'item'
+		},
+		legend: {
+			orient: 'vertical',
+			left: 'left'
+		},
+		series: [
+			{
+				name: '学生成绩',
+				type: 'pie',
+				radius: '70%',
+				data: [
+					{ value: 1048, name: '不合格',
+						itemStyle: {
+							normal: {
+								// 随机显示
+								//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+
+								// 定制显示（按顺序）
+								color:"#FFA500",
+							},
+						},
+					},
+					{ value: 735, name: '合格' ,
+						itemStyle: {
+							normal: {
+								color:"#32CD32",
+							},
+						},
+					},
+					{ value: 580, name: '良好',
+						itemStyle: {
+							normal: {
+								// 随机显示
+								//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+
+								// 定制显示（按顺序）
+								color:"#FF6347",
+							},
+						},
+					},
+					{ value: 484, name: '优秀',
+						itemStyle: {
+							normal: {
+								// 随机显示
+								//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+
+								// 定制显示（按顺序）
+								color:"#1E90FF",
+							},
+						},
+					}
+				],
+				emphasis: {
+					itemStyle: {
+						shadowBlur: 10,
+						shadowOffsetX: 0,
+						shadowColor: 'rgba(0, 0, 0, 0.5)'
+					}
+				}
+			}
+		]
+	};
+	option && myChart.setOption(option);
+	//    大一情况
+	var e=80;
+	var Chart4 = echarts.init(document.getElementById('one_grade'));
+	var option = {
+		title:{
+			show:true,
+			text:'一年级'+"\n"+e+'%',
+			x:'center',
+			y:'center',
+			textStyle: {
+				fontSize: '15',
+				color:'blue',
+				fontWeight: 'normal'
+			}
+		},
+		tooltip: {
+			trigger: 'item',
+			formatter: "{d}%",
+			show:false
+		},
+		legend: {
+			orient: 'vertical',
+			x: 'left',
+			show:false
+		},
+		series:
+				{
+					name:'',
+					type:'pie',
+					radius: ['65%', '85%'],
+					avoidLabelOverlap: true,
+					hoverAnimation:false,
+					label: {
+						normal: {
+							show: false,
+							position: 'center'
+						},
+						emphasis: {
+							show: false
+						}
+					},
+					labelLine: {
+						normal: {
+							show: true,
+						}
+					},
+					data:[
+						{value:e, name:'',
+							itemStyle: {
+								normal: {
+									color:"#0000FF",
+								},
+							},
+						},
+						{value:100-e, name:'',
+							itemStyle: {
+								normal: {
+									color:"#E6E6FA",
+								},
+							},
+						}
+					]
+				}
+
+	};
+	Chart4.setOption(option);
+	//    大二情况
+	var e=40;
+	var Chart4 = echarts.init(document.getElementById('two_grade'));
+	var option = {
+		title:{
+			show:true,
+			text:'二年级'+"\n"+e+'%',
+			x:'center',
+			y:'center',
+			textStyle: {
+				fontSize: '15',
+				color:'blue',
+				fontWeight: 'normal'
+			}
+		},
+		tooltip: {
+			trigger: 'item',
+			formatter: "{d}%",
+			show:false
+		},
+		legend: {
+			orient: 'vertical',
+			x: 'left',
+			show:false
+		},
+		series:
+				{
+					name:'',
+					type:'pie',
+					radius: ['65%', '85%'],
+					avoidLabelOverlap: true,
+					hoverAnimation:false,
+					label: {
+						normal: {
+							show: false,
+							position: 'center'
+						},
+						emphasis: {
+							show: false
+						}
+					},
+					labelLine: {
+						normal: {
+							show: true,
+						}
+					},
+					data:[
+						{value:e, name:'',
+							itemStyle: {
+								normal: {
+									color:"#0000FF",
+								},
+							},
+						},
+						{value:100-e, name:'',
+							itemStyle: {
+								normal: {
+									color:"#E6E6FA",
+								},
+							},
+						}
+					]
+				}
+
+	};
+	Chart4.setOption(option);
+	//    大三情况
+	var e=70;
+	var Chart4 = echarts.init(document.getElementById('three_grade'));
+	var option = {
+		title:{
+			show:true,
+			text:'三年级'+"\n"+e+'%',
+			x:'center',
+			y:'center',
+			textStyle: {
+				fontSize: '15',
+				color:'blue',
+				fontWeight: 'normal'
+			}
+		},
+		tooltip: {
+			trigger: 'item',
+			formatter: "{d}%",
+			show:false
+		},
+		legend: {
+			orient: 'vertical',
+			x: 'left',
+			show:false
+		},
+		series:
+				{
+					name:'',
+					type:'pie',
+					radius: ['65%', '85%'],
+					avoidLabelOverlap: true,
+					hoverAnimation:false,
+					label: {
+						normal: {
+							show: false,
+							position: 'center'
+						},
+						emphasis: {
+							show: false
+						}
+					},
+					labelLine: {
+						normal: {
+							show: true,
+						}
+					},
+					data:[
+						{value:e, name:'',
+							itemStyle: {
+								normal: {
+									color:"#0000FF",
+								},
+							},
+						},
+						{value:100-e, name:'',
+							itemStyle: {
+								normal: {
+									color:"#E6E6FA",
+								},
+							},
+						}
+					]
+				}
+
+	};
+	Chart4.setOption(option);
+	//    大四情况
+	var e=50;
+	var Chart4 = echarts.init(document.getElementById('four_grade'));
+	var option = {
+		title:{
+			show:true,
+			text:'四年级'+"\n"+e+'%',
+			x:'center',
+			y:'center',
+			textStyle: {
+				fontSize: '15',
+				color:'blue',
+				fontWeight: 'normal'
+			}
+		},
+		tooltip: {
+			trigger: 'item',
+			formatter: "{d}%",
+			show:false
+		},
+		legend: {
+			orient: 'vertical',
+			x: 'left',
+			show:false
+		},
+		series:
+				{
+					name:'',
+					type:'pie',
+					radius: ['65%', '85%'],
+					avoidLabelOverlap: true,
+					hoverAnimation:false,
+					label: {
+						normal: {
+							show: false,
+							position: 'center'
+						},
+						emphasis: {
+							show: false
+						}
+					},
+					labelLine: {
+						normal: {
+							show: true,
+						}
+					},
+					data:[
+						{value:e, name:'',
+							itemStyle: {
+								normal: {
+									color:"#0000FF",
+								},
+							},
+						},
+						{value:100-e, name:'',
+							itemStyle: {
+								normal: {
+									color:"#E6E6FA",
+								},
+							},
+						}
+					]
+				}
+
+	};
+	Chart4.setOption(option);
+	//统计不合格人数
+	var Chart4 = echarts.init(document.getElementById('tongji'));
+	var num=((1496/3000)*100).toFixed(2);
+	var num_person=1496;
+	var placeHolderStyle = {
+		normal: {
+			label: {
+				show: false
+			},
+			labelLine: {
+				show: false
+			},
+			color: "rgba(0,0,0,0)",
+			borderWidth: 0
+		},
+		emphasis: {
+			color: "rgba(0,0,0,0)",
+			borderWidth: 0
+		}
+	};
+
+
+	var dataStyle = {
+		normal: {
+			formatter: '{c}%',
+			position: 'center',
+			top:'40%',
+			left:'20%',
+			show: true,
+			textStyle: {
+				fontSize: '30',
+				fontWeight: 'normal',
+				color: '#34374E'
+			}
+		}
+	};
+
+
+	option = {
+		backgroundColor: '#fff',
+		title: [{
+			text: '不合格人数'+num_person,
+			left: '29.8%',
+			top: '52%',
+			textAlign: 'center',
+			textStyle: {
+				fontWeight: 'normal',
+				fontSize: '16',
+				color: '#0000FF',
+				textAlign: 'center',
+			},
+		}],
+
+		//第一个图表
+		series: [{
+			type: 'pie',
+			hoverAnimation: false, //鼠标经过的特效
+			radius: ['70%', '75%'],
+			center: ['30%', '50%'],
+			startAngle: 180,
+			labelLine: {
+				normal: {
+					show: false
+				}
+			},
+			label: {
+				normal: {
+
+					position: 'center'
+				}
+			},
+			data: [{
+				value: 100,
+				itemStyle: {
+					normal: {
+						color: '#E1E8EE'
+					}
+				},
+			}, {
+				value: 100,
+				itemStyle: placeHolderStyle,
+			},
+
+			]
+		},
+			//上层环形配置
+			{
+				type: 'pie',
+				hoverAnimation: false, //鼠标经过的特效
+				radius: ['70%', '75%'],
+				center: ['30%', '50%'],
+				startAngle: 180,
+				labelLine: {
+					normal: {
+						show: false
+					}
+				},
+				label: {
+					normal: {
+
+						position: 'center'
+					}
+				},
+				data: [{
+					value: num,
+					itemStyle: {
+						normal: {
+							color: '#0000FF'
+						}
+					},
+					label: dataStyle,
+				}, {
+					value: (100 - num),
+					itemStyle: placeHolderStyle,
+				},
+					{
+						value: 100,
+						itemStyle: placeHolderStyle,
+					},
+				]
+			},
+
+		]
+	};
+
+	option && Chart4.setOption(option);
+</script>
 </html>

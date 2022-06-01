@@ -1117,3 +1117,7 @@ ul li .pass_text b {
 .editor_cont .editor_card table a:hover {
 	background: #057bae;
 }
+#grade{
+	width: 600px;
+	height: 500px;
+}

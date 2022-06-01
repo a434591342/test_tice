@@ -213,7 +213,6 @@ public class TestScoreController {
         if (analyzeByItem != null) {
             return RespBean.success("查询成功！",analyzeByItem);
         }else return RespBean.error("查询失败！");
-
     }
     @ApiOperation(value = "各学院合格率分布情况")
     @GetMapping("/getHegeByAcademy")

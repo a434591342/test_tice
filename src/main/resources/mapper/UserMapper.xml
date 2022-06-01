@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.hjy.mapper.UserMapper" >
+    <!-- 批量导入实现 -->
+    <insert id="addBatchUser">
+        insert into user(account,password,username,address)
+        values
+        <foreach collection="userList" item="item" separator=",">
+            (
+                #{item.account},
+                #{item.password},
+                #{item.username},
+                #{item.address}
+            )
+        </foreach>
+    </insert>
+
+    <select id="findUserByAccount" resultType="com.hjy.pojo.User">
+        select * from user where account = #{account}
+    </select>
+
+    <update id="updateUserByAccount">
+        update user set account = #{account},password = #{password},username = #{username},address = #{address}
+        where account = #{account}
+    </update>
+</mapper>

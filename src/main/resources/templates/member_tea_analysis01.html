@@ -1,420 +1,973 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>西安邮电大学-学生健康管理系统</title>
-		<script src="js/jquery-3.2.0.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/public.js"></script>
-		<script src="js/vue.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
-		<link rel="stylesheet" type="text/css" href="css/public.css" />
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
+<head>
+    <meta charset="utf-8">
+    <title>西安邮电大学-学生健康管理系统</title>
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/public.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/echarts.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
-		<!--时间选择器-->
-		<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<link href="assets/theme/css/tempusdominus-bootstrap-4.css" rel="stylesheet">
-		<script src="assets/js/moment-with-locales.min.js"></script>
-		<script src="assets/js/tempusdominus-bootstrap-4.js"></script>
-		<!--时间选择器-->
+    <!--时间选择器-->
+    <!--		<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <!--		<link href="assets/theme/css/tempusdominus-bootstrap-4.css" rel="stylesheet">-->
+    <!--		<script src="assets/js/moment-with-locales.min.js"></script>-->
+    <!--		<script src="assets/js/tempusdominus-bootstrap-4.js"></script>-->
+    <!--时间选择器-->
 
-		<script type="text/javascript">
-			$(document).ready(function() {
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-			});
-		</script>
-	</head>
+        });
+    </script>
+</head>
 
-	<body>
-		<!--页面top-->
-		<div class="top">
-			<div class="top_nav">
-				<ul>
-					<li><a href="#">设为首页</a></li>
-					<li><a href="#">加入收藏</a></li>
-					<li><a href="#">西邮主站</a></li>
-				</ul>
-			</div>
-		</div>
-		<!--导航-->
-		<div class="header flex">
-			<div class="logo"> <img src="images/logo.png" alt="西安邮电大学" /></div>
-			<div class="menu">
-				<ul>
-					<li>
-						<h3><span>信息&下载</span></h3>
-						<ul>
-							<li><a href="">通知公告</a></li>
-							<li><a href="">相关下载</a></li>
-						</ul>
-					</li>
-					<li>
-						<h3><a href=""><span>健康知识</span></a></h3>
-					</li>
-					<li>
-						<h3><a href=""><span>项目&目标</span></a></h3>
-						<ul>
-							<li><a href="">项目介绍</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-			<div class="top_member">
-				<ul>
-					<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
-					<li> <a href="">常见问题</a></li>
-					<li> <a href="member_tea.html" class="btn_exit">LogOut</a></li>
-				</ul>
-			</div>
-		</div>
-		<!--页面位置导航-->
-		<div class="page_title flex">
-			<div class="navigation">
-				<a href="">首页</a><em>/</em>
-				<!-- <a href="">信息&下载</a><em>/</em> -->
-				<span>全校综合情况</span>
-			</div>
-			<div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
-		</div>
+<body>
+<!--页面top-->
+<div class="top">
+    <div class="top_nav">
+        <ul>
+            <li><a href="#">设为首页</a></li>
+            <li><a href="#">加入收藏</a></li>
+            <li><a href="#">西邮主站</a></li>
+        </ul>
+    </div>
+</div>
+<!--导航-->
+<div class="header flex">
+    <div class="logo"><img src="images/logo.png" alt="西安邮电大学"/></div>
+    <div class="menu">
+        <ul>
+            <li>
+                <h3><span>信息&下载</span></h3>
+                <ul>
+                    <li><a href="">通知公告</a></li>
+                    <li><a href="">相关下载</a></li>
+                </ul>
+            </li>
+            <li>
+                <h3><a href=""><span>健康知识</span></a></h3>
+            </li>
+            <li>
+                <h3><a href=""><span>项目&目标</span></a></h3>
+                <ul>
+                    <li><a href="">项目介绍</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="top_member">
+        <ul>
+            <li><a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
+            <li><a href="">常见问题</a></li>
+            <li><a href="member_tea.html" class="btn_exit">LogOut</a></li>
+        </ul>
+    </div>
+</div>
+<!--页面位置导航-->
+<div class="page_title flex">
+    <div class="navigation">
+        <a href="">首页</a><em>/</em>
+        <!-- <a href="">信息&下载</a><em>/</em> -->
+        <span>全校综合情况</span>
+    </div>
+    <div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
+</div>
 
-		<!--页面内容部分-->
-		<div class="page flex">
-			<div class="page_nav">
-				<h3>功能菜单</h3>
-				<dl>
-					<dd><a href="member_tea.html"><span class="iconfont icon-fabuxuqiu"></span>学生数据</a></dd>
-					<dd>
-						<h4><span class="iconfont icon-fabuxuqiu"></span>学生体测数据</h4>
-						<dl>
-							<dd><a href="member_tea_data.html"> 体测数据管理</a></dd>
-						</dl>
-					</dd>
-					<dd>
-						<h4 class="this"><span class="iconfont icon-fabuxuqiu"></span>统计分析</h4>
-						<dl>
-							<dd><a href="member_tea_analysis01.html" class="hover"> 全校综合情况</a></dd>
-							<dd><a href="member_tea_analysis02.html"> 单项目情况</a></dd>
-							<dd><a href="member_tea_analysis03.html"> 指标情况</a></dd>
-						</dl>
-					</dd>
-					<dd>
-						<h4><span class="iconfont icon-fabuxuqiu"></span>网站信息维护</h4>
-						<dl>
-							<dd><a href="editor_list.html"> 通知公告</a></dd>
-							<dd><a href="editor_list.html"> 相关下载</a></dd>
-							<dd><a href="editor_list.html"> 工作动态</a></dd>
-							<dd><a href="editor_list.html"> 常见问题</a></dd>
-							<dd><a href="editor_list.html"> 健康知识</a></dd>
-						</dl>
-					</dd>
-					<dd>
-						<h4><span class="iconfont icon-fabuxuqiu"></span>健康指导维护</h4>
-						<dl>
-							<dd><a href="editor_editor.html"> 健康意见编辑</a></dd>
-						</dl>
-					</dd>
-				</dl>
-			</div>
-			<div class="page_right">
-				<div class="analysis_top flex">
-					<h3>全校综合情况分析</h3>
-					<div class="date_screening">
-						<form>
-							<div class="row">
-								<div class="col-sm-4 ">
-									<a href="">全部报告数据</a>
-								</div>
-								<div class="col-sm-2">
-									<h4>期间报告数据：</h4>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker"
-									 data-target="#datetimepicker5" />
-								</div>
-								<div class="col-sm-3">
-									<input type="text" class="form-control datetimepicker-input" id="datetimepicker6" data-toggle="datetimepicker"
-									 data-target="#datetimepicker6" />
-								</div>
-								<script type="text/javascript">
-									$(function() {
-										$('#datetimepicker5').datetimepicker();
-										$('#datetimepicker6').datetimepicker();
-									});
-								</script>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="data_card flex">
-					<div class="card"><a href="member_tea_analysis01_02.html">
-						<span>学生总数</span>
-						<h2>126,560</h2></a>
-					</div>
-					<div class="card"><a href="member_tea_analysis01_02.html">
-						<span>优秀人数</span>
-						<h2>126,560</h2></a>
-					</div>
-					<div class="card"><a href="member_tea_analysis01_02.html">
-						<span>不合格人数</span>
-						<h2>126,560</h2></a>
-					</div>
-				</div>
+<!--页面内容部分-->
+<div class="page flex">
+    <div class="page_nav">
+        <h3>功能菜单</h3>
+        <dl>
+            <dd><a href="member_tea.html"><span class="iconfont icon-fabuxuqiu"></span>学生数据</a></dd>
+            <dd>
+                <h4><span class="iconfont icon-fabuxuqiu"></span>学生体测数据</h4>
+                <dl>
+                    <dd><a href="member_tea_data.html"> 体测数据管理</a></dd>
+                </dl>
+            </dd>
+            <dd>
+                <h4 class="this"><span class="iconfont icon-fabuxuqiu"></span>统计分析</h4>
+                <dl>
+                    <dd><a href="member_tea_analysis01.html" class="hover"> 全校综合情况</a></dd>
+                    <dd><a href="member_tea_analysis02.html"> 单项目情况</a></dd>
+                    <dd><a href="member_tea_analysis03.html"> 指标情况</a></dd>
+                </dl>
+            </dd>
+            <dd>
+                <h4><span class="iconfont icon-fabuxuqiu"></span>网站信息维护</h4>
+                <dl>
+                    <dd><a href="editor_list.html"> 通知公告</a></dd>
+                    <dd><a href="editor_list.html"> 相关下载</a></dd>
+                    <dd><a href="editor_list.html"> 工作动态</a></dd>
+                    <dd><a href="editor_list.html"> 常见问题</a></dd>
+                    <dd><a href="editor_list.html"> 健康知识</a></dd>
+                </dl>
+            </dd>
+            <dd>
+                <h4><span class="iconfont icon-fabuxuqiu"></span>健康指导维护</h4>
+                <dl>
+                    <dd><a href="editor_editor.html"> 健康意见编辑</a></dd>
+                </dl>
+            </dd>
+        </dl>
+    </div>
+    <div class="page_right">
+        <div class="analysis_top flex">
+            <h3>全校综合情况分析</h3>
+            <div class="date_screening">
+                <form>
+                    <div class="row">
+                        <div class="col-sm-4 ">
+                            <a href="">全部报告数据</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <h4>期间报告数据：</h4>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control datetimepicker-input" id="datetimepicker5"
+                                   data-toggle="datetimepicker"
+                                   data-target="#datetimepicker5"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control datetimepicker-input" id="datetimepicker6"
+                                   data-toggle="datetimepicker"
+                                   data-target="#datetimepicker6"/>
+                        </div>
+                        <script type="text/javascript">
+                            // $(function() {
+                            // 	$('#datetimepicker5').datetimepicker();
+                            // 	$('#datetimepicker6').datetimepicker();
+                            // });
+                        </script>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="data_card flex">
+            <div class="card"><a href="member_tea_analysis01_02.html">
+                <span>学生总数</span>
+                <h2>126,560</h2></a>
+            </div>
+            <div class="card"><a href="member_tea_analysis01_02.html">
+                <span>优秀人数</span>
+                <h2>126,560</h2></a>
+            </div>
+            <div class="card"><a href="member_tea_analysis01_02.html">
+                <span>不合格人数</span>
+                <h2>126,560</h2></a>
+            </div>
+        </div>
 
-				<div class="page_tab">
-					<ul class="title">
-						<li><span>成绩分布</span></li>
-						<li><a href="member_tea_analysis01_03.html">按年级查看</a></li>
-					</ul>
-				</div>
-				<div class="page_cont_box">
-					<div class="results_box flex">
-						<div class="results">
-							<h3>成绩分布</h3>
-							<div class="data_eachert">
-								<img src="images/u3086.png" style="height: 310px;" />
-							</div>
-						</div>
-						<div class="ranking">
-							<h3>合格率专业排名</h3>
-							<div class="box">
-								<dl>
-									<dd><i class="dark">1</i>
-										<p>经济管理专业</p><span>90%</span>
-									</dd>
-									<dd><i class="dark">2</i>
-										<p>经济管理专业</p><span>90%</span>
-									</dd>
-									<dd><i class="dark">3</i>
-										<p>经济管理专业</p><span>90%</span>
-									</dd>
-									<dd><i>4</i>
-										<p>经济管理专业</p><span>90%</span>
-									</dd>
-									<dd><i>5</i>
-										<p>经济管理专业</p><span>90%</span>
-									</dd>
-									<dd><i>6</i>
-										<p>经济管理专业</p><span>90%</span>
-									</dd>
-									<dd><i>7</i>
-										<p>经济管理专业</p><span>90%</span>
-									</dd>
-								</dl>
-							</div>
-						</div>
-					</div>
-					<div class="results_box flex">
-						<div class="results_list">
-							<h3>单项合格情况</h3>
-							<div class="box">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>排名</th>
-											<th>项目名称</th>
-											<th>合格率</th>
-											<th>最好成绩</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>
-												<a href="member_tea_analysis01_01.html"><font color="#009DD9">50米跑</font></a>
-											</td>
-											<td>99%</td>
-											<td>1'11"</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>
-												<a href="member_tea_analysis01_01.html"><font color="#009DD9">100米跑</font></a>
-											</td>
-											<td>99%</td>
-											<td>1'11"</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>
-												<a href="member_tea_analysis01_01.html"><font color="#009DD9">引体向上</font></a>
-											</td>
-											<td>99%</td>
-											<td>13个</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>
-												<a href="member_tea_analysis01_01.html"><font color="#009DD9">铅球</font></a>
-											</td>
-											<td>99%</td>
-											<td>5米2</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>
-												<a href="member_tea_analysis01_01.html"><font color="#009DD9">跳高</font></a>
-											</td>
-											<td>99%</td>
-											<td>2.5米</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="results_list">
-							<h3>单项不合格情况</h3>
-							<div class="box">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>排名</th>
-											<th>项目名称</th>
-											<th>不合格占比</th>
-											<th>人数</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>
-												<font color="#009DD9">50米跑</font>
-											</td>
-											<td>99%</td>
-											<td>2356</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>
-												<font color="#009DD9">100米跑</font>
-											</td>
-											<td>99%</td>
-											<td>2356</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>
-												<font color="#009DD9">引体向上</font>
-											</td>
-											<td>99%</td>
-											<td>2356</td>
-										</tr>
-										<tr>
-											<td>4</td>
-											<td>
-												<font color="#009DD9">铅球</font>
-											</td>
-											<td>99%</td>
-											<td>2356</td>
-										</tr>
-										<tr>
-											<td>5</td>
-											<td>
-												<font color="#009DD9">跳高</font>
-											</td>
-											<td>99%</td>
-											<td>2356</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
+        <div class="page_tab">
+            <ul class="title">
+                <li><span>成绩分布</span></li>
+                <li><a href="member_tea_analysis01_03.html">按年级查看</a></li>
+            </ul>
+        </div>
+        <div class="page_cont_box">
+            <div class="results_box flex">
+                <div class="results">
+                    <h3>成绩分布</h3>
+                    <div id="grade" class="data_eachert">
+                        <!--                        <img src="images/u3086.png" style="height: 310px;"/>-->
+                    </div>
+                </div>
+                <div class="ranking">
+                    <h3>合格率专业排名</h3>
+                    <div class="box">
+                        <dl>
+                            <dd><i class="dark">1</i>
+                                <p>经济管理专业</p><span>90%</span>
+                            </dd>
+                            <dd><i class="dark">2</i>
+                                <p>经济管理专业</p><span>90%</span>
+                            </dd>
+                            <dd><i class="dark">3</i>
+                                <p>经济管理专业</p><span>90%</span>
+                            </dd>
+                            <dd><i>4</i>
+                                <p>经济管理专业</p><span>90%</span>
+                            </dd>
+                            <dd><i>5</i>
+                                <p>经济管理专业</p><span>90%</span>
+                            </dd>
+                            <dd><i>6</i>
+                                <p>经济管理专业</p><span>90%</span>
+                            </dd>
+                            <dd><i>7</i>
+                                <p>经济管理专业</p><span>90%</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="results_box flex">
+                <div class="results_list">
+                    <h3>单项合格情况</h3>
+                    <div class="box">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>项目名称</th>
+                                <th>合格率</th>
+                                <th>最好成绩</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <a href="member_tea_analysis01_01.html"><font color="#009DD9">50米跑</font></a>
+                                </td>
+                                <td>99%</td>
+                                <td>1'11"</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <a href="member_tea_analysis01_01.html"><font color="#009DD9">100米跑</font></a>
+                                </td>
+                                <td>99%</td>
+                                <td>1'11"</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <a href="member_tea_analysis01_01.html"><font color="#009DD9">引体向上</font></a>
+                                </td>
+                                <td>99%</td>
+                                <td>13个</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <a href="member_tea_analysis01_01.html"><font color="#009DD9">铅球</font></a>
+                                </td>
+                                <td>99%</td>
+                                <td>5米2</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    <a href="member_tea_analysis01_01.html"><font color="#009DD9">跳高</font></a>
+                                </td>
+                                <td>99%</td>
+                                <td>2.5米</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="results_list">
+                    <h3>单项不合格情况</h3>
+                    <div class="box">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>项目名称</th>
+                                <th>不合格占比</th>
+                                <th>人数</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <font color="#009DD9">50米跑</font>
+                                </td>
+                                <td>99%</td>
+                                <td>2356</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <font color="#009DD9">100米跑</font>
+                                </td>
+                                <td>99%</td>
+                                <td>2356</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <font color="#009DD9">引体向上</font>
+                                </td>
+                                <td>99%</td>
+                                <td>2356</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <font color="#009DD9">铅球</font>
+                                </td>
+                                <td>99%</td>
+                                <td>2356</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    <font color="#009DD9">跳高</font>
+                                </td>
+                                <td>99%</td>
+                                <td>2356</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-					<div class="pass_box">
-						<div class="price">
-							<div class="category">
-								<ul>
-									<li class="active">
-										<div class="pass_text">
-											<p>50米跑</p><span>合格率</span><b>82%</b>
-										</div>
-										<div class="pass_img">
-											<img src="images/pic.png" />
-										</div>
-									</li>
-									<li>
-										<div class="pass_text">
-											<p>100米跑</p><span>合格率</span><b>82%</b>
-										</div>
-										<div class="pass_img">
-											<img src="images/pic.png" />
-										</div>
-									</li>
-									<li>
-										<div class="pass_text">
-											<p>跳高</p><span>合格率</span><b>82%</b>
-										</div>
-										<div class="pass_img">
-											<img src="images/pic.png" />
-										</div>
-									</li>
-									<li>
-										<div class="pass_text">
-											<p>跳远</p><span>合格率</span><b>82%</b>
-										</div>
-										<div class="pass_img">
-											<img src="images/pic.png" />
-										</div>
-									</li>
-									<li>
-										<div class="pass_text">
-											<p>仰卧起坐</p><span>合格率</span><b>82%</b>
-										</div>
-										<div class="pass_img">
-											<img src="images/pic.png" />
-										</div>
-									</li>
-									<li>
-										<div class="pass_text">
-											<p>立定跳远</p><span>合格率</span><b>82%</b>
-										</div>
-										<div class="pass_img">
-											<img src="images/pic.png" />
-										</div>
-									</li>
-								</ul>
-								<a href="javascript:;" class="prev"><span></span></a>
-								<a href="javascript:;" class="next"><span></span></a>
-							</div>
-							<h5>合格率趋势</h5>
-							<div class="cont active">
-								
-								<div class="cont_main">
-									<img src="images/qushi.png" />
-								</div>
-							</div>
-							<div class="cont ">
-								<div class="cont_main">
-									<img src="images/qushi2.png" />
-								</div>
-							</div>
+            <div class="pass_box">
+                <div class="price">
+                    <div class="category">
+                        <ul>
+                            <li class="active">
+                                <p style="	font-weight: 600;color: #00a4ff;">50米跑</p>
+                                <div style="width: 100px;height: 100px" id="50"></div>
+                            </li>
+                            <li class="pass_img">
+                                <p style="	font-weight: 600;color: #00a4ff;">100米跑</p>
+                                <div style="width: 100px;height: 100px" id="100"></div>
+                            </li>
+                            <li class="pass_img">
+                                <p style="	font-weight: 600;color: #00a4ff;">跳高</p>
+                                <div style="width: 100px;height: 100px" id="tiao_gao"></div>
+                            </li>
+                            <li class="pass_img">
+                                <p style="	font-weight: 600;color: #00a4ff;">跳远</p>
+                                <div style="width: 100px;height: 100px" id="tiao_yuan"></div>
+                            <li class="pass_img">
+                                <p style="	font-weight: 600;color: #00a4ff;">仰卧起坐</p>
+                                <div style="width: 100px;height: 100px" id="yang_wo"></div>
+                            </li>
+                            <li class="pass_img">
+                                <p style="	font-weight: 600;color: #00a4ff;">立定跳远</p>
+                                <div style="width: 100px;height: 100px" id="li_ding"></div>
+                            </li>
+                        </ul>
+                        <a href="javascript:;" class="prev"><span></span></a>
+                        <a href="javascript:;" class="next"><span></span></a>
+                    </div>
+                    <h5>合格率趋势</h5>
+                    <div class="cont active">
 
-						</div>
+                        <div id="hege1" style="width: 1000px;height: 350px" class="cont_main">
+                        </div>
+                    </div>
+                    <div class="cont ">
+                        <div id="hege2" style="width: 1000px;height: 350px" class="cont_main">
+<!--                            <img src="images/qushi2.png"/>-->
+                        </div>
+                    </div>
+
+                </div>
 
 
-
-					</div>
-				</div>
-
+            </div>
+        </div>
 
 
-			</div>
+    </div>
 
 
-		</div>
+</div>
 
-		</div>
+</div>
 
 
-		<!--底部代码-->
-		<div class="bottom w_long">
-			<div class="bottom_copy">
-				<p>
-					Copyright @ 2019-2022 西安邮电大学维护</br>
-					网站备案号：陕IPC243434****-01
-				</p>
-			</div>
-		</div>
-	</body>
+<!--底部代码-->
+<div class="bottom w_long">
+    <div class="bottom_copy">
+        <p>
+            Copyright @ 2019-2022 西安邮电大学维护</br>
+            网站备案号：陕IPC243434****-01
+        </p>
+    </div>
+</div>
+</body>
+<script>
+    <!--	成绩分布条形图-->
+
+    var chartDom = document.getElementById('grade');
+    var myChart = echarts.init(chartDom);
+    var option = {
+        legend: {
+            data: ['女', '男']
+        },
+        xAxis: {
+            type: 'category',
+            data: ['优秀', '良好', '及格', '不及格']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '女',
+                type: 'bar',
+                data: [88, 42, 63, 77],
+                itemStyle: {
+                    normal: {
+                        //这里是重点
+                        color: '#FF69B4',
+                    }
+                }
+            }, {
+                name: '男',
+                type: 'bar',
+                data: [ 95, 20, 71, 86],
+            itemStyle: {
+            normal: {
+                //这里是重点
+                color: '#1E90FF',
+            }
+        }
+            }
+        ]
+    }
+    option && myChart.setOption(option);
+//    50米合格率
+    var e=85;
+    var Chart4 = echarts.init(document.getElementById('50'));
+    var option = {
+        title:{
+            show:true,
+            text:'合格率'+"\n"+e+'%',
+            x:'center',
+            y:'center',
+            textStyle: {
+                fontSize: '15',
+                color:'blue',
+                fontWeight: 'normal'
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{d}%",
+            show:false
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            show:false
+        },
+        series:
+            {
+                name:'',
+                type:'pie',
+                radius: ['65%', '85%'],
+                avoidLabelOverlap: true,
+                hoverAnimation:false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: false
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: true,
+                    }
+                },
+                data:[
+                    {value:e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#0000FF",
+                            },
+                        },
+                    },
+                    {value:100-e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#E6E6FA",
+                            },
+                        },
+                    }
+                ]
+            }
+
+    };
+    Chart4.setOption(option);
+    //    100米合格率
+    var e=80;
+    var Chart4 = echarts.init(document.getElementById('100'));
+    var option = {
+        title:{
+            show:true,
+            text:'合格率'+"\n"+e+'%',
+            x:'center',
+            y:'center',
+            textStyle: {
+                fontSize: '15',
+                color:'blue',
+                fontWeight: 'normal'
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{d}%",
+            show:false
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            show:false
+        },
+        series:
+            {
+                name:'',
+                type:'pie',
+                radius: ['65%', '85%'],
+                avoidLabelOverlap: true,
+                hoverAnimation:false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: false
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: true,
+                    }
+                },
+                data:[
+                    {value:e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#0000FF",
+                            },
+                        },
+                    },
+                    {value:100-e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#E6E6FA",
+                            },
+                        },
+                    }
+                ]
+            }
+
+    };
+    Chart4.setOption(option);
+    //   跳高合格率
+    var e=60;
+    var Chart4 = echarts.init(document.getElementById('tiao_gao'));
+    var option = {
+        title:{
+            show:true,
+            text:'合格率'+"\n"+e+'%',
+            x:'center',
+            y:'center',
+            textStyle: {
+                fontSize: '15',
+                color:'blue',
+                fontWeight: 'normal'
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{d}%",
+            show:false
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            show:false
+        },
+        series:
+            {
+                name:'',
+                type:'pie',
+                radius: ['65%', '85%'],
+                avoidLabelOverlap: true,
+                hoverAnimation:false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: false
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: true,
+                    }
+                },
+                data:[
+                    {value:e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#0000FF",
+                            },
+                        },
+                    },
+                    {value:100-e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#E6E6FA",
+                            },
+                        },
+                    }
+                ]
+            }
+
+    };
+    Chart4.setOption(option);
+    //   跳远合格率
+    var e=60;
+    var Chart4 = echarts.init(document.getElementById('tiao_yuan'));
+    var option = {
+        title:{
+            show:true,
+            text:'合格率'+"\n"+e+'%',
+            x:'center',
+            y:'center',
+            textStyle: {
+                fontSize: '15',
+                color:'blue',
+                fontWeight: 'normal'
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{d}%",
+            show:false
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            show:false
+        },
+        series:
+            {
+                name:'',
+                type:'pie',
+                radius: ['65%', '85%'],
+                avoidLabelOverlap: true,
+                hoverAnimation:false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: false
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: true,
+                    }
+                },
+                data:[
+                    {value:e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#0000FF",
+                            },
+                        },
+                    },
+                    {value:100-e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#E6E6FA",
+                            },
+                        },
+                    }
+                ]
+            }
+
+    };
+    Chart4.setOption(option);
+
+    //   仰卧起坐合格率
+    var e=90;
+    var Chart4 = echarts.init(document.getElementById('yang_wo'));
+    var option = {
+        title:{
+            show:true,
+            text:'合格率'+"\n"+e+'%',
+            x:'center',
+            y:'center',
+            textStyle: {
+                fontSize: '15',
+                color:'blue',
+                fontWeight: 'normal'
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{d}%",
+            show:false
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            show:false
+        },
+        series:
+            {
+                name:'',
+                type:'pie',
+                radius: ['65%', '85%'],
+                avoidLabelOverlap: true,
+                hoverAnimation:false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: false
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: true,
+                    }
+                },
+                data:[
+                    {value:e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#0000FF",
+                            },
+                        },
+                    },
+                    {value:100-e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#E6E6FA",
+                            },
+                        },
+                    }
+                ]
+            }
+
+    };
+    Chart4.setOption(option);
+    //  立定跳远合格率
+    var e=40;
+    var Chart4 = echarts.init(document.getElementById('li_ding'));
+    var option = {
+        title:{
+            show:true,
+            text:'合格率'+"\n"+e+'%',
+            x:'center',
+            y:'center',
+            textStyle: {
+                fontSize: '15',
+                color:'blue',
+                fontWeight: 'normal'
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{d}%",
+            show:false
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            show:false
+        },
+        series:
+            {
+                name:'',
+                type:'pie',
+                radius: ['65%', '85%'],
+                avoidLabelOverlap: true,
+                hoverAnimation:false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: false
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: true,
+                    }
+                },
+                data:[
+                    {value:e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#0000FF",
+                            },
+                        },
+                    },
+                    {value:100-e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#E6E6FA",
+                            },
+                        },
+                    }
+                ]
+            }
+
+    };
+    Chart4.setOption(option);
+
+
+    //合格率趋势1
+    var chartDom = document.getElementById('hege1');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['男', '女']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                '2019年第一学期',
+                '2019年第二学期',
+                '2020年第一学期',
+                '2020年第二学期',
+                '2021年第一学期',
+                '2021年第二学期',
+                '2022年第一学期'
+            ]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '男',
+                type: 'line',
+                stack: 'Total',
+                data: [150, 232, 201, 154, 190, 330, 610],
+                itemStyle: {
+                    normal: {
+                        //这里是重点
+                        color: '#1E90FF',
+                    }
+                }
+
+            },
+            {
+                name: '女',
+                type: 'line',
+                stack: 'Total',
+                data: [120, 332, 401, 334, 390, 130, 220],
+                itemStyle: {
+                    normal: {
+                        //这里是重点
+                        color: '#FF69B4',
+                    }
+                }
+            }
+        ]
+    };
+
+    option && myChart.setOption(option);
+    //合格率趋势2
+    var chartDom = document.getElementById('hege2');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['男', '女']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: [
+                '2019年第一学期',
+                '2019年第二学期',
+                '2020年第一学期',
+                '2020年第二学期',
+                '2021年第一学期',
+                '2021年第二学期',
+                '2022年第一学期'
+            ]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '男',
+                type: 'line',
+                stack: 'Total',
+                data: [150, 232, 201, 154, 190, 330, 410],
+                itemStyle: {
+                    normal: {
+                        //这里是重点
+                        color: '#1E90FF',
+                    }
+                }
+            },
+            {
+                name: '女',
+                type: 'line',
+                stack: 'Total',
+                data: [320, 332, 301, 334, 390, 330, 320],
+                itemStyle: {
+                    normal: {
+                        //这里是重点
+                        color: '#FF69B4',
+                    }
+                }
+            }
+        ]
+    };
+
+    option && myChart.setOption(option);
+</script>
 </html>

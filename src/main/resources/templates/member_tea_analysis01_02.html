@@ -7,16 +7,17 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/public.js"></script>
 		<script src="js/vue.min.js"></script>
+		<script src="js/echarts.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="css/public.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 
 		<!--时间选择器-->
-		<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<link href="assets/theme/css/tempusdominus-bootstrap-4.css" rel="stylesheet">
-		<script src="assets/js/moment-with-locales.min.js"></script>
-		<script src="assets/js/tempusdominus-bootstrap-4.js"></script>
+<!--		<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+<!--		<link href="assets/theme/css/tempusdominus-bootstrap-4.css" rel="stylesheet">-->
+<!--		<script src="assets/js/moment-with-locales.min.js"></script>-->
+<!--		<script src="assets/js/tempusdominus-bootstrap-4.js"></script>-->
 		<!--时间选择器-->
 
 		<script type="text/javascript">
@@ -136,12 +137,12 @@
 									<input type="text" class="form-control datetimepicker-input" id="datetimepicker6" data-toggle="datetimepicker"
 									 data-target="#datetimepicker6" />
 								</div>
-								<script type="text/javascript">
-									$(function() {
-										$('#datetimepicker5').datetimepicker();
-										$('#datetimepicker6').datetimepicker();
-									});
-								</script>
+<!--								<script type="text/javascript">-->
+<!--									$(function() {-->
+<!--										$('#datetimepicker5').datetimepicker();-->
+<!--										$('#datetimepicker6').datetimepicker();-->
+<!--									});-->
+<!--								</script>-->
 							</div>
 						</form>
 					</div>
@@ -166,7 +167,8 @@
 				</div>
                 <div class="data_box">
 					
-					<div class="data_eachert"><img src="images/qushi4.png" /></div>
+					<div  id="all_school" style="width: 1000px;height: 600px" class="data_eachert">
+					</div>
 				</div>
 				<div class="stu_list">
 					<table class="table table-bordered">
@@ -236,4 +238,202 @@
 			</div>
 		</div>
 	</body>
+<script>
+	//全校统计条形图
+	var app = {};
+
+	var chartDom = document.getElementById('all_school');
+	var myChart = echarts.init(chartDom);
+	var option;
+
+	const posList = [
+		'left',
+		'right',
+		'top',
+		'bottom',
+		'inside',
+		'insideTop',
+		'insideLeft',
+		'insideRight',
+		'insideBottom',
+		'insideTopLeft',
+		'insideTopRight',
+		'insideBottomLeft',
+		'insideBottomRight'
+	];
+	app.configParameters = {
+		rotate: {
+			min: -90,
+			max: 90
+		},
+		align: {
+			options: {
+				left: 'left',
+				center: 'center',
+				right: 'right'
+			}
+		},
+		verticalAlign: {
+			options: {
+				top: 'top',
+				middle: 'middle',
+				bottom: 'bottom'
+			}
+		},
+		position: {
+			options: posList.reduce(function (map, pos) {
+				map[pos] = pos;
+				return map;
+			}, {})
+		},
+		distance: {
+			min: 0,
+			max: 100
+		}
+	};
+	app.config = {
+		rotate: 90,
+		align: 'left',
+		verticalAlign: 'middle',
+		position: 'insideBottom',
+		distance: 15,
+		onChange: function () {
+			const labelOption = {
+				rotate: app.config.rotate,
+				align: app.config.align,
+				verticalAlign: app.config.verticalAlign,
+				position: app.config.position,
+				distance: app.config.distance
+			};
+			myChart.setOption({
+				series: [
+					{
+						label: labelOption
+					},
+					{
+						label: labelOption
+					},
+					{
+						label: labelOption
+					},
+					{
+						label: labelOption
+					}
+				]
+			});
+		}
+	};
+	const labelOption = {
+		show: true,
+		position: app.config.position,
+		distance: app.config.distance,
+		align: app.config.align,
+		verticalAlign: app.config.verticalAlign,
+		rotate: app.config.rotate,
+		formatter: '{c}  {name|{a}}',
+		fontSize: 16,
+		rich: {
+			name: {}
+		}
+	};
+	option = {
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+				type: 'shadow'
+			}
+		},
+		legend: {
+			data: ['优秀', '良好', '及格', '不及格'],
+
+		},
+		toolbox: {
+			show: true,
+			orient: 'vertical',
+			left: 'right',
+			top: 'center',
+			feature: {
+				mark: { show: true },
+				dataView: { show: true, readOnly: false },
+				magicType: { show: true, type: ['line', 'bar', 'stack'] },
+				restore: { show: true },
+				saveAsImage: { show: true }
+			}
+		},
+		xAxis: [
+			{
+				type: 'category',
+				axisTick: { show: false },
+				data: ['2012', '2013', '2014', '2015', '2016']
+			}
+		],
+		yAxis: [
+			{
+				type: 'value'
+			}
+		],
+		series: [
+			{
+				name: '优秀',
+				type: 'bar',
+				barGap: 0,
+				label: labelOption,
+				emphasis: {
+					focus: 'series'
+				},
+				data: [320, 332, 301, 334, 390],
+				itemStyle: {
+					normal: {
+						color:"#7B68EE",
+					},
+				},
+			},
+			{
+				name: '良好',
+				type: 'bar',
+				label: labelOption,
+				emphasis: {
+					focus: 'series'
+				},
+				data: [220, 182, 191, 234, 290],
+				itemStyle: {
+					normal: {
+						color:'#EFE42A',
+					},
+				},
+			},
+			{
+				name: '及格',
+				type: 'bar',
+				label: labelOption,
+				emphasis: {
+					focus: 'series'
+				},
+				data: [150, 232, 201, 154, 190],
+				itemStyle: {
+					normal: {
+						color:'#64BD3D',
+					},
+				},
+			},
+			{
+				name: '不及格',
+				type: 'bar',
+				label: labelOption,
+				emphasis: {
+					focus: 'series'
+				},
+				data: [98, 77, 101, 99, 40],
+				itemStyle: {
+					normal: {
+						color:'#EE9201',
+					},
+				},
+			}
+		]
+	};
+
+	option && myChart.setOption(option);
+
+</script>
 </html>

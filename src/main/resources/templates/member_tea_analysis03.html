@@ -7,16 +7,17 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/public.js"></script>
 		<script src="js/vue.min.js"></script>
+		<script src="js/echarts.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="css/public.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 
 		<!--时间选择器-->
-		<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<link href="assets/theme/css/tempusdominus-bootstrap-4.css" rel="stylesheet">
-		<script src="assets/js/moment-with-locales.min.js"></script>
-		<script src="assets/js/tempusdominus-bootstrap-4.js"></script>
+<!--		<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+<!--		<link href="assets/theme/css/tempusdominus-bootstrap-4.css" rel="stylesheet">-->
+<!--		<script src="assets/js/moment-with-locales.min.js"></script>-->
+<!--		<script src="assets/js/tempusdominus-bootstrap-4.js"></script>-->
 		<!--时间选择器-->
 
 		<script type="text/javascript">
@@ -138,10 +139,10 @@
 									 data-target="#datetimepicker6" />
 								</div>
 								<script type="text/javascript">
-									$(function() {
-										$('#datetimepicker5').datetimepicker();
-										$('#datetimepicker6').datetimepicker();
-									});
+									// $(function() {
+									// 	$('#datetimepicker5').datetimepicker();
+									// 	$('#datetimepicker6').datetimepicker();
+									// });
 								</script>
 							</div>
 						</form>
@@ -150,8 +151,8 @@
 				<div class="results_box flex">
 					<div class="data_box center">
 						<h3>各学院合格率分布情况</h3>
-						<div class="data_eachert">
-							<img src="images/qushi5.png" style="" />
+						<div  id="institute" style="width: 540px;height: 300px"class="data_eachert">
+<!--							<img src="images/qushi5.png" style="" />-->
 						</div>
 					</div>
 					<div class="data_box center">
@@ -163,18 +164,18 @@
 							</select>
 						</h3>
 
-						<div class="data_eachert">
-							<img src="images/qushi6.png" style="" />
+						<div id="institute_hege" style="width: 700px;height: 300px" class="data_eachert">
+<!--							<img src="images/qushi6.png" style="" />-->
 						</div>
 					</div>
 					
 				</div>
-				
+
 				<div class="results_box flex">
 					<div class="data_box center">
 						<h3>单项合格率分布情况</h3>
-						<div class="data_eachert">
-							<img src="images/qushi5.png" style="" />
+						<div  id="single_institute" style="width: 540px;height: 300px"class="data_eachert">
+							<!--							<img src="images/qushi5.png" style="" />-->
 						</div>
 					</div>
 					<div class="data_box center">
@@ -185,19 +186,12 @@
 								<option>大妈学院</option>
 							</select>
 						</h3>
-
-						<div class="data_eachert">
+						<div  id="buhege"style="width: 700px;height: 300px" class="data_eachert">
 							<img src="images/qushi6.png" style="" />
 						</div>
 					</div>
-					
-				</div>
-					
-				</div>
-				
-				
-			</div>
 
+				</div>
 
 		</div>
 
@@ -214,4 +208,137 @@
 			</div>
 		</div>
 	</body>
+<script>
+	//各学院合格率分布情况
+	var chartDom = document.getElementById('institute');
+	var myChart = echarts.init(chartDom);
+	var option;
+	option = {
+		xAxis: {
+			type: 'category',
+			data: ['管理学院', '理学院', '计算机学院', '人文学院']
+		},
+		yAxis: {
+			type: 'value'
+		},
+		series: [
+			{
+				itemStyle: {
+					normal: {
+						// 随机显示
+						//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+
+						// 定制显示（按顺序）
+						color: function(params) {
+							var colorList = ['#1E90FF','#EFE42A','#64BD3D','#EE9201','#29AAE3', '#B74AE5','#0AAF9F','#E89589','#16A085','#4A235A','#C39BD3 ','#F9E79F','#BA4A00','#ECF0F1','#616A6B','#EAF2F8','#4A235A','#3498DB' ];
+							return colorList[params.dataIndex]
+						}
+					},
+				},
+				data:[120,200,150,80],
+				markLine: {
+					data: [{
+						type: "average"
+					}],
+					silent: true
+				},
+				type: 'bar'
+			}
+		]
+	};
+	option && myChart.setOption(option);
+
+
+	//单项格率分布情况
+	var chartDom = document.getElementById('single_institute');
+	var myChart = echarts.init(chartDom);
+	var option;
+	option = {
+		xAxis: {
+			type: 'category',
+			data: ['管理学院', '理学院', '计算机学院', '人文学院']
+		},
+		yAxis: {
+			type: 'value'
+		},
+		series: [
+			{
+				itemStyle: {
+					normal: {
+						// 随机显示
+						//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+
+						// 定制显示（按顺序）
+						color: function(params) {
+							var colorList = ['#1E90FF','#EFE42A','#64BD3D','#EE9201','#29AAE3', '#B74AE5','#0AAF9F','#E89589','#16A085','#4A235A','#C39BD3 ','#F9E79F','#BA4A00','#ECF0F1','#616A6B','#EAF2F8','#4A235A','#3498DB' ];
+							return colorList[params.dataIndex]
+						}
+					},
+				},
+				data:[120,200,150,80],
+				markLine: {
+					data: [{
+						type: "average"
+					}],
+					silent: true
+				},
+				type: 'bar'
+			}
+		]
+	};
+
+	option && myChart.setOption(option);
+//各学院合格率趋势
+	var chartDom = document.getElementById('institute_hege');
+	var myChart = echarts.init(chartDom);
+	var option;
+
+	option = {
+		xAxis: {
+			type: 'category',
+			data:[
+			'2019年第二学期',
+			'2020年第一学期',
+			'2020年第二学期',
+			'2021年第一学期',]
+		},
+		yAxis: {
+			type: 'value'
+		},
+		series: [
+			{
+				data: [150, 230, 224, 218],
+				type: 'line'
+			}
+		]
+	};
+
+	option && myChart.setOption(option);
+	//各学院不合格率分布
+	var chartDom = document.getElementById('buhege');
+	var myChart = echarts.init(chartDom);
+	var option;
+
+	option = {
+		xAxis: {
+			type: 'category',
+			data:[
+				'2019年第二学期',
+				'2020年第一学期',
+				'2020年第二学期',
+				'2021年第一学期',]
+		},
+		yAxis: {
+			type: 'value'
+		},
+		series: [
+			{
+				data: [230, 224,80, 218],
+				type: 'line'
+			}
+		]
+	};
+
+	option && myChart.setOption(option);
+</script>
 </html>

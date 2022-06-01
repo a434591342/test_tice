@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7ce679f0-be44-4903-9219-c2571ae092d4" name="实验室服务器">
+        <fileTransfer rootFolder="/home/haojunyu/javaProject" accessType="SFTP" host="222.24.63.59" port="9075" sshConfigId="7688e99d-8bef-45c1-b364-da2ea24bc311" sshConfig="haojunyu@222.24.63.59:9075 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
