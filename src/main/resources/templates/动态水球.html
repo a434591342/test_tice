@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/echarts.js"></script>
+    <script src='js/echarts-liquidfill.js'></script>
+</head>
+<body>
+<div id="liquidfill-chart" style="width: 300px;height: 300px"></div>
+
+</body>
+<script>
+    var Chart4 = echarts.init(document.getElementById('liquidfill-chart'));
+    var num=((1496/3000)*100).toFixed(2);
+    var num_person=1496;
+    var placeHolderStyle = {
+        normal: {
+            label: {
+                show: false
+            },
+            labelLine: {
+                show: false
+            },
+            color: "rgba(0,0,0,0)",
+            borderWidth: 0
+        },
+        emphasis: {
+            color: "rgba(0,0,0,0)",
+            borderWidth: 0
+        }
+    };
+
+
+    var dataStyle = {
+        normal: {
+            formatter: '{c}%',
+            position: 'center',
+            top:'40%',
+            show: true,
+            textStyle: {
+                fontSize: '30',
+                fontWeight: 'normal',
+                color: '#34374E'
+            }
+        }
+    };
+
+
+    option = {
+        backgroundColor: '#fff',
+        title: [{
+            text: '不合格人数'+num_person,
+            left: '29.8%',
+            top: '52%',
+            textAlign: 'center',
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize: '16',
+                color: '#AAAFC8',
+                textAlign: 'center',
+            },
+        }],
+
+        //第一个图表
+        series: [{
+            type: 'pie',
+            hoverAnimation: false, //鼠标经过的特效
+            radius: ['55%', '60%'],
+            center: ['30%', '50%'],
+            startAngle: 180,
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            label: {
+                normal: {
+
+                    position: 'center'
+                }
+            },
+            data: [{
+                value: 100,
+                itemStyle: {
+                    normal: {
+                        color: '#E1E8EE'
+                    }
+                },
+            }, {
+                value: 100,
+                itemStyle: placeHolderStyle,
+            },
+
+            ]
+        },
+            //上层环形配置
+            {
+                type: 'pie',
+                hoverAnimation: false, //鼠标经过的特效
+                radius: ['55%', '60%'],
+                center: ['30%', '50%'],
+                startAngle: 180,
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                label: {
+                    normal: {
+
+                        position: 'center'
+                    }
+                },
+                data: [{
+                    value: num,
+                    itemStyle: {
+                        normal: {
+                            color: '#6F78CC'
+                        }
+                    },
+                    label: dataStyle,
+                }, {
+                    value: (100 - num),
+                    itemStyle: placeHolderStyle,
+                },
+                    {
+                        value: 100,
+                        itemStyle: placeHolderStyle,
+                    },
+                ]
+            },
+
+        ]
+    };
+
+    option && Chart4.setOption(option);
+</script>
+</html>

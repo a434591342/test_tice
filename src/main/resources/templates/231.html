@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/echarts.js"></script>
+</head>
+<body>
+<div id="1" style="width: 100px;height: 100px"> </div>
+</body>
+<script>
+    var e=85;
+    var Chart4 = echarts.init(document.getElementById('1'));
+    option = {
+        title:{
+            show:true,
+            text:e+'%',
+            x:'center',
+            y:'center',
+            textStyle: {
+                fontSize: '15',
+                color:'blue',
+                fontWeight: 'normal'
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{d}%",
+            show:false
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            show:false
+        },
+        series:
+            {
+                name:'',
+                type:'pie',
+                radius: ['45%', '65%'],
+                avoidLabelOverlap: true,
+                hoverAnimation:false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: false
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: true,
+                    }
+                },
+                data:[
+                    {value:e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#0000FF",
+                            },
+                        },
+                    },
+                    {value:100-e, name:'',
+                        itemStyle: {
+                            normal: {
+                                color:"#E6E6FA",
+                            },
+                        },
+                    }
+                ]
+            }
+
+    };
+    Chart4.setOption(option);
+</script>
+</html>

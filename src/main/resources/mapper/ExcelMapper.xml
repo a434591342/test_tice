@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjy.mapper.ExcelMapper">
+<!--    批量添加数据-->
+    <insert id="insertBatchResident">
+        insert into ods_data(id, grade, class_num, class_name, student_num,
+        nation_id, `name`, sex,birthday,address,height,weight,hw_score,hw_rank,
+        vitual_capacity,vc_score,vc_rank,s_50m,s_50m_score,s_50m_rank,long_jump,lj_score,lj_rank
+        ,sit_and_reach,sar_score,sar_rank,s_800m,s_800m_score,s_800m_rank,s_1000m,s_1000m_score,s_1000m_rank
+        ,sit_up,su_score,su_rank,pull_up,pu_score,pu_rank,standard_score,add_score,total_score,total_rank,`date`)
+        values
+        <foreach collection="odsDataList" item="ods_data" index="index" separator=",">
+            (null,
+         #{ods_data.grade}, #{ods_data.classNum}, #{ods_data.className}, #{ods_data.studentNum},
+            #{ods_data.nationId},#{ods_data.name},#{ods_data.sex},#{ods_data.birthday},#{ods_data.address},#{ods_data.height},#{ods_data.weight},#{ods_data.hwScore},#{ods_data.hwRank},
+            #{ods_data.vitualCapacity},#{ods_data.vcScore},#{ods_data.vcRank},#{ods_data.s50m},#{ods_data.s50mScore},#{ods_data.s50mRank},#{ods_data.longJump},#{ods_data.ljScore},#{ods_data.ljRank},
+            #{ods_data.sitAndReach},#{ods_data.sarScore},#{ods_data.sarRank},#{ods_data.s800m},#{ods_data.s800mScore},#{ods_data.s800mRank},#{ods_data.s1000m},#{ods_data.s1000mScore},#{ods_data.s1000mRank},
+            #{ods_data.sitUp},#{ods_data.suScore},#{ods_data.suRank},#{ods_data.pullUp},#{ods_data.puScore},#{ods_data.puRank},#{ods_data.standardScore},
+            #{ods_data.addScore},#{ods_data.totalScore},#{ods_data.totalRank},#{ods_data.date}
+            )
+        </foreach>
+    </insert>
+</mapper>

@@ -53,5 +53,8 @@
     <sql id="Base_Column_List">
         id, grade, class_num, class_name, student_num, nation_id, name, sex, birthday, address, height, weight, hw_score, hw_rank, vitual_capacity, vc_score, vc_rank, s_50m, s_50m_score, s_50m_rank, long_jump, lj_score, lj_rank, sit_and_reach, sar_score, sar_rank, s_800m, s_800m_score, s_800m_rank, s_1000m, s_1000m_score, s_1000m_rank, sit_up, su_score, su_rank, pull_up, pu_score, pu_rank, standard_score, add_score, total_score, total_rank, date
     </sql>
+    <update id="truncate">
+        truncate table ods_data
+</update>
 
 </mapper>

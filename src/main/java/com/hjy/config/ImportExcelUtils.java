@@ -27,8 +27,8 @@ public class ImportExcelUtils {
                 int rowNum = sheet.getLastRowNum(); // 获取该页表共有多少行
                 for (int j = 1; j <= rowNum; j++) {  // 一般来说第一行是标题,所以第二行开始读取
                     Row row = sheet.getRow(j); // 获取表格行
-
                     User user = new User();
+                    row.getCell(0).setCellType(Cell.CELL_TYPE_STRING); // 将该单元格获取出来的值设为String类型
                     user.setAccount(row.getCell(0).getStringCellValue()); // 获取表格单元格并给User设置值
                     row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
                     user.setPassword(row.getCell(1).getStringCellValue());
@@ -46,7 +46,7 @@ public class ImportExcelUtils {
     }
 
     // 判断传入的文件是哪种类型的excel文件
-    public Workbook getWorkbook(String fileName, InputStream is) throws Exception{
+    public Workbook getWorkbook(String fileName,InputStream is) throws Exception{
         Workbook workbook = null;
         String name = fileName.substring(fileName.lastIndexOf("."));
         System.out.println(name);

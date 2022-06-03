@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface OdsDataMapper extends BaseMapper<OdsData> {
 
+    void truncate();
 }

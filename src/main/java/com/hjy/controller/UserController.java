@@ -1,7 +1,6 @@
 package com.hjy.controller;
 
 import com.hjy.service.UserService;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +17,6 @@ public class UserController {
     UserService userService;
 
     // 批量添加数据
-    @ApiOperation(value = "上传excel")
     @PostMapping("/upload")
     public Map<String,String> upload(MultipartFile excelFile) throws Exception{
         Map<String,String> map = new HashMap<>();

@@ -5,7 +5,7 @@ server:
 
 spring:
   resources:
-    static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, classpath:/templates/
+    static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, classpath:/templates/,classpath:/src/main/resources/templates
   # 数据源配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -45,6 +45,11 @@ spring:
         # 默认后缀就是.ftl
         suffix: .ftl
         template-loader-path: classPath:/templates/word/
+  servlet:
+    multipart:
+      max-file-size: 1073741824
+      max-request-size: 1073741824
+
 #  redis:
 #    #超时时间
 #    timeout: 10000ms
