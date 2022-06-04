@@ -28,6 +28,7 @@
 	</head>
 
 	<body>
+	<div id="app">
 		<!--页面top-->
 		<div class="top">
 			<div class="top_nav">
@@ -98,9 +99,6 @@
 						<dl>
 							<dd><a href="editor_list.html"> 通知公告</a></dd>
 							<dd><a href="editor_list.html"> 相关下载</a></dd>
-							<dd><a href="editor_list.html"> 工作动态</a></dd>
-							<dd><a href="editor_list.html"> 常见问题</a></dd>
-							<dd><a href="editor_list.html"> 健康知识</a></dd>
 						</dl>
 					</dd>
 					<dd>
@@ -125,18 +123,18 @@
 								</div>
 								<div class="col-sm-3">
 									<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker"
-									 data-target="#datetimepicker5" />
+										   data-target="#datetimepicker5" />
 								</div>
 								<div class="col-sm-3">
 									<input type="text" class="form-control datetimepicker-input" id="datetimepicker6" data-toggle="datetimepicker"
-									 data-target="#datetimepicker6" />
+										   data-target="#datetimepicker6" />
 								</div>
-<!--								<script type="text/javascript">-->
-<!--									$(function() {-->
-<!--										$('#datetimepicker5').datetimepicker();-->
-<!--										$('#datetimepicker6').datetimepicker();-->
-<!--									});-->
-<!--								</script>-->
+								<!--								<script type="text/javascript">-->
+								<!--									$(function() {-->
+								<!--										$('#datetimepicker5').datetimepicker();-->
+								<!--										$('#datetimepicker6').datetimepicker();-->
+								<!--									});-->
+								<!--								</script>-->
 							</div>
 						</form>
 					</div>
@@ -159,58 +157,51 @@
 						</div>
 					</form>
 				</div>
-                <div class="data_box">
-					
+				<div class="data_box">
+
 					<div  id="all_school" style="width: 1000px;height: 600px" class="data_eachert">
 					</div>
 				</div>
 				<div class="stu_list">
 					<table class="table table-bordered">
 						<thead>
-							<tr>
-								<th>体侧报告</th>
-								<th>优秀</th>
-								<th>良好</th>
-								<th>合格</th>
-								<th>不合格</th>
-							</tr>
+						<tr>
+							<th>体侧报告</th>
+							<th>优秀</th>
+							<th>良好</th>
+							<th>合格</th>
+							<th>不合格</th>
+						</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>2018年第二学期</td>
-								<td>768</td>
-								<td>15</td>
-								<td>689</td>
-								<td>1024</td>
-							</tr>
-							<tr>
-								<td>2018年第一学期</td>
-								<td>768</td>
-								<td>15</td>
-								<td>689</td>
-								<td>1024</td>
-							</tr>
-							<tr>
-								<td>2017年第二学期</td>
-								<td>768</td>
-								<td>15</td>
-								<td>689</td>
-								<td>1024</td>
-							</tr>
-							<tr>
-								<td>2017年第一学期</td>
-								<td>768</td>
-								<td>15</td>
-								<td>689</td>
-								<td>1024</td>
-							</tr>
-							<tr>
-								<td>总计（平均）</td>
-								<td>768</td>
-								<td>15</td>
-								<td>689</td>
-								<td>1024</td>
-							</tr>
+						<tbody v-if="DataByGrade.length>0">
+						<tr>
+							<td>大一</td>
+							<td>{{DataByGrade[0].youxiu}}</td>
+							<td>{{DataByGrade[0].lianghao}}</td>
+							<td>{{DataByGrade[0].jige}}</td>
+							<td>{{DataByGrade[0].bujige}}</td>
+						</tr>
+						<tr>
+							<td>大二</td>
+							<td>{{DataByGrade[1].youxiu}}</td>
+							<td>{{DataByGrade[1].lianghao}}</td>
+							<td>{{DataByGrade[1].jige}}</td>
+							<td>{{DataByGrade[1].bujige}}</td>
+						</tr>
+						<tr>
+							<td>大三</td>
+							<td>{{DataByGrade[2].youxiu}}</td>
+							<td>{{DataByGrade[2].lianghao}}</td>
+							<td>{{DataByGrade[2].jige}}</td>
+							<td>{{DataByGrade[2].bujige}}</td>
+						</tr>
+						<tr>
+							<td>大四</td>
+							<td>{{DataByGrade[3].youxiu}}</td>
+							<td>{{DataByGrade[3].lianghao}}</td>
+							<td>{{DataByGrade[3].jige}}</td>
+							<td>{{DataByGrade[3].bujige}}</td>
+						</tr>
 						</tbody>
 					</table>
 				</div>
@@ -219,215 +210,248 @@
 
 		</div>
 
-		</div>
+	</div>
 
 
-		<!--底部代码-->
-		<div class="bottom w_long">
-			<div class="bottom_copy">
-				<p>
-					Copyright @ 2019-2022 西安邮电大学维护</br>
-					网站备案号：陕IPC243434****-01
-				</p>
-			</div>
+	<!--底部代码-->
+	<div class="bottom w_long">
+		<div class="bottom_copy">
+			<p>
+				Copyright @ 2019-2022 西安邮电大学维护</br>
+				网站备案号：陕IPC243434****-01
+			</p>
 		</div>
+	</div>
+	</div>
 	</body>
 <script>
-	//全校统计条形图
-	var app = {};
 
-	var chartDom = document.getElementById('all_school');
-	var myChart = echarts.init(chartDom);
-	var option;
-
-	const posList = [
-		'left',
-		'right',
-		'top',
-		'bottom',
-		'inside',
-		'insideTop',
-		'insideLeft',
-		'insideRight',
-		'insideBottom',
-		'insideTopLeft',
-		'insideTopRight',
-		'insideBottomLeft',
-		'insideBottomRight'
-	];
-	app.configParameters = {
-		rotate: {
-			min: -90,
-			max: 90
-		},
-		align: {
-			options: {
-				left: 'left',
-				center: 'center',
-				right: 'right'
+</script>
+<script>
+	// init vue instance
+	let vm = new Vue({
+		el:'#app',
+		data:()=>{
+			return {
+				DataByGrade:[]
 			}
 		},
-		verticalAlign: {
-			options: {
-				top: 'top',
-				middle: 'middle',
-				bottom: 'bottom'
-			}
+		mounted(){
+			this.getDataByGrade();
 		},
-		position: {
-			options: posList.reduce(function (map, pos) {
-				map[pos] = pos;
-				return map;
-			}, {})
-		},
-		distance: {
-			min: 0,
-			max: 100
-		}
-	};
-	app.config = {
-		rotate: 90,
-		align: 'left',
-		verticalAlign: 'middle',
-		position: 'insideBottom',
-		distance: 15,
-		onChange: function () {
-			const labelOption = {
-				rotate: app.config.rotate,
-				align: app.config.align,
-				verticalAlign: app.config.verticalAlign,
-				position: app.config.position,
-				distance: app.config.distance
-			};
-			myChart.setOption({
-				series: [
-					{
-						label: labelOption
+		methods:{
+			showEchartsByGrade(){
+				//全校统计条形图
+				var app = {};
+
+				var chartDom = document.getElementById('all_school');
+				var myChart = echarts.init(chartDom);
+				var option;
+
+				const posList = [
+					'left',
+					'right',
+					'top',
+					'bottom',
+					'inside',
+					'insideTop',
+					'insideLeft',
+					'insideRight',
+					'insideBottom',
+					'insideTopLeft',
+					'insideTopRight',
+					'insideBottomLeft',
+					'insideBottomRight'
+				];
+				app.configParameters = {
+					rotate: {
+						min: -90,
+						max: 90
 					},
-					{
-						label: labelOption
+					align: {
+						options: {
+							left: 'left',
+							center: 'center',
+							right: 'right'
+						}
 					},
-					{
-						label: labelOption
+					verticalAlign: {
+						options: {
+							top: 'top',
+							middle: 'middle',
+							bottom: 'bottom'
+						}
 					},
-					{
-						label: labelOption
+					position: {
+						options: posList.reduce(function (map, pos) {
+							map[pos] = pos;
+							return map;
+						}, {})
+					},
+					distance: {
+						min: 0,
+						max: 100
 					}
-				]
-			});
+				};
+				app.config = {
+					rotate: 90,
+					align: 'left',
+					verticalAlign: 'middle',
+					position: 'insideBottom',
+					distance: 15,
+					onChange: function () {
+						const labelOption = {
+							rotate: app.config.rotate,
+							align: app.config.align,
+							verticalAlign: app.config.verticalAlign,
+							position: app.config.position,
+							distance: app.config.distance
+						};
+						myChart.setOption({
+							series: [
+								{
+									label: labelOption
+								},
+								{
+									label: labelOption
+								},
+								{
+									label: labelOption
+								},
+								{
+									label: labelOption
+								}
+							]
+						});
+					}
+				};
+				const labelOption = {
+					show: true,
+					position: app.config.position,
+					distance: app.config.distance,
+					align: app.config.align,
+					verticalAlign: app.config.verticalAlign,
+					rotate: app.config.rotate,
+					formatter: '{c}  {name|{a}}',
+					fontSize: 16,
+					rich: {
+						name: {}
+					}
+				};
+				option = {
+					tooltip: {
+						trigger: 'axis',
+						axisPointer: {
+							type: 'shadow'
+						}
+					},
+					legend: {
+						data: ['优秀', '良好', '及格', '不及格'],
+
+					},
+					toolbox: {
+						show: true,
+						orient: 'vertical',
+						left: 'right',
+						top: 'center',
+						feature: {
+							mark: { show: true },
+							dataView: { show: true, readOnly: false },
+							magicType: { show: true, type: ['line', 'bar', 'stack'] },
+							restore: { show: true },
+							saveAsImage: { show: true }
+						}
+					},
+					xAxis: [
+						{
+							type: 'category',
+							axisTick: { show: false },
+							data: ['大一', '大二', '大三', '大四']
+						}
+					],
+					yAxis: [
+						{
+							type: 'value'
+						}
+					],
+					series: [
+						{
+							name: '优秀',
+							type: 'bar',
+							barGap: 0,
+							label: labelOption,
+							emphasis: {
+								focus: 'series'
+							},
+							data: [this.DataByGrade[0].youxiu,this.DataByGrade[1].youxiu,this.DataByGrade[2].youxiu, this.DataByGrade[3].youxiu],
+							itemStyle: {
+								normal: {
+									color:"#7B68EE",
+								},
+							},
+						},
+						{
+							name: '良好',
+							type: 'bar',
+							label: labelOption,
+							emphasis: {
+								focus: 'series'
+							},
+							data: [this.DataByGrade[0].lianghao,this.DataByGrade[1].lianghao,this.DataByGrade[2].lianghao, this.DataByGrade[3].lianghao],
+							itemStyle: {
+								normal: {
+									color:'#EFE42A',
+								},
+							},
+						},
+						{
+							name: '及格',
+							type: 'bar',
+							label: labelOption,
+							emphasis: {
+								focus: 'series'
+							},
+							data: [this.DataByGrade[0].jige,this.DataByGrade[1].jige,this.DataByGrade[2].jige, this.DataByGrade[3].jige],
+							itemStyle: {
+								normal: {
+									color:'#64BD3D',
+								},
+							},
+						},
+						{
+							name: '不及格',
+							type: 'bar',
+							label: labelOption,
+							emphasis: {
+								focus: 'series'
+							},
+							data:  [this.DataByGrade[0].bujige,this.DataByGrade[1].bujige,this.DataByGrade[2].bujige, this.DataByGrade[3].bujige],
+							itemStyle: {
+								normal: {
+									color:'#EE9201',
+								},
+							},
+						}
+					]
+				};
+
+				option && myChart.setOption(option);
+			},
+			getDataByGrade(){
+				var self = this;
+				$.ajax({
+					url:"/test-score/getScoreByGrade",
+					method: "get",
+					success: function (result) {
+						self.DataByGrade= result.obj;
+						self.showEchartsByGrade();
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			}
 		}
-	};
-	const labelOption = {
-		show: true,
-		position: app.config.position,
-		distance: app.config.distance,
-		align: app.config.align,
-		verticalAlign: app.config.verticalAlign,
-		rotate: app.config.rotate,
-		formatter: '{c}  {name|{a}}',
-		fontSize: 16,
-		rich: {
-			name: {}
-		}
-	};
-	option = {
-		tooltip: {
-			trigger: 'axis',
-			axisPointer: {
-				type: 'shadow'
-			}
-		},
-		legend: {
-			data: ['优秀', '良好', '及格', '不及格'],
-
-		},
-		toolbox: {
-			show: true,
-			orient: 'vertical',
-			left: 'right',
-			top: 'center',
-			feature: {
-				mark: { show: true },
-				dataView: { show: true, readOnly: false },
-				magicType: { show: true, type: ['line', 'bar', 'stack'] },
-				restore: { show: true },
-				saveAsImage: { show: true }
-			}
-		},
-		xAxis: [
-			{
-				type: 'category',
-				axisTick: { show: false },
-				data: ['2012', '2013', '2014', '2015', '2016']
-			}
-		],
-		yAxis: [
-			{
-				type: 'value'
-			}
-		],
-		series: [
-			{
-				name: '优秀',
-				type: 'bar',
-				barGap: 0,
-				label: labelOption,
-				emphasis: {
-					focus: 'series'
-				},
-				data: [320, 332, 301, 334, 390],
-				itemStyle: {
-					normal: {
-						color:"#7B68EE",
-					},
-				},
-			},
-			{
-				name: '良好',
-				type: 'bar',
-				label: labelOption,
-				emphasis: {
-					focus: 'series'
-				},
-				data: [220, 182, 191, 234, 290],
-				itemStyle: {
-					normal: {
-						color:'#EFE42A',
-					},
-				},
-			},
-			{
-				name: '及格',
-				type: 'bar',
-				label: labelOption,
-				emphasis: {
-					focus: 'series'
-				},
-				data: [150, 232, 201, 154, 190],
-				itemStyle: {
-					normal: {
-						color:'#64BD3D',
-					},
-				},
-			},
-			{
-				name: '不及格',
-				type: 'bar',
-				label: labelOption,
-				emphasis: {
-					focus: 'series'
-				},
-				data: [98, 77, 101, 99, 40],
-				itemStyle: {
-					normal: {
-						color:'#EE9201',
-					},
-				},
-			}
-		]
-	};
-
-	option && myChart.setOption(option);
-
+	})
 </script>
 </html>

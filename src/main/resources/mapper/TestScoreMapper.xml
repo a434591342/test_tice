@@ -152,7 +152,8 @@
         WHERE ts.date = #{recentDate}
         GROUP BY major.major_name
         ) temp
-        ORDER BY num desc;
+        ORDER BY num desc
+        limit 10;
 </select>
 <select id="getHege" resultType="com.hjy.pojo.passRateOrNotPassRateByItem">
 select item,convert(passRate,decimal(10,2))*100 passRateOrNotPassRate,bestScore,rank() over (order by passRate desc) rank_
@@ -250,21 +251,25 @@ select distinct `date` from test_score ORDER BY date
 <select id="getHegeByVC" resultType="java.lang.Double">
 select sum(if(vc_score>=60,1,0))/count(*)
 from test_score
+WHERE gender = #{sex}
 GROUP BY date ORDER BY date;
 </select>
 <select id="getHegeBy50m" resultType="java.lang.Double">
 select sum(if(s_50m_score>=60,1,0))/count(*)
 from test_score
+WHERE gender = #{sex}
 GROUP BY date ORDER BY date;
 </select>
 <select id="getHegeBylj" resultType="java.lang.Double">
 select sum(if(lj_score>=60,1,0))/count(*)
 from test_score
+WHERE gender = #{sex}
 GROUP BY date ORDER BY date;
 </select>
 <select id="getHegeBysar" resultType="java.lang.Double">
 select sum(if(sar_score>=60,1,0))/count(*)
 from test_score
+WHERE gender = #{sex}
 GROUP BY date ORDER BY date;
 </select>
 <select id="gethegeBy800m" resultType="java.lang.Double">
@@ -294,7 +299,7 @@ GROUP BY date ORDER BY date;
 <select id="getScoreByGrade" resultType="com.hjy.pojo.scoreByGrade">
 SELECT SUM(IF(total_rank='优秀',1,0)) youxiu,SUM(IF(total_rank='良好',1,0)) lianghao,SUM(IF(total_rank='及格',1,0)) jige,SUM(IF(total_rank='不及格',1,0)) bujige
 from test_score
-WHERE date = '2017-03-02'
+WHERE date = #{recentDate}
 GROUP BY grade
 </select>
 <select id="getHegeByBMI" resultType="double">

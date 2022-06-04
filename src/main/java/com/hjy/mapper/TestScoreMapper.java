@@ -48,13 +48,13 @@ public interface TestScoreMapper extends BaseMapper<TestScore> {
 
     List<String> getAllDate();
 
-    List<Double> getHegeByVC();
+    List<Double> getHegeByVC(@Param("sex") Integer sex);
 
-    List<Double> getHegeBy50m();
+    List<Double> getHegeBy50m(@Param("sex") Integer sex);
 
-    List<Double> getHegeBylj();
+    List<Double> getHegeBylj(@Param("sex") Integer sex);
 
-    List<Double> getHegeBysar();
+    List<Double> getHegeBysar(@Param("sex") Integer sex);
 
     List<Double> gethegeBy800m();
 
@@ -64,7 +64,7 @@ public interface TestScoreMapper extends BaseMapper<TestScore> {
 
     List<Double> gethegeByPullUp();
 
-    List<scoreByGrade> getScoreByGrade();
+    List<scoreByGrade> getScoreByGrade(@Param("recentDate") LocalDate recentDate);
 
     double getHegeByBMI(@Param("recentDate") LocalDate recentDate);
 

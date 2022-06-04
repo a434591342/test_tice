@@ -21,5 +21,12 @@
       select *
         from notice order by notice_date DESC
 </select>
+<update id="updateNotice">
+    update notice set notice_name=#{notice.noticeName},notice_date = #{notice.noticeDate},notice_content=#{notice.noticeContent}
+    where  notice_id = #{notice.noticeId}
+</update>
+<insert id="addNotice">
+    insert into notice values(null,#{notice.noticeName},#{notice.noticeDate},#{notice.noticeContent})
+</insert>
 
 </mapper>

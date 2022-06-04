@@ -852,6 +852,9 @@ ul.page_list  {
 	margin-bottom: 20px;
 	margin-left: 10px;
 	border: 1px solid #edededed;
+
+	display: flex;
+	justify-content: center;
 }
 
 .price .category:after {
@@ -931,7 +934,7 @@ ul.page_list  {
 	right: 0;
 }
 .price .category ul {
-	width: 1400px;
+	width: 1000px;  // 4 items
 }
 .price .category ul li {
 	display: flex;

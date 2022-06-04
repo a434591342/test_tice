@@ -1,15 +1,14 @@
 package com.hjy.controller;
 
 
+import com.hjy.pojo.Notice;
 import com.hjy.pojo.RespBean;
 import com.hjy.service.INoticeService;
-import com.sun.xml.internal.bind.v2.TODO;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -41,5 +40,31 @@ public class NoticeController {
     @GetMapping("/getAllNotice")
     public RespBean getAllNotice(){
         return noticeService.getAllNotice();
+    }
+
+    @ApiOperation(value = "删除notice")
+    @DeleteMapping ("/deleteNotice")
+    public RespBean deleteNotice(@RequestBody Integer noticeId){
+        System.out.println(noticeId);
+        if (noticeService.removeById(noticeId)){
+            return RespBean.success("删除成功！");
+        }else return RespBean.error("删除失败！");
+    }
+
+    @ApiOperation(value = "修改notice")
+    @PutMapping("/changeNotice")
+    public RespBean changeNotice(@RequestBody Notice notice){
+        if (noticeService.updateNotice(notice)){
+            return RespBean.success("更新成功！");
+        }else return RespBean.error("更新失败！");
+    }
+    @ApiOperation(value ="添加notice")
+    @PostMapping("/addNotice")
+    public RespBean addNotice(@RequestBody Notice notice){
+        LocalDateTime now = LocalDateTime.now();
+        notice.setNoticeDate(now);
+        if (noticeService.addNotice(notice)){
+            return RespBean.success("添加成功！");
+        }else return RespBean.error("添加失败！");
     }
 }

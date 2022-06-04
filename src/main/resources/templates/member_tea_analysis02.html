@@ -28,698 +28,738 @@
 	</head>
 
 	<body>
-		<!--页面top-->
-		<div class="top">
-			<div class="top_nav">
-				<ul>
-					<li><a href="#">设为首页</a></li>
-					<li><a href="#">加入收藏</a></li>
-					<li><a href="#">西邮主站</a></li>
-				</ul>
-			</div>
+<div id="app">
+	<!--页面top-->
+	<div class="top">
+		<div class="top_nav">
+			<ul>
+				<li><a href="#">设为首页</a></li>
+				<li><a href="#">加入收藏</a></li>
+				<li><a href="#">西邮主站</a></li>
+			</ul>
 		</div>
-		<!--导航-->
-		<div class="header flex">
-			<div class="logo"> <img src="images/logo.png" alt="西安邮电大学" /></div>
-			<div class="menu">
-				<ul>
-					<li>
-						<h3><span>信息&下载</span></h3>
-						<ul>
-							<li><a href="">通知公告</a></li>
-							<li><a href="">相关下载</a></li>
-						</ul>
-					</li>
-					<li>
-						<h3><a href=""><span>健康知识</span></a></h3>
-					</li>
-					<li>
-						<h3><a href=""><span>项目&目标</span></a></h3>
-						<ul>
-							<li><a href="">项目介绍</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-			<div class="top_member">
-				<ul>
-					<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
-					<li> <a href="">常见问题</a></li>
-					<li> <a href="member_tea.html" class="btn_exit">LogOut</a></li>
-				</ul>
-			</div>
+	</div>
+	<!--导航-->
+	<div class="header flex">
+		<div class="logo"> <img src="images/logo.png" alt="西安邮电大学" /></div>
+		<div class="menu">
+			<ul>
+				<li>
+					<h3><span>信息&下载</span></h3>
+					<ul>
+						<li><a href="">通知公告</a></li>
+						<li><a href="">相关下载</a></li>
+					</ul>
+				</li>
+				<li>
+					<h3><a href=""><span>健康知识</span></a></h3>
+				</li>
+				<li>
+					<h3><a href=""><span>项目&目标</span></a></h3>
+					<ul>
+						<li><a href="">项目介绍</a></li>
+					</ul>
+				</li>
+			</ul>
 		</div>
-		<!--页面位置导航-->
-		<div class="page_title flex">
-			<div class="navigation">
-				<a href="">首页</a><em>/</em>
-				<a href="member_tea_analysis01.html">全校综合情况</a><em>/</em>
-				<span>单项成绩分布情况</span>
-			</div>
-			<div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
+		<div class="top_member">
+			<ul>
+				<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
+				<li> <a href="">常见问题</a></li>
+				<li> <a href="member_tea.html" class="btn_exit">LogOut</a></li>
+			</ul>
 		</div>
+	</div>
+	<!--页面位置导航-->
+	<div class="page_title flex">
+		<div class="navigation">
+			<a href="">首页</a><em>/</em>
+			<a href="member_tea_analysis01.html">全校综合情况</a><em>/</em>
+			<span>单项成绩分布情况</span>
+		</div>
+		<div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
+	</div>
 
-		<!--页面内容部分-->
-		<div class="page flex">
-			<div class="page_nav">
-				<h3>功能菜单</h3>
-				<dl>
-					<dd><a href="member_tea.html"><span class="iconfont icon-fabuxuqiu"></span>学生数据</a></dd>
-					<dd>
-						<h4 class="this"><span class="iconfont icon-fabuxuqiu"></span>统计分析</h4>
-						<dl>
-							<dd><a href="member_tea_analysis01.html"> 全校综合情况</a></dd>
-							<dd><a href="member_tea_analysis02.html" class="hover"> 单项目情况</a></dd>
-							<dd><a href="member_tea_analysis03.html"> 指标情况</a></dd>
-						</dl>
-					</dd>
-					<dd>
-						<h4><span class="iconfont icon-fabuxuqiu"></span>网站信息维护</h4>
-						<dl>
-							<dd><a href="editor_list.html"> 通知公告</a></dd>
-							<dd><a href="editor_list.html"> 相关下载</a></dd>
-							<dd><a href="editor_list.html"> 工作动态</a></dd>
-							<dd><a href="editor_list.html"> 常见问题</a></dd>
-							<dd><a href="editor_list.html"> 健康知识</a></dd>
-						</dl>
-					</dd>
-					<dd>
-						<h4><span class="iconfont icon-fabuxuqiu"></span>健康指导维护</h4>
-						<dl>
-							<dd><a href="editor_editor.html"> 健康意见编辑</a></dd>
-						</dl>
-					</dd>
-				</dl>
-			</div>
-			<div class="page_right">
-				<div class="analysis_top ">
-					<h3>单项成绩分析</h3>
-					<div class="date_screening">
-						<form>
-							<div class="row">
-								<div class="col-sm-4 ">
-									<a href="">全站群</a>
-								</div>
-								<div class="col-sm-2">
-									<h4>期间数据：</h4>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker"
-									 data-target="#datetimepicker5" />
-								</div>
-								<div class="col-sm-3">
-									<input type="text" class="form-control datetimepicker-input" id="datetimepicker6" data-toggle="datetimepicker"
-									 data-target="#datetimepicker6" />
-								</div>
-								<script type="text/javascript">
-									// $(function() {
-									// 	$('#datetimepicker5').datetimepicker();
-									// 	$('#datetimepicker6').datetimepicker();
-									// });
-								</script>
+	<!--页面内容部分-->
+	<div class="page flex">
+		<div class="page_nav">
+			<h3>功能菜单</h3>
+			<dl>
+				<dd><a href="member_tea.html"><span class="iconfont icon-fabuxuqiu"></span>学生数据</a></dd>
+				<dd>
+					<h4 class="this"><span class="iconfont icon-fabuxuqiu"></span>统计分析</h4>
+					<dl>
+						<dd><a href="member_tea_analysis01.html"> 全校综合情况</a></dd>
+						<dd><a href="member_tea_analysis02.html" class="hover"> 单项目情况</a></dd>
+						<dd><a href="member_tea_analysis03.html"> 指标情况</a></dd>
+					</dl>
+				</dd>
+				<dd>
+					<h4><span class="iconfont icon-fabuxuqiu"></span>网站信息维护</h4>
+					<dl>
+						<dd><a href="editor_list.html"> 通知公告</a></dd>
+						<dd><a href="editor_list.html"> 相关下载</a></dd>
+					</dl>
+				</dd>
+				<dd>
+					<h4><span class="iconfont icon-fabuxuqiu"></span>健康指导维护</h4>
+					<dl>
+						<dd><a href="editor_editor.html"> 健康意见编辑</a></dd>
+					</dl>
+				</dd>
+			</dl>
+		</div>
+		<div class="page_right">
+			<div class="analysis_top ">
+				<h3>单项成绩分析</h3>
+				<div class="date_screening">
+					<form>
+						<div class="row">
+							<div class="col-sm-4 ">
+								<a href="">全站群</a>
 							</div>
-						</form>
-					</div>
-				</div>
-				<div class="data_nav">
-					<form>
-						<select class="form-select">
-							<option>50米跑</option>
-							<option>1000米跑</option>
-							<option>跳高</option>
-							<option>立定跳远</option>
-						</select>
-					</form>
-					<form>
-						<div class="btn-group btn-group-sm">
-							<button type="button" class="btn btn-blue">全部</button>
-							<button type="button" class="btn">男</button>
-							<button type="button" class="btn">女</button>
-						</div>
-						<div class="btn-group btn-group-sm">
-							<button type="button" class="btn btn-blue">全部</button>
-							<button type="button" class="btn">大一</button>
-							<button type="button" class="btn">大二</button>
-							<button type="button" class="btn">大三</button>
-							<button type="button" class="btn">大四</button>
+							<div class="col-sm-2">
+								<h4>期间数据：</h4>
+							</div>
+							<div class="col-sm-3">
+								<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker"
+									   data-target="#datetimepicker5" />
+							</div>
+							<div class="col-sm-3">
+								<input type="text" class="form-control datetimepicker-input" id="datetimepicker6" data-toggle="datetimepicker"
+									   data-target="#datetimepicker6" />
+							</div>
+							<script type="text/javascript">
+								// $(function() {
+								// 	$('#datetimepicker5').datetimepicker();
+								// 	$('#datetimepicker6').datetimepicker();
+								// });
+							</script>
 						</div>
 					</form>
 				</div>
-				<div class="results_box flex">
-					<div class="data_box left">
-						<h3>基本情况</h3>
-						<div class="data_list">
-							<ul class="flex">
-								<li>
-									<div class="pass_text">
-										<span>合格率</span><b>82%</b>
-									</div>
-								</li>
-								<li>
-									<div class="pass_text">
-										<span>优秀人数</span><b>124323</b>
-									</div>
-								</li>
-								<li>
-									<div class="pass_text">
-										<span>不合格人数</span><b>82</b>
-									</div>
-								</li>
-								<li>
-									<div class="pass_text">
-										<span>单项成绩top</span><b>1分43秒</b>
-									</div>
-								</li>
-							</ul>
-						</div>		
-						<div id="bingtu" style="width: 600px;height: 400px" class="data_eachert">
-<!--							<img src="images/u3400.png" />-->
-						</div>
+			</div>
+			<div class="data_nav">
+				<form>
+					<select class="form-select" @click="onclickOfItem()" id="item">
+						<option>bmi</option>
+						<option>肺活量</option>
+						<option>50米</option>
+						<option>跳远</option>
+						<option>坐位体前屈</option>
+						<option>800米</option>
+						<option>1000米</option>
+						<option>仰卧起坐</option>
+						<option>引体向上</option>
+					</select>
+				</form>
+				<form>
+					<div class="btn-group btn-group-sm">
+						<button type="button" class="btn btn-blue">全部</button>
+						<button type="button" class="btn">男</button>
+						<button type="button" class="btn">女</button>
 					</div>
-					<div class="data_box right">
-						<h3>各专业情况</h3>
-						<div class="data_eachert">
-							<img src="images/u3405.png" style="width: 300px" />
-						</div>
+					<div class="btn-group btn-group-sm">
+						<button type="button" class="btn btn-blue">全部</button>
+						<button type="button" class="btn">大一</button>
+						<button type="button" class="btn">大二</button>
+						<button type="button" class="btn">大三</button>
+						<button type="button" class="btn">大四</button>
 					</div>
-					
+				</form>
+			</div>
+			<div class="results_box flex">
+				<div class="data_box left">
+					<h3>基本情况</h3>
+					<div class="data_list">
+						<ul class="flex">
+							<li>
+								<div class="pass_text">
+									<span>合格率</span><b>{{DataOfItem.passRate*100}}</b>
+								</div>
+							</li>
+							<li>
+								<div class="pass_text">
+									<span>优秀人数</span><b>{{DataOfItem.youxiuNum}}</b>
+								</div>
+							</li>
+							<li>
+								<div class="pass_text">
+									<span>不合格人数</span><b>{{DataOfItem.bujigeNum}}</b>
+								</div>
+							</li>
+							<li>
+								<div class="pass_text">
+									<span>单项成绩top</span><b>{{DataOfItem.best}}</b>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div id="bingtu" style="width: 600px;height: 400px" class="data_eachert">
+						<!--							<img src="images/u3400.png" />-->
+					</div>
 				</div>
-				
-				<div class="results_box flex">
-					<div class="data_box left">
-						<h3>按年级合格率</h3>
-						<div class="data_list">
-							<ul class="flex">
-								<li>
-									<div id="one_grade" style="height:150px;width: 150px;"></div>
-<!--									<img src="images/pic2.png" style="width: 160px" />-->
-								</li>
-								<li>
-									<div id="two_grade" style="height:150px;width: 150px;"></div>
-								</li>
-								<li>
-									<div id="three_grade" style="height:150px;width: 150px;"></div>
-								</li>
-								<li>
-									<div id="four_grade" style="height:150px;width: 150px;"></div>
-								</li>
-							</ul>
-						</div>		
+
+			</div>
+
+			<div class="results_box flex">
+				<div class="data_box left">
+					<h3>按年级合格率</h3>
+					<div class="data_list">
+						<ul class="flex">
+							<li>
+								<div id="one_grade" style="height:150px;width: 150px;"></div>
+								<!--									<img src="images/pic2.png" style="width: 160px" />-->
+							</li>
+							<li>
+								<div id="two_grade" style="height:150px;width: 150px;"></div>
+							</li>
+							<li>
+								<div id="three_grade" style="height:150px;width: 150px;"></div>
+							</li>
+							<li>
+								<div id="four_grade" style="height:150px;width: 150px;"></div>
+							</li>
+						</ul>
 					</div>
-					<div class="data_box right">
-						<h3>不合格人数</h3>
-						<div id="tongji" style="width: 400px;height: 250px;" class="data_eachert">
-<!--							<img src="images/u3398.png" style="width: 200px" />-->
-						</div>
-					</div>
-					
 				</div>
-				
-				
+				<div class="data_box right">
+					<h3>不合格人数</h3>
+					<div id="tongji" style="width: 400px;height: 250px;" class="data_eachert">
+						<!--							<img src="images/u3398.png" style="width: 200px" />-->
+					</div>
+				</div>
+
 			</div>
 
 
 		</div>
 
-		</div>
+
+	</div>
+
+</div>
 
 
-		<!--底部代码-->
-		<div class="bottom w_long">
-			<div class="bottom_copy">
-				<p>
-					Copyright @ 2019-2022 西安邮电大学维护</br>
-					网站备案号：陕IPC243434****-01
-				</p>
-			</div>
-		</div>
+<!--底部代码-->
+<div class="bottom w_long">
+	<div class="bottom_copy">
+		<p>
+			Copyright @ 2019-2022 西安邮电大学维护</br>
+			网站备案号：陕IPC243434****-01
+		</p>
+	</div>
+</div>
+
+</div>
 	</body>
 <script>
-	//基本情况饼状图
-	var chartDom = document.getElementById('bingtu');
-	var myChart = echarts.init(chartDom);
-	var option;
 
-	option = {
-		grid:{
-			left:'0%',
-			top:'0%',
-			bottom:'0%'
+</script>
+<script>
+	// init vue instance
+	let vm = new Vue({
+		el:'#app',
+		data:()=>{
+			return {
+				DataOfItem:{}
+			}
 		},
-		tooltip: {
-			trigger: 'item'
+		mounted(){
+			this.onclickOfItem()
 		},
-		legend: {
-			orient: 'vertical',
-			left: 'left'
-		},
-		series: [
-			{
-				name: '学生成绩',
-				type: 'pie',
-				radius: '70%',
-				data: [
-					{ value: 1048, name: '不合格',
-						itemStyle: {
-							normal: {
-								// 随机显示
-								//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
-
-								// 定制显示（按顺序）
-								color:"#FFA500",
-							},
-						},
+		methods:{
+			onclickOfItem(){
+				var item = $("#item")[0].value;
+				var self = this;
+				dataJson = {"item":item}
+				$.ajax({
+					url:"/test-score/getAnalyzeByItem",
+					method: "post",
+					data:dataJson,
+					success: function (result) {
+						console.log(result)
+						self.DataOfItem= result.obj;
+						self.DataOfItem.passRate = self.DataOfItem.passRate.toFixed(4);
+						self.showEchartsOfItem();
 					},
-					{ value: 735, name: '合格' ,
-						itemStyle: {
-							normal: {
-								color:"#32CD32",
-							},
-						},
-					},
-					{ value: 580, name: '良好',
-						itemStyle: {
-							normal: {
-								// 随机显示
-								//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
-
-								// 定制显示（按顺序）
-								color:"#FF6347",
-							},
-						},
-					},
-					{ value: 484, name: '优秀',
-						itemStyle: {
-							normal: {
-								// 随机显示
-								//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
-
-								// 定制显示（按顺序）
-								color:"#1E90FF",
-							},
-						},
+					error: function () {
+						alert("请求服务器失败!");
 					}
-				],
-				emphasis: {
-					itemStyle: {
-						shadowBlur: 10,
-						shadowOffsetX: 0,
-						shadowColor: 'rgba(0, 0, 0, 0.5)'
+				})
+			},
+			showEchartsOfItem(){
+				// console.log(this.DataOfItem)
+				//基本情况饼状图
+				var chartDom = document.getElementById('bingtu');
+				var myChart = echarts.init(chartDom);
+				var option;
+
+
+				option = {
+					grid:{
+						left:'0%',
+						top:'0%',
+						bottom:'0%'
+					},
+					tooltip: {
+						trigger: 'item'
+					},
+					legend: {
+						orient: 'vertical',
+						left: 'left'
+					},
+					series: [
+						{
+							name: '学生成绩',
+							type: 'pie',
+							radius: '70%',
+							data: [
+								{ value: this.DataOfItem.scoreList[0], name: '优秀',
+									itemStyle: {
+										normal: {
+											// 随机显示
+											//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+
+											// 定制显示（按顺序）
+											color:"#FFA500",
+										},
+									},
+								},
+								{ value:this.DataOfItem.scoreList[1], name: '良好' ,
+									itemStyle: {
+										normal: {
+											color:"#32CD32",
+										},
+									},
+								},
+								{ value:this.DataOfItem.scoreList[2], name: '及格',
+									itemStyle: {
+										normal: {
+											// 随机显示
+											//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+
+											// 定制显示（按顺序）
+											color:"#FF6347",
+										},
+									},
+								},
+								{ value: this.DataOfItem.scoreList[3], name: '不及格',
+									itemStyle: {
+										normal: {
+											// 随机显示
+											//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+
+											// 定制显示（按顺序）
+											color:"#1E90FF",
+										},
+									},
+								}
+							],
+							emphasis: {
+								itemStyle: {
+									shadowBlur: 10,
+									shadowOffsetX: 0,
+									shadowColor: 'rgba(0, 0, 0, 0.5)'
+								}
+							}
+						}
+					]
+				};
+				option && myChart.setOption(option);
+				//    大一情况
+				var e=this.DataOfItem.passRateByGrade[0].toFixed(4)*100;
+				var Chart4 = echarts.init(document.getElementById('one_grade'));
+				var option = {
+					title:{
+						show:true,
+						text:'一年级'+"\n"+e+'%',
+						x:'center',
+						y:'center',
+						textStyle: {
+							fontSize: '15',
+							color:'blue',
+							fontWeight: 'normal'
+						}
+					},
+					tooltip: {
+						trigger: 'item',
+						formatter: "{d}%",
+						show:false
+					},
+					legend: {
+						orient: 'vertical',
+						x: 'left',
+						show:false
+					},
+					series:
+							{
+								name:'',
+								type:'pie',
+								radius: ['65%', '85%'],
+								avoidLabelOverlap: true,
+								hoverAnimation:false,
+								label: {
+									normal: {
+										show: false,
+										position: 'center'
+									},
+									emphasis: {
+										show: false
+									}
+								},
+								labelLine: {
+									normal: {
+										show: true,
+									}
+								},
+								data:[
+									{value:e, name:'',
+										itemStyle: {
+											normal: {
+												color:"#0000FF",
+											},
+										},
+									},
+									{value:100-e, name:'',
+										itemStyle: {
+											normal: {
+												color:"#E6E6FA",
+											},
+										},
+									}
+								]
+							}
+
+				};
+				Chart4.setOption(option);
+				//    大二情况
+				var e=this.DataOfItem.passRateByGrade[1].toFixed(4)*100;
+				var Chart4 = echarts.init(document.getElementById('two_grade'));
+				var option = {
+					title:{
+						show:true,
+						text:'二年级'+"\n"+e+'%',
+						x:'center',
+						y:'center',
+						textStyle: {
+							fontSize: '15',
+							color:'blue',
+							fontWeight: 'normal'
+						}
+					},
+					tooltip: {
+						trigger: 'item',
+						formatter: "{d}%",
+						show:false
+					},
+					legend: {
+						orient: 'vertical',
+						x: 'left',
+						show:false
+					},
+					series:
+							{
+								name:'',
+								type:'pie',
+								radius: ['65%', '85%'],
+								avoidLabelOverlap: true,
+								hoverAnimation:false,
+								label: {
+									normal: {
+										show: false,
+										position: 'center'
+									},
+									emphasis: {
+										show: false
+									}
+								},
+								labelLine: {
+									normal: {
+										show: true,
+									}
+								},
+								data:[
+									{value:e, name:'',
+										itemStyle: {
+											normal: {
+												color:"#0000FF",
+											},
+										},
+									},
+									{value:100-e, name:'',
+										itemStyle: {
+											normal: {
+												color:"#E6E6FA",
+											},
+										},
+									}
+								]
+							}
+
+				};
+				Chart4.setOption(option);
+				//    大三情况
+				var e=this.DataOfItem.passRateByGrade[2].toFixed(4)*100;
+				var Chart4 = echarts.init(document.getElementById('three_grade'));
+				var option = {
+					title:{
+						show:true,
+						text:'三年级'+"\n"+e+'%',
+						x:'center',
+						y:'center',
+						textStyle: {
+							fontSize: '15',
+							color:'blue',
+							fontWeight: 'normal'
+						}
+					},
+					tooltip: {
+						trigger: 'item',
+						formatter: "{d}%",
+						show:false
+					},
+					legend: {
+						orient: 'vertical',
+						x: 'left',
+						show:false
+					},
+					series:
+							{
+								name:'',
+								type:'pie',
+								radius: ['65%', '85%'],
+								avoidLabelOverlap: true,
+								hoverAnimation:false,
+								label: {
+									normal: {
+										show: false,
+										position: 'center'
+									},
+									emphasis: {
+										show: false
+									}
+								},
+								labelLine: {
+									normal: {
+										show: true,
+									}
+								},
+								data:[
+									{value:e, name:'',
+										itemStyle: {
+											normal: {
+												color:"#0000FF",
+											},
+										},
+									},
+									{value:100-e, name:'',
+										itemStyle: {
+											normal: {
+												color:"#E6E6FA",
+											},
+										},
+									}
+								]
+							}
+
+				};
+				Chart4.setOption(option);
+				//    大四情况
+				var e=this.DataOfItem.passRateByGrade[3].toFixed(4)*100;
+				var Chart4 = echarts.init(document.getElementById('four_grade'));
+				var option = {
+					title:{
+						show:true,
+						text:'四年级'+"\n"+e+'%',
+						x:'center',
+						y:'center',
+						textStyle: {
+							fontSize: '15',
+							color:'blue',
+							fontWeight: 'normal'
+						}
+					},
+					tooltip: {
+						trigger: 'item',
+						formatter: "{d}%",
+						show:false
+					},
+					legend: {
+						orient: 'vertical',
+						x: 'left',
+						show:false
+					},
+					series:
+							{
+								name:'',
+								type:'pie',
+								radius: ['65%', '85%'],
+								avoidLabelOverlap: true,
+								hoverAnimation:false,
+								label: {
+									normal: {
+										show: false,
+										position: 'center'
+									},
+									emphasis: {
+										show: false
+									}
+								},
+								labelLine: {
+									normal: {
+										show: true,
+									}
+								},
+								data:[
+									{value:e, name:'',
+										itemStyle: {
+											normal: {
+												color:"#0000FF",
+											},
+										},
+									},
+									{value:100-e, name:'',
+										itemStyle: {
+											normal: {
+												color:"#E6E6FA",
+											},
+										},
+									}
+								]
+							}
+
+				};
+				Chart4.setOption(option);
+				//统计不合格人数
+				var Chart4 = echarts.init(document.getElementById('tongji'));
+				var tempPass = this.DataOfItem.passRate;
+				var num=100-tempPass*100;
+				var num_person=this.DataOfItem.bujigeNum;
+				var placeHolderStyle = {
+					normal: {
+						label: {
+							show: false
+						},
+						labelLine: {
+							show: false
+						},
+						color: "rgba(0,0,0,0)",
+						borderWidth: 0
+					},
+					emphasis: {
+						color: "rgba(0,0,0,0)",
+						borderWidth: 0
 					}
-				}
-			}
-		]
-	};
-	option && myChart.setOption(option);
-	//    大一情况
-	var e=80;
-	var Chart4 = echarts.init(document.getElementById('one_grade'));
-	var option = {
-		title:{
-			show:true,
-			text:'一年级'+"\n"+e+'%',
-			x:'center',
-			y:'center',
-			textStyle: {
-				fontSize: '15',
-				color:'blue',
-				fontWeight: 'normal'
-			}
-		},
-		tooltip: {
-			trigger: 'item',
-			formatter: "{d}%",
-			show:false
-		},
-		legend: {
-			orient: 'vertical',
-			x: 'left',
-			show:false
-		},
-		series:
-				{
-					name:'',
-					type:'pie',
-					radius: ['65%', '85%'],
-					avoidLabelOverlap: true,
-					hoverAnimation:false,
-					label: {
-						normal: {
-							show: false,
-							position: 'center'
-						},
-						emphasis: {
-							show: false
-						}
-					},
-					labelLine: {
-						normal: {
-							show: true,
-						}
-					},
-					data:[
-						{value:e, name:'',
-							itemStyle: {
-								normal: {
-									color:"#0000FF",
-								},
-							},
-						},
-						{value:100-e, name:'',
-							itemStyle: {
-								normal: {
-									color:"#E6E6FA",
-								},
-							},
-						}
-					]
-				}
+				};
 
-	};
-	Chart4.setOption(option);
-	//    大二情况
-	var e=40;
-	var Chart4 = echarts.init(document.getElementById('two_grade'));
-	var option = {
-		title:{
-			show:true,
-			text:'二年级'+"\n"+e+'%',
-			x:'center',
-			y:'center',
-			textStyle: {
-				fontSize: '15',
-				color:'blue',
-				fontWeight: 'normal'
-			}
-		},
-		tooltip: {
-			trigger: 'item',
-			formatter: "{d}%",
-			show:false
-		},
-		legend: {
-			orient: 'vertical',
-			x: 'left',
-			show:false
-		},
-		series:
-				{
-					name:'',
-					type:'pie',
-					radius: ['65%', '85%'],
-					avoidLabelOverlap: true,
-					hoverAnimation:false,
-					label: {
-						normal: {
-							show: false,
-							position: 'center'
-						},
-						emphasis: {
-							show: false
-						}
-					},
-					labelLine: {
-						normal: {
-							show: true,
-						}
-					},
-					data:[
-						{value:e, name:'',
-							itemStyle: {
-								normal: {
-									color:"#0000FF",
-								},
-							},
-						},
-						{value:100-e, name:'',
-							itemStyle: {
-								normal: {
-									color:"#E6E6FA",
-								},
-							},
-						}
-					]
-				}
 
-	};
-	Chart4.setOption(option);
-	//    大三情况
-	var e=70;
-	var Chart4 = echarts.init(document.getElementById('three_grade'));
-	var option = {
-		title:{
-			show:true,
-			text:'三年级'+"\n"+e+'%',
-			x:'center',
-			y:'center',
-			textStyle: {
-				fontSize: '15',
-				color:'blue',
-				fontWeight: 'normal'
-			}
-		},
-		tooltip: {
-			trigger: 'item',
-			formatter: "{d}%",
-			show:false
-		},
-		legend: {
-			orient: 'vertical',
-			x: 'left',
-			show:false
-		},
-		series:
-				{
-					name:'',
-					type:'pie',
-					radius: ['65%', '85%'],
-					avoidLabelOverlap: true,
-					hoverAnimation:false,
-					label: {
-						normal: {
-							show: false,
-							position: 'center'
-						},
-						emphasis: {
-							show: false
+				var dataStyle = {
+					normal: {
+						formatter: '{c}%',
+						position: 'center',
+						top:'40%',
+						left:'20%',
+						show: true,
+						textStyle: {
+							fontSize: '30',
+							fontWeight: 'normal',
+							color: '#34374E'
 						}
-					},
-					labelLine: {
-						normal: {
-							show: true,
-						}
-					},
-					data:[
-						{value:e, name:'',
-							itemStyle: {
-								normal: {
-									color:"#0000FF",
-								},
-							},
-						},
-						{value:100-e, name:'',
-							itemStyle: {
-								normal: {
-									color:"#E6E6FA",
-								},
-							},
-						}
-					]
-				}
+					}
+				};
 
-	};
-	Chart4.setOption(option);
-	//    大四情况
-	var e=50;
-	var Chart4 = echarts.init(document.getElementById('four_grade'));
-	var option = {
-		title:{
-			show:true,
-			text:'四年级'+"\n"+e+'%',
-			x:'center',
-			y:'center',
-			textStyle: {
-				fontSize: '15',
-				color:'blue',
-				fontWeight: 'normal'
-			}
-		},
-		tooltip: {
-			trigger: 'item',
-			formatter: "{d}%",
-			show:false
-		},
-		legend: {
-			orient: 'vertical',
-			x: 'left',
-			show:false
-		},
-		series:
-				{
-					name:'',
-					type:'pie',
-					radius: ['65%', '85%'],
-					avoidLabelOverlap: true,
-					hoverAnimation:false,
-					label: {
-						normal: {
-							show: false,
-							position: 'center'
-						},
-						emphasis: {
-							show: false
-						}
-					},
-					labelLine: {
-						normal: {
-							show: true,
-						}
-					},
-					data:[
-						{value:e, name:'',
-							itemStyle: {
-								normal: {
-									color:"#0000FF",
-								},
-							},
-						},
-						{value:100-e, name:'',
-							itemStyle: {
-								normal: {
-									color:"#E6E6FA",
-								},
-							},
-						}
-					]
-				}
 
-	};
-	Chart4.setOption(option);
-	//统计不合格人数
-	var Chart4 = echarts.init(document.getElementById('tongji'));
-	var num=((1496/3000)*100).toFixed(2);
-	var num_person=1496;
-	var placeHolderStyle = {
-		normal: {
-			label: {
-				show: false
-			},
-			labelLine: {
-				show: false
-			},
-			color: "rgba(0,0,0,0)",
-			borderWidth: 0
-		},
-		emphasis: {
-			color: "rgba(0,0,0,0)",
-			borderWidth: 0
+				option = {
+					backgroundColor: '#fff',
+					title: [{
+						text: '不合格人数'+num_person,
+						left: '29.8%',
+						top: '52%',
+						textAlign: 'center',
+						textStyle: {
+							fontWeight: 'normal',
+							fontSize: '16',
+							color: '#0000FF',
+							textAlign: 'center',
+						},
+					}],
+
+					//第一个图表
+					series: [{
+						type: 'pie',
+						hoverAnimation: false, //鼠标经过的特效
+						radius: ['70%', '75%'],
+						center: ['30%', '50%'],
+						startAngle: 180,
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						label: {
+							normal: {
+
+								position: 'center'
+							}
+						},
+						data: [{
+							value: 100,
+							itemStyle: {
+								normal: {
+									color: '#E1E8EE'
+								}
+							},
+						}, {
+							value: 100,
+							itemStyle: placeHolderStyle,
+						},
+
+						]
+					},
+						//上层环形配置
+						{
+							type: 'pie',
+							hoverAnimation: false, //鼠标经过的特效
+							radius: ['70%', '75%'],
+							center: ['30%', '50%'],
+							startAngle: 180,
+							labelLine: {
+								normal: {
+									show: false
+								}
+							},
+							label: {
+								normal: {
+
+									position: 'center'
+								}
+							},
+							data: [{
+								value: num,
+								itemStyle: {
+									normal: {
+										color: '#0000FF'
+									}
+								},
+								label: dataStyle,
+							}, {
+								value: (100 - num),
+								itemStyle: placeHolderStyle,
+							},
+								{
+									value: 100,
+									itemStyle: placeHolderStyle,
+								},
+							]
+						},
+
+					]
+				};
+
+				option && Chart4.setOption(option);
+			}
 		}
-	};
-
-
-	var dataStyle = {
-		normal: {
-			formatter: '{c}%',
-			position: 'center',
-			top:'40%',
-			left:'20%',
-			show: true,
-			textStyle: {
-				fontSize: '30',
-				fontWeight: 'normal',
-				color: '#34374E'
-			}
-		}
-	};
-
-
-	option = {
-		backgroundColor: '#fff',
-		title: [{
-			text: '不合格人数'+num_person,
-			left: '29.8%',
-			top: '52%',
-			textAlign: 'center',
-			textStyle: {
-				fontWeight: 'normal',
-				fontSize: '16',
-				color: '#0000FF',
-				textAlign: 'center',
-			},
-		}],
-
-		//第一个图表
-		series: [{
-			type: 'pie',
-			hoverAnimation: false, //鼠标经过的特效
-			radius: ['70%', '75%'],
-			center: ['30%', '50%'],
-			startAngle: 180,
-			labelLine: {
-				normal: {
-					show: false
-				}
-			},
-			label: {
-				normal: {
-
-					position: 'center'
-				}
-			},
-			data: [{
-				value: 100,
-				itemStyle: {
-					normal: {
-						color: '#E1E8EE'
-					}
-				},
-			}, {
-				value: 100,
-				itemStyle: placeHolderStyle,
-			},
-
-			]
-		},
-			//上层环形配置
-			{
-				type: 'pie',
-				hoverAnimation: false, //鼠标经过的特效
-				radius: ['70%', '75%'],
-				center: ['30%', '50%'],
-				startAngle: 180,
-				labelLine: {
-					normal: {
-						show: false
-					}
-				},
-				label: {
-					normal: {
-
-						position: 'center'
-					}
-				},
-				data: [{
-					value: num,
-					itemStyle: {
-						normal: {
-							color: '#0000FF'
-						}
-					},
-					label: dataStyle,
-				}, {
-					value: (100 - num),
-					itemStyle: placeHolderStyle,
-				},
-					{
-						value: 100,
-						itemStyle: placeHolderStyle,
-					},
-				]
-			},
-
-		]
-	};
-
-	option && Chart4.setOption(option);
+	})
 </script>
 </html>

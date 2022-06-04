@@ -46,4 +46,14 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
             return RespBean.success("查询成功！",list);
         }else return RespBean.error("没有最近公告");
     }
+
+    @Override
+    public boolean updateNotice(Notice notice) {
+        return noticeMapper.updateNotice(notice);
+    }
+
+    @Override
+    public boolean addNotice(Notice notice) {
+        return noticeMapper.addNotice(notice);
+    }
 }

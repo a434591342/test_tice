@@ -28,311 +28,399 @@
 	</head>
 
 	<body>
-		<!--页面top-->
-		<div class="top">
-			<div class="top_nav">
-				<ul>
-					<li><a href="#">设为首页</a></li>
-					<li><a href="#">加入收藏</a></li>
-					<li><a href="#">西邮主站</a></li>
-				</ul>
+		<div id="app">
+			<!--页面top-->
+			<div class="top">
+				<div class="top_nav">
+					<ul>
+						<li><a href="#">设为首页</a></li>
+						<li><a href="#">加入收藏</a></li>
+						<li><a href="#">西邮主站</a></li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<!--导航-->
-		<div class="header flex">
-			<div class="logo"> <img src="images/logo.png" alt="西安邮电大学" /></div>
-			<div class="menu">
-				<ul>
-					<li>
-						<h3><span>信息&下载</span></h3>
-						<ul>
-							<li><a href="">通知公告</a></li>
-							<li><a href="">相关下载</a></li>
-						</ul>
-					</li>
-					<li>
-						<h3><a href=""><span>健康知识</span></a></h3>
-					</li>
-					<li>
-						<h3><a href=""><span>项目&目标</span></a></h3>
-						<ul>
-							<li><a href="">项目介绍</a></li>
-						</ul>
-					</li>
-				</ul>
+			<!--导航-->
+			<div class="header flex">
+				<div class="logo"> <img src="images/logo.png" alt="西安邮电大学" /></div>
+				<div class="menu">
+					<ul>
+						<li>
+							<h3><span>信息&下载</span></h3>
+							<ul>
+								<li><a href="">通知公告</a></li>
+								<li><a href="">相关下载</a></li>
+							</ul>
+						</li>
+						<li>
+							<h3><a href=""><span>健康知识</span></a></h3>
+						</li>
+						<li>
+							<h3><a href=""><span>项目&目标</span></a></h3>
+							<ul>
+								<li><a href="">项目介绍</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="top_member">
+					<ul>
+						<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
+						<li> <a href="">常见问题</a></li>
+						<li> <a href="member_tea.html" class="btn_exit">LogOut</a></li>
+					</ul>
+				</div>
 			</div>
-			<div class="top_member">
-				<ul>
-					<li> <a href="member_stu.html"><i class="icon"></i> 张同学</a></li>
-					<li> <a href="">常见问题</a></li>
-					<li> <a href="member_tea.html" class="btn_exit">LogOut</a></li>
-				</ul>
+			<!--页面位置导航-->
+			<div class="page_title flex">
+				<div class="navigation">
+					<a href="">首页</a><em>/</em>
+					<a href="member_tea_analysis01.html">全校综合情况</a><em>/</em>
+					<span>单项成绩分布情况</span>
+				</div>
+				<div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
 			</div>
-		</div>
-		<!--页面位置导航-->
-		<div class="page_title flex">
-			<div class="navigation">
-				<a href="">首页</a><em>/</em>
-				<a href="member_tea_analysis01.html">全校综合情况</a><em>/</em>
-				<span>单项成绩分布情况</span>
-			</div>
-			<div class="time">当前时间：2021年10月09日 22:22:22 星期五</div>
-		</div>
 
-		<!--页面内容部分-->
-		<div class="page flex">
-			<div class="page_nav">
-				<h3>功能菜单</h3>
-				<dl>
-					<dd><a href="member_tea.html"><span class="iconfont icon-fabuxuqiu"></span>学生数据</a></dd>
-					<dd>
-						<h4 class="this"><span class="iconfont icon-fabuxuqiu"></span>统计分析</h4>
-						<dl>
-							<dd><a href="member_tea_analysis01.html"> 全校综合情况</a></dd>
-							<dd><a href="member_tea_analysis02.html"> 单项目情况</a></dd>
-							<dd><a href="member_tea_analysis03.html" class="hover"> 指标情况</a></dd>
-						</dl>
-					</dd>
-					<dd>
-						<h4><span class="iconfont icon-fabuxuqiu"></span>网站信息维护</h4>
-						<dl>
-							<dd><a href="editor_list.html"> 通知公告</a></dd>
-							<dd><a href="editor_list.html"> 相关下载</a></dd>
-							<dd><a href="editor_list.html"> 工作动态</a></dd>
-							<dd><a href="editor_list.html"> 常见问题</a></dd>
-							<dd><a href="editor_list.html"> 健康知识</a></dd>
-						</dl>
-					</dd>
-					<dd>
-						<h4><span class="iconfont icon-fabuxuqiu"></span>健康指导维护</h4>
-						<dl>
-							<dd><a href="editor_editor.html"> 健康意见编辑</a></dd>
-						</dl>
-					</dd>
-				</dl>
-			</div>
-			<div class="page_right">
-				<div class="analysis_top">
-					<h3>体侧成绩合格率指标</h3>
-					<p>指标介绍：合格率指标是重要指标，通过合格率指标用于标识合格成绩的变化情况。他的计算公式是：档期合格学生人数除以当期学生总数。</p>
-					<div class="date_screening">
-						<form>
-							<div class="row">
-								<div class="col-sm-4 ">
-									<a href="">全部报告数据</a>
+			<!--页面内容部分-->
+			<div class="page flex">
+				<div class="page_nav">
+					<h3>功能菜单</h3>
+					<dl>
+						<dd><a href="member_tea.html"><span class="iconfont icon-fabuxuqiu"></span>学生数据</a></dd>
+						<dd>
+							<h4 class="this"><span class="iconfont icon-fabuxuqiu"></span>统计分析</h4>
+							<dl>
+								<dd><a href="member_tea_analysis01.html"> 全校综合情况</a></dd>
+								<dd><a href="member_tea_analysis02.html"> 单项目情况</a></dd>
+								<dd><a href="member_tea_analysis03.html" class="hover"> 指标情况</a></dd>
+							</dl>
+						</dd>
+						<dd>
+							<h4><span class="iconfont icon-fabuxuqiu"></span>网站信息维护</h4>
+							<dl>
+								<dd><a href="editor_list.html"> 通知公告</a></dd>
+								<dd><a href="editor_list.html"> 相关下载</a></dd>
+							</dl>
+						</dd>
+						<dd>
+							<h4><span class="iconfont icon-fabuxuqiu"></span>健康指导维护</h4>
+							<dl>
+								<dd><a href="editor_editor.html"> 健康意见编辑</a></dd>
+							</dl>
+						</dd>
+					</dl>
+				</div>
+				<div class="page_right">
+					<div class="analysis_top">
+						<h3>体侧成绩合格率指标</h3>
+						<p>指标介绍：合格率指标是重要指标，通过合格率指标用于标识合格成绩的变化情况。他的计算公式是：档期合格学生人数除以当期学生总数。</p>
+						<div class="date_screening">
+							<form>
+								<div class="row">
+									<div class="col-sm-4 ">
+										<a href="">全部报告数据</a>
+									</div>
+									<div class="col-sm-2">
+										<h4>期间报告数据：</h4>
+									</div>
+									<div class="col-sm-3">
+										<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker"
+											   data-target="#datetimepicker5" />
+									</div>
+									<div class="col-sm-3">
+										<input type="text" class="form-control datetimepicker-input" id="datetimepicker6" data-toggle="datetimepicker"
+											   data-target="#datetimepicker6" />
+									</div>
+									<script type="text/javascript">
+										// $(function() {
+										// 	$('#datetimepicker5').datetimepicker();
+										// 	$('#datetimepicker6').datetimepicker();
+										// });
+									</script>
 								</div>
-								<div class="col-sm-2">
-									<h4>期间报告数据：</h4>
-								</div>
-								<div class="col-sm-3">
-									<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker"
-									 data-target="#datetimepicker5" />
-								</div>
-								<div class="col-sm-3">
-									<input type="text" class="form-control datetimepicker-input" id="datetimepicker6" data-toggle="datetimepicker"
-									 data-target="#datetimepicker6" />
-								</div>
-								<script type="text/javascript">
-									// $(function() {
-									// 	$('#datetimepicker5').datetimepicker();
-									// 	$('#datetimepicker6').datetimepicker();
-									// });
-								</script>
+							</form>
+						</div>
+					</div>
+					<div class="results_box flex">
+						<div class="data_box center">
+							<h3>各学院合格率分布情况</h3>
+							<div  id="institute" style="width: 540px;height: 300px"class="data_eachert">
+								<!--							<img src="images/qushi5.png" style="" />-->
 							</div>
-						</form>
+						</div>
+						<div class="data_box center">
+							<h3>各学院合格率趋势变化情况
+								<select class="form-select" id="academy" @click="changeEchart()">
+									<option>自动化学院</option>
+									<option>数字艺术学院</option>
+									<option>人文与外国语学院</option>
+									<option>通信与信息工程学院</option>
+									<option>理学院</option>
+									<option>经济与管理学院</option>
+									<option>计算机学院</option>
+									<option>电子工程学院</option>
+								</select>
+							</h3>
+
+							<div id="institute_hege" style="width: 700px;height: 300px" class="data_eachert">
+								<!--							<img src="images/qushi6.png" style="" />-->
+							</div>
+						</div>
+
 					</div>
+
+					<div class="results_box flex">
+						<div class="data_box center">
+							<h3>单项合格率分布情况</h3>
+							<div  id="single_institute" style="width: 540px;height: 300px"class="data_eachert">
+								<!--							<img src="images/qushi5.png" style="" />-->
+							</div>
+						</div>
+						<div class="data_box center">
+							<h3>各学院不合格率分布情况
+								<select class="form-select" id="academy2" @click="changeEchart2()">
+									<option>自动化学院</option>
+									<option>数字艺术学院</option>
+									<option>人文与外国语学院</option>
+									<option>通信与信息工程学院</option>
+									<option>理学院</option>
+									<option>经济与管理学院</option>
+									<option>计算机学院</option>
+									<option>电子工程学院</option>
+								</select>
+							</h3>
+							<div  id="buhege"style="width: 700px;height: 300px" class="data_eachert">
+								<img src="images/qushi6.png" style="" />
+							</div>
+						</div>
+
+					</div>
+
 				</div>
-				<div class="results_box flex">
-					<div class="data_box center">
-						<h3>各学院合格率分布情况</h3>
-						<div  id="institute" style="width: 540px;height: 300px"class="data_eachert">
-<!--							<img src="images/qushi5.png" style="" />-->
-						</div>
-					</div>
-					<div class="data_box center">
-						<h3>各学院合格率趋势变化情况
-							<select class="form-select">
-								<option>计算机学院</option>
-								<option>通信学院</option>
-								<option>大妈学院</option>
-							</select>
-						</h3>
 
-						<div id="institute_hege" style="width: 700px;height: 300px" class="data_eachert">
-<!--							<img src="images/qushi6.png" style="" />-->
-						</div>
-					</div>
-					
+			</div>
+
+
+			<!--底部代码-->
+			<div class="bottom w_long">
+				<div class="bottom_copy">
+					<p>
+						Copyright @ 2019-2022 西安邮电大学维护</br>
+						网站备案号：陕IPC243434****-01
+					</p>
 				</div>
-
-				<div class="results_box flex">
-					<div class="data_box center">
-						<h3>单项合格率分布情况</h3>
-						<div  id="single_institute" style="width: 540px;height: 300px"class="data_eachert">
-							<!--							<img src="images/qushi5.png" style="" />-->
-						</div>
-					</div>
-					<div class="data_box center">
-						<h3>各学院不合格率分布情况
-							<select class="form-select">
-								<option>计算机学院</option>
-								<option>通信学院</option>
-								<option>大妈学院</option>
-							</select>
-						</h3>
-						<div  id="buhege"style="width: 700px;height: 300px" class="data_eachert">
-							<img src="images/qushi6.png" style="" />
-						</div>
-					</div>
-
-				</div>
-
-		</div>
-
-		</div>
-
-
-		<!--底部代码-->
-		<div class="bottom w_long">
-			<div class="bottom_copy">
-				<p>
-					Copyright @ 2019-2022 西安邮电大学维护</br>
-					网站备案号：陕IPC243434****-01
-				</p>
 			</div>
 		</div>
 	</body>
 <script>
-	//各学院合格率分布情况
-	var chartDom = document.getElementById('institute');
-	var myChart = echarts.init(chartDom);
-	var option;
-	option = {
-		xAxis: {
-			type: 'category',
-			data: ['管理学院', '理学院', '计算机学院', '人文学院']
-		},
-		yAxis: {
-			type: 'value'
-		},
-		series: [
-			{
-				itemStyle: {
-					normal: {
-						// 随机显示
-						//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
-
-						// 定制显示（按顺序）
-						color: function(params) {
-							var colorList = ['#1E90FF','#EFE42A','#64BD3D','#EE9201','#29AAE3', '#B74AE5','#0AAF9F','#E89589','#16A085','#4A235A','#C39BD3 ','#F9E79F','#BA4A00','#ECF0F1','#616A6B','#EAF2F8','#4A235A','#3498DB' ];
-							return colorList[params.dataIndex]
-						}
-					},
-				},
-				data:[120,200,150,80],
-				markLine: {
-					data: [{
-						type: "average"
-					}],
-					silent: true
-				},
-				type: 'bar'
+	// init vue instance
+	let vm = new Vue({
+		el:'#app',
+		data:()=>{
+			return {
+				dataByAcademy:[],
+				dataByAcademyBuhege:[],
+				academyData:[],
+				academyData2:[]
 			}
-		]
-	};
-	option && myChart.setOption(option);
-
-
-	//单项格率分布情况
-	var chartDom = document.getElementById('single_institute');
-	var myChart = echarts.init(chartDom);
-	var option;
-	option = {
-		xAxis: {
-			type: 'category',
-			data: ['管理学院', '理学院', '计算机学院', '人文学院']
 		},
-		yAxis: {
-			type: 'value'
-		},
-		series: [
-			{
-				itemStyle: {
-					normal: {
-						// 随机显示
-						//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+		mounted(){
+			this.getDataByAcademy();
+			this.getDataByAcademyBuhege();
+			this.changeEchart();
+			this.changeEchart2();
 
-						// 定制显示（按顺序）
-						color: function(params) {
-							var colorList = ['#1E90FF','#EFE42A','#64BD3D','#EE9201','#29AAE3', '#B74AE5','#0AAF9F','#E89589','#16A085','#4A235A','#C39BD3 ','#F9E79F','#BA4A00','#ECF0F1','#616A6B','#EAF2F8','#4A235A','#3498DB' ];
-							return colorList[params.dataIndex]
-						}
+		},
+		methods:{
+			showEchartsAcademy(){
+				//各学院合格率分布情况
+				var chartDom = document.getElementById('institute');
+				var myChart = echarts.init(chartDom);
+				var option;
+				option = {
+					xAxis: {
+						type: 'category',
+						data: [this.dataByAcademy[0].name_,this.dataByAcademy[1].name_, this.dataByAcademy[2].name_,this.dataByAcademy[3].name_,this.dataByAcademy[4].name_,this.dataByAcademy[5].name_,this.dataByAcademy[6].name_,this.dataByAcademy[7].name_]
 					},
-				},
-				data:[120,200,150,80],
-				markLine: {
-					data: [{
-						type: "average"
-					}],
-					silent: true
-				},
-				type: 'bar'
-			}
-		]
-	};
+					yAxis: {
+						type: 'value'
+					},
+					series: [
+						{
+							itemStyle: {
+								normal: {
+									// 随机显示
+									//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
 
-	option && myChart.setOption(option);
+									// 定制显示（按顺序）
+									color: function(params) {
+										var colorList = ['#1E90FF','#EFE42A','#64BD3D','#EE9201','#29AAE3', '#B74AE5','#0AAF9F','#E89589','#16A085','#4A235A','#C39BD3 ','#F9E79F','#BA4A00','#ECF0F1','#616A6B','#EAF2F8','#4A235A','#3498DB' ];
+										return colorList[params.dataIndex]
+									}
+								},
+							},
+							data:[this.dataByAcademy[0].passRate,this.dataByAcademy[1].passRate, this.dataByAcademy[2].passRate,this.dataByAcademy[3].passRate,this.dataByAcademy[4].passRate,this.dataByAcademy[5].passRate,this.dataByAcademy[6].passRate,this.dataByAcademy[7].passRate],
+							markLine: {
+								data: [{
+									type: "average"
+								}],
+								silent: true
+							},
+							type: 'bar'
+						}
+					]
+				};
+				option && myChart.setOption(option);
+
+
+				//单项格率分布情况
+				var chartDom = document.getElementById('single_institute');
+				var myChart = echarts.init(chartDom);
+				var option;
+				option = {
+					xAxis: {
+						type: 'category',
+						data: [this.dataByAcademyBuhege[0].name_,this.dataByAcademyBuhege[1].name_, this.dataByAcademyBuhege[2].name_,this.dataByAcademyBuhege[3].name_,this.dataByAcademyBuhege[4].name_,this.dataByAcademyBuhege[5].name_,this.dataByAcademyBuhege[6].name_,this.dataByAcademyBuhege[7].name_]
+					},
+					yAxis: {
+						type: 'value'
+					},
+					series: [
+						{
+							itemStyle: {
+								normal: {
+									// 随机显示
+									//color:function(d){return "#"+Math.floor(Math.random()*(256*256*256-1)).toString(16);}
+
+									// 定制显示（按顺序）
+									color: function(params) {
+										var colorList = ['#1E90FF','#EFE42A','#64BD3D','#EE9201','#29AAE3', '#B74AE5','#0AAF9F','#E89589','#16A085','#4A235A','#C39BD3 ','#F9E79F','#BA4A00','#ECF0F1','#616A6B','#EAF2F8','#4A235A','#3498DB' ];
+										return colorList[params.dataIndex]
+									}
+								},
+							},
+							data:[this.dataByAcademyBuhege[0].passRate,this.dataByAcademyBuhege[1].passRate, this.dataByAcademyBuhege[2].passRate,this.dataByAcademyBuhege[3].passRate,this.dataByAcademyBuhege[4].passRate,this.dataByAcademyBuhege[5].passRate,this.dataByAcademyBuhege[6].passRate,this.dataByAcademyBuhege[7].passRate],
+							markLine: {
+								data: [{
+									type: "average"
+								}],
+								silent: true
+							},
+							type: 'bar'
+						}
+					]
+				};
+
+				option && myChart.setOption(option);
 //各学院合格率趋势
-	var chartDom = document.getElementById('institute_hege');
-	var myChart = echarts.init(chartDom);
-	var option;
+				var chartDom = document.getElementById('institute_hege');
+				var myChart = echarts.init(chartDom);
+				var option;
+				console.log(this.academyData)
 
-	option = {
-		xAxis: {
-			type: 'category',
-			data:[
-			'2019年第二学期',
-			'2020年第一学期',
-			'2020年第二学期',
-			'2021年第一学期',]
-		},
-		yAxis: {
-			type: 'value'
-		},
-		series: [
-			{
-				data: [150, 230, 224, 218],
-				type: 'line'
-			}
-		]
-	};
+				option = {
+					xAxis: {
+						type: 'category',
+						data:this.academyData.dates
+					},
+					yAxis: {
+						type: 'value'
+					},
+					series: [
+						{
+							data: this.academyData.passRates,
+							type: 'line'
+						}
+					]
+				};
 
-	option && myChart.setOption(option);
-	//各学院不合格率分布
-	var chartDom = document.getElementById('buhege');
-	var myChart = echarts.init(chartDom);
-	var option;
+				option && myChart.setOption(option);
+				//各学院不合格率分布
+				var chartDom = document.getElementById('buhege');
+				var myChart = echarts.init(chartDom);
+				var option;
 
-	option = {
-		xAxis: {
-			type: 'category',
-			data:[
-				'2019年第二学期',
-				'2020年第一学期',
-				'2020年第二学期',
-				'2021年第一学期',]
-		},
-		yAxis: {
-			type: 'value'
-		},
-		series: [
-			{
-				data: [230, 224,80, 218],
-				type: 'line'
-			}
-		]
-	};
+				option = {
+					xAxis: {
+						type: 'category',
+						data:this.academyData2.dates
+					},
+					yAxis: {
+						type: 'value'
+					},
+					series: [
+						{
+							data: this.academyData2.passRates,
+							type: 'line'
+						}
+					]
+				};
 
-	option && myChart.setOption(option);
+				option && myChart.setOption(option);
+			},
+			getDataByAcademy(){
+				var self = this;   //直接赋值不可以  它是将数据绑定到了ajax中的对象，而没有被vue对象绑定，所以错误   =====》解决方式是将this在ajax外命名
+				$.ajax({
+					url: "/test-score/getHegeByAcademy",
+					method: "get",
+					success: function (result) {
+						self.dataByAcademy = result.obj;
+						self.showEchartsAcademy();
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+			getDataByAcademyBuhege() {
+				var self = this;   //直接赋值不可以  它是将数据绑定到了ajax中的对象，而没有被vue对象绑定，所以错误   =====》解决方式是将this在ajax外命名
+				$.ajax({
+					url: "/test-score/getBuHegeByAcademy",
+					method: "get",
+					success: function (result) {
+						self.dataByAcademyBuhege = result.obj;
+						self.showEchartsAcademy();
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+			changeEchart(){
+				var academy = $("#academy")[0].value;
+				var self = this;
+				dataJson = {"academy":academy}
+				$.ajax({
+					url:"/test-score/getHegeChangeByAcademy",
+					method: "post",
+					data:dataJson,
+					success: function (result) {
+						self.academyData = result.obj
+						self.showEchartsAcademy();
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+			changeEchart2(){
+				var academy2 = $("#academy2")[0].value;
+				var self = this;
+				dataJson = {"academy":academy2}
+				$.ajax({
+					url:"/test-score/getHegeChangeByAcademy",
+					method: "post",
+					data:dataJson,
+					success: function (result) {
+						self.academyData2 = result.obj
+						self.showEchartsAcademy();
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+
+		}
+	})
 </script>
 </html>

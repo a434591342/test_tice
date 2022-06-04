@@ -18,4 +18,8 @@ public interface INoticeService extends IService<Notice> {
     RespBean selectById(Integer id);
 
     RespBean getAllNotice();
+
+    boolean updateNotice(Notice notice);
+
+    boolean addNotice(Notice notice);
 }

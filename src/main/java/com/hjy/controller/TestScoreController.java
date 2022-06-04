@@ -144,28 +144,36 @@ public class TestScoreController {
         // 所有年份
         List<String> years = testscoreService.getAllDate();
         //及格率
-        List<Double> VCPassRates= testscoreService.getHegeByVC();
+        List<Double> VCPassRates1= testscoreService.getHegeByVC(1);
+        List<Double> VCPassRates2= testscoreService.getHegeByVC(2);
         // 每年的及格率
         vc.add(years);
-        vc.add(VCPassRates);
+        vc.add(VCPassRates1);
+        vc.add(VCPassRates2);
         res.put("肺活量",vc);
 
-        List<Double> s50mPassRates = testscoreService.getHegeBy50m();
+        List<Double> s50mPassRates1 = testscoreService.getHegeBy50m(1);
+        List<Double> s50mPassRates2 = testscoreService.getHegeBy50m(2);
         List s50 = new ArrayList();
         s50.add(years);
-        s50.add(s50mPassRates);
+        s50.add(s50mPassRates1);
+        s50.add(s50mPassRates2);
         res.put("50米",s50);
 
-        List<Double> ljPassRates = testscoreService.getHegeBylj();
+        List<Double> ljPassRates1 = testscoreService.getHegeBylj(1);
+        List<Double> ljPassRates2 = testscoreService.getHegeBylj(2);
         List lj = new ArrayList();
         lj.add(years);
-        lj.add(ljPassRates);
+        lj.add(ljPassRates1);
+        lj.add(ljPassRates2);
         res.put("跳远",lj);
 
-        List<Double> sarPassRates = testscoreService.getHegeBysar();
+        List<Double> sarPassRates1 = testscoreService.getHegeBysar(1);
+        List<Double> sarPassRates2 = testscoreService.getHegeBysar(2);
         List sar = new ArrayList();
         sar.add(years);
-        sar.add(sarPassRates);
+        sar.add(sarPassRates1);
+        sar.add(sarPassRates2);
         res.put("坐位体前屈",sar);
 
         List<Double> s800mPassRates = testscoreService.gethegeBy800m();
@@ -176,8 +184,8 @@ public class TestScoreController {
 
         List<Double> s1000mPassRates = testscoreService.gethegeBy1000m();
         List s1000 = new ArrayList();
-        s800.add(years);
-        s800.add(s1000mPassRates);
+        s1000.add(years);
+        s1000.add(s1000mPassRates);
         res.put("1000米",s1000);
 
         List<Double> sitUpPassRates = testscoreService.gethegeBySitup();
@@ -201,7 +209,8 @@ public class TestScoreController {
     @ApiOperation(value = "年级的成绩分布")
     @GetMapping("/getScoreByGrade")
     public RespBean getScoreByGrade(){
-        List<scoreByGrade> res = testscoreService.getScoreByGrade();
+        LocalDate recentDate = testscoreService.getRecentDate();
+        List<scoreByGrade> res = testscoreService.getScoreByGrade(recentDate);
         if (res.size()!=0){
             return RespBean.success("查询成功！",res);
         }else return RespBean.error("查询失败！");

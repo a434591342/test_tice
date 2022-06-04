@@ -17,5 +17,9 @@
     <select id="selectSug" resultType="java.lang.String">
         select sug from suggestion_classify where id = #{parseInt}
     </select>
+    <update id="changeSug">
+    update suggestion_classify set sug=#{suggestionClassify.sug}
+    where id = #{suggestionClassify.id}
+</update>
 
 </mapper>

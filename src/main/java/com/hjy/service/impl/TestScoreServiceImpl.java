@@ -138,25 +138,25 @@ public class TestScoreServiceImpl extends ServiceImpl<TestScoreMapper, TestScore
     }
 
     @Override
-    public List<Double> getHegeByVC() {
+    public List<Double> getHegeByVC(Integer sex) {
 
-        return testScoreMapper.getHegeByVC();
+        return testScoreMapper.getHegeByVC(sex);
     }
 
     @Override
-    public List<Double> getHegeBy50m() {
-        return testScoreMapper.getHegeBy50m();
+    public List<Double> getHegeBy50m(Integer sex) {
+        return testScoreMapper.getHegeBy50m(sex);
     }
 
     @Override
-    public List<Double> getHegeBylj() {
+    public List<Double> getHegeBylj(Integer sex) {
 
-        return testScoreMapper.getHegeBylj();
+        return testScoreMapper.getHegeBylj(sex);
     }
 
     @Override
-    public List<Double> getHegeBysar() {
-        return testScoreMapper.getHegeBysar();
+    public List<Double> getHegeBysar(Integer sex) {
+        return testScoreMapper.getHegeBysar(sex);
     }
 
     @Override
@@ -180,8 +180,8 @@ public class TestScoreServiceImpl extends ServiceImpl<TestScoreMapper, TestScore
     }
 
     @Override
-    public List<scoreByGrade> getScoreByGrade() {
-        return testScoreMapper.getScoreByGrade();
+    public List<scoreByGrade> getScoreByGrade(LocalDate recentDate) {
+        return testScoreMapper.getScoreByGrade(recentDate);
     }
 
     @Override

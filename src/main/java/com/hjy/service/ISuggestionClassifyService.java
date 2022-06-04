@@ -14,4 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface ISuggestionClassifyService extends IService<SuggestionClassify> {
 
     String getSug(int parseInt);
+
+    boolean changeSug(SuggestionClassify suggestionClassify);
 }

@@ -23,4 +23,10 @@ public class SuggestionClassifyServiceImpl extends ServiceImpl<SuggestionClassif
     public String getSug(int parseInt) {
         return suggestionClassifyMapper.selectSug(parseInt);
     }
+
+    @Override
+    public boolean changeSug(SuggestionClassify suggestionClassify) {
+
+        return suggestionClassifyMapper.changeSug(suggestionClassify);
+    }
 }

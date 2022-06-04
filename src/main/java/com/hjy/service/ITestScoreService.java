@@ -41,13 +41,13 @@ public interface ITestScoreService extends IService<TestScore> {
 
     List<String> getAllDate();
 
-    List<Double> getHegeByVC();
+    List<Double> getHegeByVC(Integer sex);
 
-    List<Double> getHegeBy50m();
+    List<Double> getHegeBy50m(Integer sex);
 
-    List<Double> getHegeBylj();
+    List<Double> getHegeBylj(Integer sex);
 
-    List<Double> getHegeBysar();
+    List<Double> getHegeBysar(Integer sex);
 
     List<Double> gethegeBy800m();
 
@@ -57,7 +57,7 @@ public interface ITestScoreService extends IService<TestScore> {
 
     List<Double> gethegeByPullUp();
 
-    List<scoreByGrade> getScoreByGrade();
+    List<scoreByGrade> getScoreByGrade(LocalDate recentDate);
 
     AnalyzeByItem getAnalyzeByItem(String item);
 
