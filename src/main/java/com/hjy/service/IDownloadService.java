@@ -18,4 +18,8 @@ public interface IDownloadService extends IService<Download> {
     RespBean getAllList();
 
     RespBean selectById(Integer id);
+
+    boolean updateDownload(Download download);
+
+    boolean addDownload(Download download);
 }

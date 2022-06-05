@@ -22,5 +22,12 @@
             select *
         from download order by time DESC
 </select>
+<update id="updateDownload">
+        update download set download_name = #{download.downloadName},download_content=#{download.downloadContent},download_time = #{download.time}
+        where download_id = #{download.downloadId}
+</update>
+<insert id="addDownload">
+        insert into download values(null,#{download.downloadName},#{download.downloadContent},#{download.time})
+</insert>
 
 </mapper>

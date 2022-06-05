@@ -72,4 +72,6 @@ public interface ITestScoreService extends IService<TestScore> {
     RateChangeByAcademy getYouxiuChangeByAcademy(String academy);
 
     RateChangeByAcademy getBuhegeChangeByAcademy(String academy);
+
+    RespBean selectAllById(Integer id);
 }

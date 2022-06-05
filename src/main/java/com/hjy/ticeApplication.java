@@ -17,4 +17,5 @@ public class ticeApplication {
     public static void main(String[] args) {
         SpringApplication.run(ticeApplication.class,args);
     }
+
 }

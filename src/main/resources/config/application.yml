@@ -49,7 +49,6 @@ spring:
     multipart:
       max-file-size: 1073741824
       max-request-size: 1073741824
-
 #  redis:
 #    #超时时间
 #    timeout: 10000ms
@@ -83,3 +82,10 @@ mybatis-plus:
 logging:
   level:
     com.hjy.server.mapper: debug
+file:
+  upload:
+    url: "D:\\test"
+  download:
+    url: "D:\\test"
+  delete:
+    url: "D:\\test"

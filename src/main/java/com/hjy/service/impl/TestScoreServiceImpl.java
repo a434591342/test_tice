@@ -307,4 +307,15 @@ public class TestScoreServiceImpl extends ServiceImpl<TestScoreMapper, TestScore
         rateChangeByAcademy.setPassRates(changeRate);
         return rateChangeByAcademy;
     }
+
+    @Override
+    public RespBean selectAllById(Integer id) {
+        List<TestScore> testScores = testScoreMapper.selectByID(id);
+        if (testScores.size()!=0){
+            return RespBean.success("查询成功!",testScores);
+        }else{
+            return RespBean.error("查询失败!");
+        }
+
+    }
 }

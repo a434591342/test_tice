@@ -1,15 +1,13 @@
 package com.hjy.service.impl;
 
-import com.hjy.pojo.Download;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hjy.mapper.DownloadMapper;
-import com.hjy.pojo.Notice;
+import com.hjy.pojo.Download;
 import com.hjy.pojo.RespBean;
 import com.hjy.service.IDownloadService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,5 +42,16 @@ public class DownloadServiceImpl extends ServiceImpl<DownloadMapper, Download> i
         if (download!=null){
             return RespBean.success("查询成功！",download);
         }else return RespBean.error("查询失败");
+    }
+
+    @Override
+    public boolean updateDownload(Download download) {
+
+        return downloadMapper.updateDownload(download);
+    }
+
+    @Override
+    public boolean addDownload(Download download) {
+        return downloadMapper.addDownload(download);
     }
 }

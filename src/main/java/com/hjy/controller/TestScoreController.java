@@ -39,6 +39,11 @@ public class TestScoreController {
         return testscoreService.selectById(id);
     }
 
+    @ApiOperation(value = "查询最近一次体测成绩")
+    @GetMapping("/getAllTestScore")
+    public RespBean getAllTestScore(@RequestParam Integer id){
+        return testscoreService.selectAllById(id);
+    }
 
     @ApiOperation(value = "历史最好成绩和班级平均成绩，平均位次和学期")
     @GetMapping("/getBestAndEvr")

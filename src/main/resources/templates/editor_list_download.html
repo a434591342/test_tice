@@ -96,8 +96,8 @@
 						<dd>
 							<h4><span class="iconfont icon-fabuxuqiu"></span>网站信息维护</h4>
 							<dl>
-								<dd><a href="editor_list.html" class="hover"> 通知公告</a></dd>
-								<dd><a href="editor_list_download.html"> 相关下载</a></dd>
+								<dd><a href="editor_list.html"> 通知公告</a></dd>
+								<dd><a href="editor_list.html"  class="hover"> 相关下载</a></dd>
 							</dl>
 						</dd>
 						<dd>
@@ -112,7 +112,7 @@
 					<div class="data_nav">
 						<form>
 							<div class="btn-group btn-group-sm">
-								<button  type="button" class="btn btn-primary btn-blue" data-toggle="modal" data-target="#addModal">发布公告</button>
+								<button  type="button" class="btn btn-primary btn-blue" data-toggle="modal" data-target="#addModal">发布下载内容</button>
 							</div>
 							<!-- Modal -->
 							<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -120,7 +120,7 @@
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="myModalLabel">公告发布</h4>
+											<h4 class="modal-title" id="myModalLabel">发布下载内容</h4>
 										</div>
 										<div class="modal-body">
 											<form>
@@ -131,6 +131,10 @@
 												<div class="form-group">
 													<label for="text">请输入内容</label>
 													<textarea class="form-control" rows="20" id="text"></textarea>
+												</div>
+												<div class="form-group">
+													<label for="exampleInputFile">请上传附件</label>
+													<input type="file" id="exampleInputFile">
 												</div>
 											</form>
 										</div>
@@ -155,15 +159,15 @@
 								<th>删除</th>
 							</tr>
 							</thead>
-							<tbody v-for="(notice,item) of notices" :key="item">
+							<tbody v-for="(download,item) of downloads" :key="item">
 
 							<tr>
-								<td>{{notice.noticeId}}</td>
-								<td width="500">{{notice.noticeName}}</td>
+								<td>{{download.downloadId}}</td>
+								<td width="500">{{download.downloadName}}</td>
 								<td>已发布</td>
-								<td>{{notice.noticeDate}}</td>
+								<td>{{download.time}}</td>
 								<td><button  type="button" class="btn btn-primary btn-blue" data-toggle="modal" data-target="#changeModal">修改</button></td>
-								<td><a @click="deleteAction(notice.noticeId)">删除</a></td>
+								<td><a @click="deleteAction(download.downloadId)">删除</a></td>
 							</tr>
 							<!--							<tr>-->
 							<!--								<td><input class="form-check-input" type="checkbox"  checked></td>-->
@@ -193,7 +197,7 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<h4 class="modal-title" id="myModalLabel2">公告发布</h4>
+										<h4 class="modal-title" id="myModalLabel2">下载发布</h4>
 									</div>
 									<div class="modal-body">
 										<form>
@@ -241,7 +245,7 @@
 		el:'#app',
 		data:()=>{
 			return {
-				notices:[],
+				downloads:[],
 			}
 		},
 		mounted(){
@@ -250,10 +254,10 @@
 		methods:{
 			getNotices(){
 				$.ajax({
-					url: "/notice/getAllNotice",
+					url: "/download//getAllList",
 					method: "get",
 					success: (result)=> {
-						this.notices = result.obj;
+						this.downloads = result.obj;
 					},
 					error: function () {
 						alert("请求服务器失败!");
@@ -262,9 +266,9 @@
 			},
 			deleteAction(id){
 				if(confirm('确定删除？','取消')){
-					dataJson = {"noticeId":id};
+					dataJson = {"downloadId":id};
 					$.ajax({
-						url:"/notice/deleteNotice/"+id,
+						url:"/download/deleteDownload/"+id,
 						type:"DELETE",
 						contentType:"application/json",
 						data:JSON.stringify(dataJson),
