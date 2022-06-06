@@ -2,7 +2,6 @@ package com.hjy.controller;
 
 
 import com.hjy.pojo.Download;
-import com.hjy.pojo.Notice;
 import com.hjy.pojo.RespBean;
 import com.hjy.service.IDownloadService;
 import io.swagger.annotations.ApiOperation;
@@ -42,8 +41,8 @@ public class DownloadController {
     }
 
     @ApiOperation(value = "删除download")
-    @DeleteMapping("/deleteDownload")
-    public RespBean deleteNotice(@RequestBody Integer downloadId){
+    @GetMapping("/deleteDownload")
+    public RespBean deleteNotice(@RequestParam Integer downloadId){
         System.out.println(downloadId);
         if (downloadService.removeById(downloadId)){
             return RespBean.success("删除成功！");
@@ -51,7 +50,7 @@ public class DownloadController {
     }
 
     @ApiOperation(value = "修改download")
-    @PutMapping("/changeDownload")
+    @PostMapping("/changeDownload")
     public RespBean changeNotice(@RequestBody Download download){
         if (downloadService.updateDownload(download)){
             return RespBean.success("更新成功！");
@@ -59,7 +58,12 @@ public class DownloadController {
     }
     @ApiOperation(value ="添加download")
     @PostMapping("/addDownload")
-    public RespBean addDownload(@RequestBody Download download){
+//    "downloadId":null,"downloadName":title,"time":null,"downloadContent":content,"downloadFileName":fileName
+    public RespBean addDownload(String downloadName,String downloadContent,String downloadFileName){
+        Download download = new Download();
+        download.setDownloadContent(downloadContent);
+        download.setDownloadName(downloadName);
+        download.setDownloadFileName(downloadFileName);
         LocalDateTime now = LocalDateTime.now();
         download.setTime(now);
         if (downloadService.addDownload(download)){

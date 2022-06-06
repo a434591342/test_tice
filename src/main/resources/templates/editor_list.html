@@ -125,18 +125,18 @@
 										<div class="modal-body">
 											<form>
 												<div class="form-group">
-													<label for="exampleInputEmail1">请输入标题</label>
-													<input type="email" class="form-control" id="exampleInputEmail1" placeholder="title">
+													<label for="addForm_title">请输入标题</label>
+													<input type="email" class="form-control" id="addForm_title" placeholder="title">
 												</div>
 												<div class="form-group">
-													<label for="text">请输入内容</label>
-													<textarea class="form-control" rows="20" id="text"></textarea>
+													<label for="addForm_cont">请输入内容</label>
+													<textarea class="form-control" rows="20" id="addForm_cont"></textarea>
 												</div>
 											</form>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save changes</button>
+											<button type="button" class="btn btn-primary" @click="addNotice()">Save changes</button>
 										</div>
 									</div>
 								</div>
@@ -162,7 +162,7 @@
 								<td width="500">{{notice.noticeName}}</td>
 								<td>已发布</td>
 								<td>{{notice.noticeDate}}</td>
-								<td><button  type="button" class="btn btn-primary btn-blue" data-toggle="modal" data-target="#changeModal">修改</button></td>
+								<td><button  type="button" class="btn btn-primary btn-blue" data-toggle="modal" data-target="#changeModal" @click="changeNowId(notice.noticeId,notice.noticeName,notice.noticeContent)">修改</button></td>
 								<td><a @click="deleteAction(notice.noticeId)">删除</a></td>
 							</tr>
 							<!--							<tr>-->
@@ -198,18 +198,18 @@
 									<div class="modal-body">
 										<form>
 											<div class="form-group">
-												<label for="exampleInputEmail1">请输入标题</label>
-												<input type="email" class="form-control" id="exampleInputEmail2" placeholder="title">
+												<label for="changeTitle">请输入标题</label>
+												<input type="email" class="form-control" id="changeTitle" placeholder="title" >
 											</div>
 											<div class="form-group">
-												<label for="text">请输入内容</label>
-												<textarea class="form-control" rows="20" id="text2"></textarea>
+												<label for="changeCont">请输入内容</label>
+												<textarea class="form-control" rows="20" id="changeCont">{{noticeContent}}</textarea>
 											</div>
 										</form>
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save changes</button>
+										<button type="button" class="btn btn-primary" @click="changeNotice()">Save changes</button>
 									</div>
 								</div>
 							</div>
@@ -242,6 +242,8 @@
 		data:()=>{
 			return {
 				notices:[],
+				nowNoticeId:null,
+				noticeContent:null
 			}
 		},
 		mounted(){
@@ -262,20 +264,82 @@
 			},
 			deleteAction(id){
 				if(confirm('确定删除？','取消')){
-					dataJson = {"noticeId":id};
+					// dataJson = {"noticeId":id};
 					$.ajax({
-						url:"/notice/deleteNotice/"+id,
-						type:"DELETE",
+						url:"/notice/deleteNotice/?noticeId="+id,
+						type:"get",
 						contentType:"application/json",
-						data:JSON.stringify(dataJson),
 						success: (result)=> {
-							console.log(result)
+							if (result.code===200){
+								alert("删除成功");
+								location.reload();
+							}else{
+								alert("删除失败。。")
+							}
+
 						},
 						error: function () {
 							alert("请求服务器失败!");
 						}
 					})
 				}
+			},
+			addNotice(){
+				var title = $("#addForm_title").val()
+				var content = $("#addForm_cont").val()
+				if (title.length===0){
+					alert("标题不能为空！")
+				}else if (content.length===0){
+					alert("内容不能为空")
+				}else {
+					addNoticeJson = {"noticeId":null,"notice_name":title,"noticeDate":null,"notice_content":content};
+					$.ajax({
+							url: "/notice/addNotice",
+							method: "post",
+							data:addNoticeJson,
+							dataType: "json",
+							// contentType: "application/json;charset=utf-8",
+							success: function (result) {
+								if (result.code===200){
+									alert("添加成功");
+									location.reload();
+								}
+								else alert("添加失败！")
+							},
+							error: function () {
+								alert("请求服务器失败!");
+							}
+					})
+				}
+			},
+			changeNowId(id,noticeName,noticeContent){
+				this.nowNoticeId = id;
+				$("#changeTitle").attr("value",noticeName);
+				this.noticeContent = noticeContent
+			},
+			changeNotice(){
+				var noticeId = this.nowNoticeId;
+				var notice_name = $("#changeTitle").val()
+				var notice_content = $("#changeCont").val()
+				addNoticeJson = {"noticeId":noticeId,"notice_name":notice_name,"noticeDate":null,"notice_content":notice_content};
+				console.log(addNoticeJson)
+				$.ajax({
+					url: "/notice/changeNotice",
+					method: "post",
+					data:addNoticeJson,
+					dataType: "json",
+					// contentType: "application/json;charset=utf-8",
+					success: function (result) {
+						if (result.code===200){
+							alert("修改成功");
+							location.reload();
+						}
+						else alert("修改失败！")
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
 			}
 		}
 	})

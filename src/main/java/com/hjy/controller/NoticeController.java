@@ -43,28 +43,40 @@ public class NoticeController {
     }
 
     @ApiOperation(value = "删除notice")
-    @DeleteMapping ("/deleteNotice")
-    public RespBean deleteNotice(@RequestBody Integer noticeId){
-        System.out.println(noticeId);
+    @GetMapping ("/deleteNotice")
+    public RespBean deleteNotice(@RequestParam Integer noticeId){
         if (noticeService.removeById(noticeId)){
             return RespBean.success("删除成功！");
         }else return RespBean.error("删除失败！");
     }
 
     @ApiOperation(value = "修改notice")
-    @PutMapping("/changeNotice")
-    public RespBean changeNotice(@RequestBody Notice notice){
+    @PostMapping("/changeNotice")
+    public RespBean changeNotice(String noticeId,String notice_name,String notice_content){
+//        System.out.println(noticeId);
+        Notice notice = new Notice();
+        notice.setNoticeName(notice_name);
+        notice.setNoticeContent(notice_content);
+        notice.setNoticeId(Integer.parseInt(noticeId));
+        LocalDateTime now = LocalDateTime.now();
+        notice.setNoticeDate(now);
+        System.out.println(notice);
         if (noticeService.updateNotice(notice)){
             return RespBean.success("更新成功！");
         }else return RespBean.error("更新失败！");
     }
     @ApiOperation(value ="添加notice")
     @PostMapping("/addNotice")
-    public RespBean addNotice(@RequestBody Notice notice){
+    public RespBean addNotice(String notice_name, String notice_content){
+        Notice notice = new Notice();
+        notice.setNoticeContent(notice_content);
+        notice.setNoticeName(notice_name);
+        System.out.println(notice);
         LocalDateTime now = LocalDateTime.now();
         notice.setNoticeDate(now);
         if (noticeService.addNotice(notice)){
             return RespBean.success("添加成功！");
         }else return RespBean.error("添加失败！");
+
     }
 }

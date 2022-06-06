@@ -8,11 +8,12 @@
         <result column="download_name" property="downloadName" />
         <result column="download_content" property="downloadContent" />
         <result column="time" property="time" />
+        <result column="download_file_name" property="downloadFileName"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        download_id, download_name, download_content, time
+        download_id, download_name, download_content, time,download_file_name
     </sql>
     <select id="getServiceList" resultMap="BaseResultMap">
             select *
@@ -27,7 +28,7 @@
         where download_id = #{download.downloadId}
 </update>
 <insert id="addDownload">
-        insert into download values(null,#{download.downloadName},#{download.downloadContent},#{download.time})
+        insert into download values(null,#{download.downloadName},#{download.downloadContent},#{download.time},#{download.downloadFileName})
 </insert>
 
 </mapper>

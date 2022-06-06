@@ -259,7 +259,9 @@ public class TestScoreController {
     @ApiOperation(value = "各学院合格率趋势变化情况")
     @PostMapping("/getHegeChangeByAcademy")
     public RespBean getHegeChangeByAcademy(@RequestBody String academy){
+        System.out.println(academy);
         RateChangeByAcademy rateChangeByAcademy = testscoreService.getHegeChangeByAcademy(academy);
+        System.out.println(rateChangeByAcademy);
         if (rateChangeByAcademy!=null){
             return RespBean.success("查询成功！",rateChangeByAcademy);
         }else return RespBean.error("查询失败！");

@@ -1,6 +1,7 @@
 package com.hjy.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hjy.pojo.RespBean;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +30,7 @@ public class FileController {
     private String deleteFilePath;
 
     @RequestMapping("/upload")
-    public String fileUpload(@RequestParam("file") MultipartFile file) {
+    public RespBean fileUpload(@RequestParam("file") MultipartFile file) {
         JSONObject object = new JSONObject();
 
         String fileName = file.getOriginalFilename();  // 文件名
@@ -41,19 +42,17 @@ public class FileController {
             file.transferTo(dest);
         } catch (Exception e) {
             log.error("{}", e);
-            object.put("success", 2);
-            object.put("result", "程序错误，请重新上传");
-            return object.toString();
+            return RespBean.error("程序错误，请重新上传");
         }
-
         object.put("success", 1);
         object.put("result", "文件上传成功");
-        return object.toString();
+        return RespBean.success("文件上传成功");
     }
 
     @RequestMapping("/download")
-    public String fileDownLoad(HttpServletResponse response, @RequestParam("fileName") String fileName) {
+    public String fileDownLoad(HttpServletResponse response, @RequestParam("fileName") String fileName) throws UnsupportedEncodingException {
         File file = new File(downloadFilePath + '/' + fileName);
+        String new_fileName = new String(fileName.getBytes("GBK"),"ISO-8859-1");
         if (!file.exists()) {
             return "下载文件不存在";
         }
@@ -61,7 +60,8 @@ public class FileController {
         response.setContentType("application/octet-stream");
         response.setCharacterEncoding("utf-8");
         response.setContentLength((int) file.length());
-        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+        response.setHeader("Content-Disposition", "attachment;filename=" +new_fileName);
+
 
         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));) {
             byte[] buff = new byte[1024];

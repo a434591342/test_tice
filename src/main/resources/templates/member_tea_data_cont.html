@@ -102,22 +102,18 @@
 		</div>
 		<div class="page_right">
 			<div class="report_top">
-				<h3>姓名：张某某（学号：经管9803）</h3>
+				<h3>姓名：{{stuInfo1.name}}</h3>
 				<table class="table">
 					<tbody>
-					<tr>
-						<td><span>学院：</span>管理学院</td>
-						<td><span>系别：</span>经济信息管理系</td>
-						<td rowspan="2"><span>状态：</span>
-							<p>在读</p>
+					<tr v-if="stuInfo1!=null">
+						<td><span>学号：</span>{{stuInfo1.schoolNumber}}</td>
+						<td><span>性别：</span>{{stuInfo1.sex===1?'男':'女'}}</td>
+						<td rowspan="2"><span>班级名称：</span>
+							<p>{{stuInfo1.className}}</p>
 						</td>
 					</tr>
 					<tr>
-						<td><span>入学时间：</span>2021-05-01</td>
-						<td><span>性别：</span>男</td>
-					</tr>
-					<tr>
-						<td colspan="3"><span>备注：</span>请于两个工作日前确认</td>
+						<td colspan="3"><span>备注：</span>{{stuInfo1.note}}</td>
 					</tr>
 					</tbody>
 				</table>
@@ -145,10 +141,10 @@
 							<tbody v-for="(testscore,item) of testScores" :key="item">
 							<tr>
 								<td>{{testscore.studentId}}</td>
-								<td><font color="#818181">{{testscore.gender==1?'男':'女'}}</font></td>
-								<td><font color="#009DD9">{{testscore.totalScore}}</font></td>
-								<td><font color="#33d900">{{testscore.totalRank}}</font></td>
-								<td><font color="#d92400">{{testscore.date}}</font></td>
+								<td><font >{{testscore.gender==1?'男':'女'}}</font></td>
+								<td><font >{{testscore.totalScore}}</font></td>
+								<td><font >{{testscore.totalRank}}</font></td>
+								<td><font >{{testscore.date}}</font></td>
 
 								<td><button type="button" class="btn btn-primary btn-blue" data-toggle="modal" data-target="#changeGradeModal" @click="changeTestscore(item)">修改成绩</button></td>
 							</tr>
@@ -198,41 +194,16 @@
 						<table class="table">
 							<thead>
 							<tr>
-								<th>序号</th>
+								<th>id</th>
 								<th>学年学期</th>
 								<th>报告名称</th>
-								<th>结果说明</th>
-								<th>操作</th>
 							</tr>
 							</thead>
-							<tbody>
+							<tbody v-for="(testReport,item) of testReports" :key="item">
 							<tr>
-								<td>2</td>
-								<td>2020年第二学期</td>
-								<td>2020年第二学期体测报告（张同学）</td>
-								<td>建议增加上肢锻炼</td>
-								<td><a href="">查看详情</a><a href="">报告下载</a></td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>2020年第二学期</td>
-								<td>2020年第二学期体测报告（张同学）</td>
-								<td>建议增加上肢锻炼</td>
-								<td><a href="">查看详情</a><a href="">报告下载</a></td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>2020年第二学期</td>
-								<td>2020年第二学期体测报告（张同学）</td>
-								<td>建议增加上肢锻炼</td>
-								<td><a href="">查看详情</a><a href="">报告下载</a></td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>2020年第二学期</td>
-								<td>2020年第二学期体测报告（张同学）</td>
-								<td>建议增加上肢锻炼</td>
-								<td><a href="">查看详情</a><a href="">报告下载</a></td>
+								<td>{{testReport.report_id}}</td>
+								<td>{{testReport.year}}</td>
+								<td>{{testReport.reportName}}</td>
 							</tr>
 							</tbody>
 						</table>
@@ -264,7 +235,9 @@
 		data:()=>{
 			return {
 				testScores:[],
-				showTestscore:{}
+				showTestscore:{},
+				testReports:[],
+				stuInfo1:{}
 			}
 		},
 		mounted(){
@@ -273,6 +246,8 @@
 				window.location.href='index.html'
 			};
 			this.getTestScores(i);
+			this.getReports(i);
+			this.getInfo(i);
 		},
 		methods:{
 			getTestScores(id){
@@ -291,6 +266,35 @@
 			},
 			changeTestscore(index){
 				this.showTestscore = this.testScores[index];
+			},
+			getReports(id){
+				// dataJson = {"id":id}
+				$.ajax({
+					url: "/suggestion/getAllReport",
+					method: "get",
+					data:id,
+					success: (result)=> {
+						this.testReports = result.obj;
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
+			},
+			getInfo(id){
+				dataJson = {"school_num":id}
+				var self = this;
+				$.ajax({
+					url: "/student-info/getStuInfoByNum",
+					method: "get",
+					data:dataJson,
+					success: (result)=> {
+						self.stuInfo1 = result.obj[0];
+					},
+					error: function () {
+						alert("请求服务器失败!");
+					}
+				})
 			}
 		}
 	})
